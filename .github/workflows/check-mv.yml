@@ -1,0 +1,67 @@
+# Jednou týdně stáhne soubor testových otázek z webu MV ČR, porovná jeho otisk (SHA-256)
+# s otiskem uloženým v tools/mv-pdf.sha256 a při změně založí issue.
+# Spustit lze i ručně (Actions → Kontrola otázek MV → Run workflow).
+name: Kontrola otázek MV
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # pondělí 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stáhnout PDF z mv.gov.cz
+        id: dl
+        run: |
+          URL="https://mv.gov.cz/soubor/mv-soubor-testovych-otazek-pro-teoretickou-cast-zkousky-odborne-zpusobilosti-a-komisionalni-zkousku.aspx"
+          curl -sSL --retry 3 -A "Mozilla/5.0 (Zbrojak-2026 check)" -o otazky.pdf "$URL"
+          if ! head -c 5 otazky.pdf | grep -q '%PDF'; then echo "Stažený soubor není PDF"; file otazky.pdf; exit 1; fi
+          echo "new=$(sha256sum otazky.pdf | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "old=$(cut -d' ' -f1 tools/mv-pdf.sha256)" >> "$GITHUB_OUTPUT"
+          echo "size=$(stat -c %s otazky.pdf)" >> "$GITHUB_OUTPUT"
+
+      - name: Porovnat
+        run: |
+          echo "uložený otisk: ${{ steps.dl.outputs.old }}"
+          echo "aktuální otisk: ${{ steps.dl.outputs.new }} (${{ steps.dl.outputs.size }} B)"
+
+      - name: Zjistit verzi v PDF (text na první straně)
+        if: steps.dl.outputs.new != steps.dl.outputs.old
+        id: ver
+        run: |
+          sudo apt-get install -y -qq poppler-utils >/dev/null
+          pdftotext -l 1 otazky.pdf - | grep -iE "verze|aktualiz" | head -3 > ver.txt || true
+          echo "text<<EOF" >> "$GITHUB_OUTPUT"; cat ver.txt >> "$GITHUB_OUTPUT"; echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Založit issue, pokud se soubor změnil
+        if: steps.dl.outputs.new != steps.dl.outputs.old
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEW: ${{ steps.dl.outputs.new }}
+          VER: ${{ steps.ver.outputs.text }}
+        run: |
+          TITLE="MV zveřejnilo nový soubor testových otázek"
+          if [ "$(gh issue list --state open --search "\"$TITLE\" in:title" --json number --jq 'length')" != "0" ]; then
+            echo "Issue už existuje, nezakládám další."; exit 0
+          fi
+          {
+            echo "Otisk PDF na mv.gov.cz se změnil."
+            echo
+            echo "- nový SHA-256: \`$NEW\`"
+            echo "- text z první strany: $VER"
+            echo
+            echo "Postup aktualizace (viz README):"
+            echo "1. stáhnout PDF, \`python3 parse_pdf.py otazky.pdf questions_new.json docs/img\`"
+            echo "2. \`python3 compare_questions.py questions.json questions_new.json\` a projít rozdíly"
+            echo "3. doplnit vysvětlení k novým a změněným otázkám, \`python3 make_data.py …\`, \`python3 build_release.py …\`"
+            echo "4. zapsat nový otisk do \`tools/mv-pdf.sha256\`"
+          } > body.md
+          gh issue create --title "$TITLE" --body-file body.md
