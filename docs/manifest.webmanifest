@@ -1,0 +1,24 @@
+{
+ "name": "Zbroják 2026",
+ "short_name": "Zbroják",
+ "description": "Trenažér na zkoušku pro zbrojní oprávnění",
+ "lang": "cs",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#F2F2F7",
+ "theme_color": "#F2F2F7",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}
