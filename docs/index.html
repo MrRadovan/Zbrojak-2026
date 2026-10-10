@@ -55,6 +55,8 @@ button.primary{background:var(--accent);color:var(--accent-ink);border-color:var
 button.danger{color:var(--bad)}
 button.soft{padding:7px 12px;font-size:13px;border-radius:999px}
 button.soft[aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+#theme-btn{flex:0 0 auto}
+#theme-btn[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 button:disabled{opacity:.45;cursor:not-allowed}
 button:focus-visible,.answer:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 select,input[type=date]{font:inherit;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);max-width:100%}
@@ -131,7 +133,7 @@ td.num{text-align:right}
 <div class="wrap">
   <header class="top">
     <div class="brand"><h1>Zbroják 2026</h1><small id="src-note">otázky MV 15. 12. 2025</small></div>
-    <div id="hdr-right" class="timer" hidden></div>
+    <div class="row" style="gap:8px;flex-wrap:nowrap"><div id="hdr-right" class="timer" hidden></div><button class="soft" id="theme-btn" type="button" title="Vzhled: automaticky / tmavý / světlý">Auto</button></div>
   </header>
   <nav class="tabs" id="tabs">
     <button data-view="home" aria-current="page">Přehled</button>
@@ -530,9 +532,18 @@ function renderErrors(){
                      : h('button',{class:'ghost',onclick:()=>{ const rest=list.filter(x=>x.n!==q.n); E={q:rest.length?rest[Math.floor(Math.random()*rest.length)]:q, picked:null, revealed:false, guess:false, grade:null}; renderErrors(); }},'Jinou'));
 }
 
+/* ---------- theme ---------- */
+const THEMES=[['system','Auto'],['dark','Tmavý'],['light','Světlý']];
+function applyTheme(){
+  const t=S.settings.theme||'system', root=document.documentElement;
+  if(t==='system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme',t);
+  const b=$('#theme-btn'); if(b){ b.textContent=THEMES.find(x=>x[0]===t)[1]; b.setAttribute('aria-pressed', t==='system'?'false':'true'); }
+}
+$('#theme-btn').addEventListener('click',()=>{ const i=THEMES.findIndex(x=>x[0]===(S.settings.theme||'system')); S.settings.theme=THEMES[(i+1)%THEMES.length][0]; save(); applyTheme(); });
+
 /* ---------- router ---------- */
 function render(){ updateBadges(); ({home:renderHome,today:renderToday,test:renderTest,browse:renderBrowse,errors:renderErrors})[view](); }
-function start(hot){ if(hot&&hot.view){ view=hot.view; document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===view) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); } render(); }
+function start(hot){ applyTheme(); if(hot&&hot.view){ view=hot.view; document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===view) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); } render(); }
 try{ window.claude?.hot?.snapshot?.(()=>({view})); }catch(e){}
 if(window.claude?.hot?.ready) window.claude.hot.ready(start); else start(window.claude?.hot?.data ?? {});
 })();
