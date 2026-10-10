@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}</style>
+<title>Zbroják 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: phone-first single-column app; sticky header with mode tabs, content cards, fixed action bar. */
+:root{
+  --bg:#F2F4EF; --surface:#FFFFFF; --fg:#1A1F1B; --muted:#5B655C; --line:#D6DCD3;
+  --accent:#3C6B3B; --accent-ink:#FFFFFF; --accent-soft:#E2EDDF;
+  --ok:#2E7D32; --ok-soft:#DDF0DE; --bad:#B3261E; --bad-soft:#F7DEDC; --warn:#9A6700; --warn-soft:#F5EBCF; --info:#2F5E8A; --info-soft:#DCE8F3;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#131713; --surface:#1C221D; --fg:#E6EBE3; --muted:#9AA69A; --line:#2E372F;
+  --accent:#8CC27A; --accent-ink:#10200F; --accent-soft:#243625;
+  --ok:#7FD48A; --ok-soft:#1E3A24; --bad:#F28B82; --bad-soft:#44231F; --warn:#E3B341; --warn-soft:#3B2F10; --info:#8FB8E0; --info-soft:#1F2F3F;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#131713; --surface:#1C221D; --fg:#E6EBE3; --muted:#9AA69A; --line:#2E372F;
+  --accent:#8CC27A; --accent-ink:#10200F; --accent-soft:#243625;
+  --ok:#7FD48A; --ok-soft:#1E3A24; --bad:#F28B82; --bad-soft:#44231F; --warn:#E3B341; --warn-soft:#3B2F10; --info:#8FB8E0; --info-soft:#1F2F3F;
+  color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.45;margin:0;padding-block:0 96px;padding-inline:16px;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:32px;font-weight:700}
+h2{font-size:24px;font-weight:700}
+h3{font-size:19px;font-weight:600}
+p{margin:0}
+.wrap{max-width:720px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;padding-block:10px 8px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+header.top .brand{display:flex;align-items:baseline;gap:8px;min-width:0}
+header.top small{color:var(--muted);font-size:12px;white-space:nowrap}
+nav.tabs{display:flex;gap:6px;margin-block:4px 14px;overflow-x:auto;padding-bottom:2px}
+nav.tabs button{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+nav.tabs button[aria-current="page"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+nav.tabs button .cnt{display:inline-block;min-width:18px;padding:0 5px;margin-left:6px;border-radius:999px;background:var(--bad);color:#fff;font-size:11px;line-height:18px;text-align:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row>*{min-width:0}
+.between{justify-content:space-between}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.big{font-family:var(--display);font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+button.primary,button.ghost,button.danger,button.soft{font:inherit;font-weight:600;border-radius:10px;padding:12px 16px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.danger{color:var(--bad)}
+button.soft{padding:7px 12px;font-size:13px;border-radius:999px}
+button.soft[aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,.answer:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+select,input[type=date]{font:inherit;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);max-width:100%}
+label.field{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);font-weight:600}
+label.check{display:flex;align-items:center;gap:10px;font-size:14px}
+label.check input{width:20px;height:20px;accent-color:var(--accent)}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:14px}
+.bar .track{grid-column:1/-1;height:8px;border-radius:4px;background:var(--line);overflow:hidden;display:flex}
+.bar .track i{display:block;height:100%}
+.bar .ok{background:var(--ok)}.bar .bad{background:var(--bad)}.bar .seen{background:var(--warn)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.legend .l-ok::before{background:var(--ok)}.legend .l-bad::before{background:var(--bad)}.legend .l-seen::before{background:var(--warn)}.legend .l-new::before{background:var(--line)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.tile .big{font-size:34px}
+.tile .eyebrow{margin-top:2px}
+.today{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.today .num{font-family:var(--display);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.today .num small{font-size:16px;color:var(--muted);font-weight:600}
+.progress{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent)}
+/* question */
+.qmeta{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.qtext{font-size:17px;font-weight:600;line-height:1.4;margin-block:8px 14px}
+.qimg{display:block;max-width:100%;max-height:260px;margin:8px auto 12px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.answers{display:flex;flex-direction:column;gap:8px}
+.answer{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;text-align:left;font:inherit;line-height:1.4;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.answer b{font-family:var(--display);font-size:19px;color:var(--muted)}
+.answer.picked{border-color:var(--accent);background:var(--accent-soft)}
+.answer.picked b{color:var(--accent)}
+.answer.right{border-color:var(--ok);background:var(--ok-soft)}
+.answer.right b{color:var(--ok)}
+.answer.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.answer.wrong b{color:var(--bad)}
+.answer:disabled{cursor:default;opacity:1}
+.reveal{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 12px;border:1px dashed var(--line);border-radius:10px;color:var(--muted);font-size:14px;text-align:center}
+.verdict{margin-top:12px;padding:10px 12px;border-radius:10px;font-weight:600}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.bad{background:var(--bad-soft);color:var(--bad)}
+.verdict.warn{background:var(--warn-soft);color:var(--warn)}
+.verdict .small{display:block;font-weight:400;color:var(--fg);margin-top:2px}
+.conf{display:flex;justify-content:flex-end;margin-bottom:8px}
+/* bottom bar */
+.actions{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:6}
+.actions .wrap{display:flex;gap:10px}
+.actions button{flex:1}
+/* test grid */
+.grid30{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.grid30 button{aspect-ratio:1;font:inherit;font-size:12px;font-weight:600;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;padding:0;font-variant-numeric:tabular-nums}
+.grid30 button.done{background:var(--accent-soft);border-color:var(--accent)}
+.grid30 button.cur{outline:2px solid var(--accent);outline-offset:1px}
+.timer{font-family:var(--display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--bad)}
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;background:var(--accent-soft);color:var(--accent)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.bad{background:var(--bad-soft);color:var(--bad)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.info{background:var(--info-soft);color:var(--info)}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+td,th{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+td.num{text-align:right}
+.review-item{border-top:1px solid var(--line);padding-block:12px}
+.review-item .qtext{font-size:15px;margin-block:4px 8px}
+.review-item .ans{font-size:14px;padding:6px 10px;border-radius:8px;margin-top:4px}
+.review-item .ans.r{background:var(--ok-soft)}.review-item .ans.w{background:var(--bad-soft)}
+.note{font-size:13px;color:var(--muted);line-height:1.4}
+.done-card{text-align:center;padding-block:28px}
+@media (prefers-reduced-motion:no-preference){.answer,.grid30 button{transition:background .12s,border-color .12s}}
+@media (min-width:600px){.tile .big{font-size:40px}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>Zbroják 2026</h1><small id="src-note">otázky MV 15. 12. 2025</small></div>
+    <div id="hdr-right" class="timer" hidden></div>
+  </header>
+  <nav class="tabs" id="tabs">
+    <button data-view="home" aria-current="page">Přehled</button>
+    <button data-view="today">Dnes<span class="cnt" id="cnt-today" hidden></span></button>
+    <button data-view="test">Test</button>
+    <button data-view="browse">Procházet</button>
+    <button data-view="errors">Chyby<span class="cnt" id="cnt-err" hidden></span></button>
+  </nav>
+  <main id="main"></main>
+</div>
+<div class="actions" id="actions" hidden><div class="wrap" id="actions-inner"></div></div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+'use strict';
+const Q = window.QDATA.q;
+const byNum = new Map(Q.map(q=>[q.n,q]));
+const KEYS = {pravo:'Právo', nauka:'Nauka o zbraních', zdravi:'Zdravotnické minimum'};
+const KEY_ORDER = ['pravo','nauka','zdravi'];
+const TEST_MIX = {pravo:17, nauka:10, zdravi:3};
+const PASS_GENERAL = 26, PASS_EXT = 28, TEST_SECONDS = 40*60;
+const MASTER_DAYS = 3;                 // successive relearning: correct on 3 distinct days
+const INTERVALS = {1:1, 2:2, 3:4, 4:7}; // days until next review after n distinct correct days
+const RELEARN_MIN = 10;                // minutes before a missed item comes back in the same session
+const LS = 'zbrojak-v2', LS_OLD = 'zbrojak-v1';
+
+/* ---------- time helpers ---------- */
+const DAY = 86400000;
+function dayKey(t){ const d=new Date(t); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function atMorning(dayOffset){ const d=new Date(); d.setHours(4,0,0,0); return d.getTime()+dayOffset*DAY; }
+function daysUntil(dateStr){ const [y,m,d]=dateStr.split('-').map(Number); const ex=new Date(y,m-1,d,4,0,0,0); const now=new Date(); now.setHours(4,0,0,0); return Math.round((ex-now)/DAY); }
+
+/* ---------- persistence + migration ---------- */
+function loadJSON(k){ try{ const s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function save(){ try{ localStorage.setItem(LS, JSON.stringify(S)); }catch(e){} }
+let S = loadJSON(LS);
+if(!S){
+  S = { items:{}, test:null, tests:[], day:{key:dayKey(Date.now()),reviews:0,fresh:0}, settings:{exam:'2026-10-22', perDay:'auto', hide:false}, browse:{key:'all',mode:'seq',pos:0} };
+  const old = loadJSON(LS_OLD);
+  if(old && old.stats){
+    for(const [n,s] of Object.entries(old.stats)){
+      if(!s.seen) continue;
+      const it = item(+n);
+      it.seen=s.seen; it.right=s.right; it.wrong=s.wrong;
+      if(s.wrong>0 && s.streak<2){ it.lapses=s.wrong; it.okDays=[]; it.due=Date.now(); }
+      else { it.okDays=[dayKey(s.last||Date.now())]; it.due=atMorning(1); }
+    }
+    S.tests = old.tests||[];
+    save();
+  }
+}
+// item: {seen,right,wrong,lapses,okDays:[dayKey...],due:ms,hcErr,lastGrade}
+function item(n){ return S.items[n] || (S.items[n] = {seen:0,right:0,wrong:0,lapses:0,okDays:[],due:0,hcErr:0,lastGrade:null}); }
+function status(q){ const it=S.items[q.n]; if(!it||!it.seen) return 'new'; if(it.okDays.length>=MASTER_DAYS) return 'ok'; if(it.lapses>0 && it.okDays.length===0) return 'bad'; return 'seen'; }
+function isDue(q, now){ const it=S.items[q.n]; return !!(it && it.seen && it.due<=(now||Date.now())); }
+function touchDay(){ const k=dayKey(Date.now()); if(S.day.key!==k){ S.day={key:k,reviews:0,fresh:0}; save(); } }
+
+/* grade: 'wrong' | 'guess' (correct, low confidence) | 'sure' (correct, confident); hc = confident wrong */
+function record(n, grade){
+  touchDay();
+  const it=item(n); const wasNew=!it.seen; it.seen++; it.lastGrade=grade;
+  const today=dayKey(Date.now());
+  if(grade==='wrong'){
+    it.wrong++; it.lapses++; it.okDays=[]; it.due=Date.now()+RELEARN_MIN*60000;
+  } else if(grade==='guess'){
+    it.right++; it.due=atMorning(1);           // right by luck: comes back tomorrow, does not count as a learned day
+  } else {
+    it.right++;
+    if(!it.okDays.includes(today)) it.okDays.push(today);
+    const n=it.okDays.length; it.due=atMorning(INTERVALS[Math.min(n,4)]);
+  }
+  if(wasNew) S.day.fresh++; else S.day.reviews++;
+  save();
+}
+
+/* ---------- plan ---------- */
+function plan(){
+  touchDay();
+  const now=Date.now();
+  const due=Q.filter(q=>isDue(q,now));
+  const fresh=Q.filter(q=>status(q)==='new');
+  const left=daysUntil(S.settings.exam);
+  let target;
+  if(S.settings.perDay!=='auto') target=+S.settings.perDay;
+  else target = left>2 ? Math.ceil(fresh.length/Math.max(1,left-2)) : (left>0?Math.ceil(fresh.length/left):fresh.length);
+  target=Math.min(target, fresh.length+S.day.fresh);
+  return {due, fresh, left, target, freshTodo:Math.max(0,target-S.day.fresh)};
+}
+
+/* ---------- helpers ---------- */
+const $ = sel => document.querySelector(sel);
+const h = (tag, attrs, ...kids) => { const el=document.createElement(tag); if(attrs) for(const [k,v] of Object.entries(attrs)){ if(k==='class') el.className=v; else if(k==='html') el.innerHTML=v; else if(k.startsWith('on')) el.addEventListener(k.slice(2), v); else if(v!==false&&v!=null) el.setAttribute(k, v===true?'':v);} for(const k of kids.flat()) if(k!=null) el.append(k.nodeType?k:document.createTextNode(k)); return el; };
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function pool(key){ return key==='all'?Q:Q.filter(q=>q.k===key); }
+function fmtTime(s){ s=Math.max(0,Math.round(s)); return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+function sectionCounts(list){ const c={ok:0,bad:0,seen:0,new:0}; for(const q of list) c[status(q)]++; return c; }
+function interleave(list){ // round-robin across sections so topics mix
+  const groups=KEY_ORDER.map(k=>shuffle(list.filter(q=>q.k===k))); const out=[];
+  while(groups.some(g=>g.length)) for(const g of groups) if(g.length) out.push(g.shift());
+  return out;
+}
+function answerLetter(i){ return 'ABC'[i]; }
+function updateBadges(){ const p=plan(); const t=p.due.length+p.freshTodo; const a=$('#cnt-today'); a.textContent=t; a.hidden=!t; const e=$('#cnt-err'); const n=Q.filter(q=>status(q)==='bad').length; e.textContent=n; e.hidden=!n; }
+
+let view='home', timerId=null;
+function setView(v){ view=v; if(timerId){clearInterval(timerId); timerId=null;} document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===v) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); $('#hdr-right').hidden=true; render(); window.scrollTo(0,0); }
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+function actions(...btns){ const a=$('#actions'), inner=$('#actions-inner'); inner.replaceChildren(...btns.filter(Boolean)); a.hidden=btns.filter(Boolean).length===0; }
+
+/* ---------- question block ----------
+   opts: {picked, revealed, onPick(i,guess), index, total, hidden (options hidden until reveal), onReveal, guess, onGuess, grade} */
+function questionBlock(q, opts){
+  const wrap = h('div');
+  const meta = h('div',{class:'qmeta'},
+    h('span',{}, opts.index!=null ? `Otázka ${opts.index+1} / ${opts.total}` : KEYS[q.k]),
+    h('span',{}, `${q.s} · č. ${q.n} · str. ${q.p}`));
+  wrap.append(meta, h('div',{class:'qtext'}, q.q));
+  if(q.i) wrap.append(h('img',{class:'qimg', src:'img/'+q.i, alt:'Obrázek k otázce '+q.n, loading:'lazy'}));
+  if(opts.hidden){
+    wrap.append(h('div',{class:'reveal'}, h('span',{},'Nejdřív si odpověď řekněte sami.'), h('button',{class:'primary',type:'button',onclick:opts.onReveal},'Zobrazit možnosti')));
+    return wrap;
+  }
+  if(opts.onGuess && !opts.revealed){
+    wrap.append(h('div',{class:'conf'}, h('button',{class:'soft',type:'button','aria-pressed':opts.guess?'true':'false',onclick:()=>opts.onGuess(!opts.guess)}, opts.guess?'Hádám ✓':'Hádám')));
+  }
+  const list = h('div',{class:'answers'});
+  q.a.forEach((text,i)=>{
+    let cls='answer';
+    if(opts.revealed){ if(i===q.c) cls+=' right'; else if(i===opts.picked) cls+=' wrong'; }
+    else if(i===opts.picked) cls+=' picked';
+    list.append(h('button',{class:cls, type:'button', disabled:!!opts.revealed, onclick:()=>opts.onPick&&opts.onPick(i)}, h('b',{},answerLetter(i)+')'), h('span',{},text)));
+  });
+  wrap.append(list);
+  if(opts.revealed){
+    const ok = opts.picked===q.c;
+    const it = S.items[q.n]||{okDays:[]};
+    if(ok && opts.grade==='guess') wrap.append(h('div',{class:'verdict warn'},'Správně, ale hádal jste.', h('span',{class:'small'},'Vrátí se zítra. Do naučených se počítá až jistá odpověď.')));
+    else if(ok) wrap.append(h('div',{class:'verdict ok'},`Správně. ${it.okDays.length} / ${MASTER_DAYS} dny.`, h('span',{class:'small'}, it.okDays.length>=MASTER_DAYS?'Naučeno. Ještě jednou za týden pro jistotu.':`Příště ${INTERVALS[Math.min(it.okDays.length,4)]===1?'zítra':'za '+INTERVALS[Math.min(it.okDays.length,4)]+' dny'}.`)));
+    else if(opts.grade==='wrong' && !opts.guess) wrap.append(h('div',{class:'verdict bad'},`Chyba s jistotou. Správně je ${answerLetter(q.c)}).`, h('span',{class:'small'},'Tyhle se učí nejlépe: přečtěte si správnou odpověď celou a za chvíli se vrátí.')));
+    else wrap.append(h('div',{class:'verdict bad'},`Špatně. Správně je ${answerLetter(q.c)}).`, h('span',{class:'small'},'Vrátí se za chvíli a zítra znovu.')));
+  }
+  return wrap;
+}
+
+/* ---------- HOME ---------- */
+function tile(n,label,sub){ return h('div',{class:'tile'}, h('div',{class:'big'},String(n)), h('div',{class:'eyebrow'},label), h('div',{class:'small muted'},sub)); }
+function renderHome(){
+  const main=$('#main'); main.replaceChildren();
+  const all=sectionCounts(Q), p=plan();
+  const tiles=h('div',{class:'tiles'},
+    tile(all.ok,'naučeno','správně ve 3 dnech'),
+    tile(all.seen+all.bad,'rozpracováno', all.bad+' po chybě'),
+    tile(all.new,'neviděno','z '+Q.length));
+  const todayCard=h('div',{class:'card stack'},
+    h('div',{class:'row between'}, h('h2',{},'Dnes'), h('span',{class:'pill '+(p.left<=3?'bad':p.left<=7?'warn':'info')}, p.left>0?`do zkoušky ${p.left} ${p.left===1?'den':p.left<5?'dny':'dní'}`:p.left===0?'zkouška dnes':'po termínu')),
+    h('div',{class:'today'},
+      h('div',{}, h('div',{class:'num'},String(p.due.length)), h('div',{class:'eyebrow'},'k opakování')),
+      h('div',{}, h('div',{class:'num'},String(p.freshTodo), h('small',{},' z '+p.target)), h('div',{class:'eyebrow'},'nových dnes'))),
+    h('div',{class:'progress'}, h('i',{style:`width:${p.target?Math.min(100,100*S.day.fresh/p.target):100}%`})),
+    h('p',{class:'note'}, adviceText(p)));
+  const bars=h('div',{class:'bars'});
+  for(const key of KEY_ORDER){
+    const list=pool(key), c=sectionCounts(list), n=list.length;
+    bars.append(h('div',{class:'bar'},
+      h('span',{}, KEYS[key]), h('span',{class:'muted'}, `${c.ok} / ${n}`),
+      h('div',{class:'track'}, h('i',{class:'ok',style:`width:${100*c.ok/n}%`}), h('i',{class:'seen',style:`width:${100*c.seen/n}%`}), h('i',{class:'bad',style:`width:${100*c.bad/n}%`}))));
+  }
+  const last = S.tests.slice(-5).reverse();
+  const hist = h('div',{class:'card stack'}, h('h2',{},'Testy nanečisto'));
+  if(!last.length) hist.append(h('p',{class:'muted small'},'Zatím žádný. Od 5 dnů před zkouškou jeden denně.'));
+  else { const t=h('table',{}, h('tr',{},h('th',{},'Datum'),h('th',{},'Výsledek'),h('th',{},'Čas'),h('th',{},'Obecné'))); for(const r of last) t.append(h('tr',{},h('td',{},new Date(r.at).toLocaleDateString('cs-CZ')),h('td',{class:'num'},`${r.score} / 30`),h('td',{class:'num'},fmtTime(r.used)),h('td',{},h('span',{class:'pill '+(r.score>=PASS_GENERAL?'ok':'bad')},r.score>=PASS_GENERAL?'prospěl':'neprospěl')))); hist.append(t); }
+  const settings=h('div',{class:'card stack'}, h('h2',{},'Nastavení'),
+    h('div',{class:'row'},
+      h('label',{class:'field'},'Datum zkoušky', h('input',{type:'date',id:'set-exam',value:S.settings.exam,onchange:e=>{ if(e.target.value){S.settings.exam=e.target.value; save(); renderHome();} }})),
+      h('label',{class:'field'},'Nových otázek denně', h('select',{id:'set-perday',onchange:e=>{S.settings.perDay=e.target.value;save();renderHome();}},
+        ...[['auto','Automaticky'],['30','30'],['50','50'],['70','70'],['100','100'],['150','150']].map(([v,l])=>h('option',{value:v,selected:S.settings.perDay===v},l))))),
+    h('label',{class:'check'}, h('input',{type:'checkbox',id:'set-hide',checked:S.settings.hide,onchange:e=>{S.settings.hide=e.target.checked;save();}}), 'Skrýt možnosti, dokud si odpověď neřeknu sám'),
+    h('p',{class:'note'},'Jak to funguje: otázka je naučená po jisté správné odpovědi ve třech různých dnech. Po správné odpovědi se vrátí za 1, 2, 4 a 7 dní; po chybě za 10 minut a zítra. Odpověď označená „Hádám“ se nepočítá. Pokrok se ukládá jen v tomto prohlížeči.'));
+  main.append(h('div',{class:'stack'}, todayCard, tiles,
+    h('div',{class:'card stack'}, h('h2',{},'Pokrytí okruhů'), bars,
+      h('div',{class:'legend'},h('span',{class:'l-ok'},'naučeno'),h('span',{class:'l-seen'},'rozpracováno'),h('span',{class:'l-bad'},'po chybě'),h('span',{class:'l-new'},'neviděno'))),
+    hist, settings,
+    h('div',{class:'card stack'}, h('h2',{},'Jak zkouška vypadá'),
+      h('p',{class:'note'},'Písemný test: 30 otázek, výběr 1 ze 3, limit 40 minut. Skladba podle nařízení vlády č. 238/2025 Sb.: 17 právní předpisy, 5 nauka o zbraních, 5 bezpečné nakládání, 3 zdravotnické minimum. Hranice podle § 20 zákona č. 90/2024 Sb.: obecné zbrojní oprávnění alespoň 26 správně, rozšířené alespoň 28. Kdo neprospěje v teorii, praktickou část nekoná.'),
+      h('p',{class:'note'},'Zdroj otázek: soubor testových otázek MV ČR (verze 15. 12. 2025), 837 otázek. Oficiální soubor nerozlišuje otázky „bezpečné nakládání“ od nauky, proto test bere 10 otázek z nauky dohromady.'))
+  ));
+  actions(h('button',{class:'primary',onclick:()=>setView('today')}, (p.due.length+p.freshTodo)?`Dnešní dávka (${p.due.length+p.freshTodo})`:'Dnešní dávka hotová'), h('button',{class:'ghost',onclick:()=>{ startTest(); }}, S.test&&!S.test.done?'Pokračovat v testu':'Test nanečisto'));
+}
+function adviceText(p){
+  if(p.left<0) return 'Termín zkoušky je v minulosti. Upravte datum v nastavení.';
+  if(p.fresh.length===0 && p.due.length===0) return 'Všechno je prošlé a nic není k opakování. Udělejte test nanečisto.';
+  if(p.left<=2) return 'Poslední dny: už žádné nové otázky, jen opakování a jeden test nanečisto denně. Večer před zkouškou skončit brzy a vyspat se.';
+  if(p.left<=5) return 'Každý den dnešní dávku a k tomu jeden test nanečisto. Cíl: opakovaně 28+ z 30.';
+  return `Nové otázky jsou rozložené do ${p.left-2} dnů, poslední dva dny zůstávají na opakování a testy. Krátké seance několikrát denně fungují lépe než jedna dlouhá.`;
+}
+
+/* ---------- TODAY (scheduled session) ---------- */
+let T = null; // {queue:[nums], cur, picked, revealed, guess, grade, hidden, done:0, total}
+function buildToday(){
+  const p=plan();
+  const due=interleave(p.due.slice());
+  const fresh=interleave(p.fresh.slice()).slice(0,p.freshTodo);
+  const queue=[...due.map(q=>q.n), ...fresh.map(q=>q.n)];
+  T={queue, cur:null, picked:null, revealed:false, guess:false, grade:null, hidden:false, done:0, total:queue.length, started:Date.now()};
+}
+function nextToday(){
+  if(!T.queue.length){ T.cur=null; return; }
+  T.cur=T.queue.shift(); T.picked=null; T.revealed=false; T.guess=false; T.grade=null; T.hidden=!!S.settings.hide;
+}
+function renderToday(){
+  const main=$('#main'); main.replaceChildren(); updateBadges();
+  if(!T || (T.cur===null && !T.queue.length)){
+    const p=plan();
+    if(T && T.cur===null && T.total>0){
+      main.append(h('div',{class:'card done-card stack'}, h('h2',{},'Dnešní dávka hotová'), h('p',{class:'muted'},`${T.done} odpovědí za ${fmtTime((Date.now()-T.started)/1000)}.`), h('p',{class:'note'}, p.due.length?`${p.due.length} otázek se mezitím vrátilo k opakování (chyby z této seance).`:'Nic dalšího dnes nečeká. Zítra ráno se objeví další.')));
+      actions(h('button',{class:'ghost',onclick:()=>setView('home')},'Přehled'), p.due.length?h('button',{class:'primary',onclick:()=>{buildToday();nextToday();renderToday();}},`Dojet chyby (${p.due.length})`):h('button',{class:'primary',onclick:()=>{startTest();}},'Test nanečisto'));
+      return;
+    }
+    const n=p.due.length+p.freshTodo;
+    main.append(h('div',{class:'card stack'}, h('h2',{},'Dnešní dávka'),
+      h('div',{class:'today'}, h('div',{}, h('div',{class:'num'},String(p.due.length)), h('div',{class:'eyebrow'},'k opakování')), h('div',{}, h('div',{class:'num'},String(p.freshTodo)), h('div',{class:'eyebrow'},'nových'))),
+      h('p',{class:'note'}, n?'Nejdřív opakování (po chybě se otázka vrací, dokud ji nedáte jistě správně), pak nové otázky prokládané napříč okruhy.':'Dnes už nic nečeká. Chcete-li přidat, zvyšte počet nových otázek denně v nastavení nebo udělejte test nanečisto.')));
+    actions(n?h('button',{class:'primary',onclick:()=>{buildToday();nextToday();renderToday();}},'Začít'):h('button',{class:'primary',onclick:()=>startTest()},'Test nanečisto'));
+    return;
+  }
+  const q=byNum.get(T.cur);
+  const st=status(q), it=S.items[q.n];
+  const label = st==='new'?h('span',{class:'pill info'},'nová'): it&&it.lapses&&it.okDays.length===0?h('span',{class:'pill bad'},`po chybě ${it.lapses}×`):h('span',{class:'pill warn'},`opakování ${it?it.okDays.length:0} / ${MASTER_DAYS}`);
+  main.append(h('div',{class:'stack'},
+    h('div',{class:'row between'}, h('span',{class:'small muted'},`Hotovo ${T.done} · zbývá ${T.queue.length+1}`), label),
+    h('div',{class:'card'}, questionBlock(q,{picked:T.picked, revealed:T.revealed, hidden:T.hidden, onReveal:()=>{T.hidden=false;renderToday();}, guess:T.guess, onGuess:g=>{T.guess=g;renderToday();}, grade:T.grade,
+      onPick:i=>{ T.picked=i; T.revealed=true; const ok=i===q.c; T.grade= ok ? (T.guess?'guess':'sure') : 'wrong'; record(q.n,T.grade); T.done++; if(!ok || T.guess){ T.queue.push(q.n); } renderToday(); }}))
+  ));
+  actions(T.revealed ? h('button',{class:'primary',onclick:()=>{nextToday();renderToday();}}, T.queue.length?'Další':'Dokončit')
+                     : h('button',{class:'ghost',onclick:()=>{ T.queue.push(T.cur); nextToday(); renderToday(); }},'Odložit na konec'));
+}
+
+/* ---------- TEST ---------- */
+function newTest(){
+  const nums=[]; for(const [key,cnt] of Object.entries(TEST_MIX)) nums.push(...shuffle(pool(key).slice()).slice(0,cnt).map(q=>q.n));
+  return { nums:shuffle(nums), ans:nums.map(()=>null), cur:0, started:Date.now(), done:false, result:null };
+}
+function startTest(){ if(!S.test) { S.test=newTest(); save(); } setView('test'); }
+function testElapsed(){ return (Date.now()-S.test.started)/1000; }
+function renderTest(){
+  const main=$('#main'); main.replaceChildren();
+  const t=S.test;
+  if(!t){ main.append(h('div',{class:'card stack'}, h('h2',{},'Test nanečisto'), h('p',{},'30 otázek ve skladbě ostré zkoušky, limit 40 minut, výsledek až na konci. Mezi otázkami se můžete vracet. Výsledek se promítne do plánu opakování.'))); actions(h('button',{class:'primary',onclick:startTest},'Spustit test')); return; }
+  if(t.done){ renderResult(); return; }
+  const hr=$('#hdr-right'); hr.hidden=false;
+  const tick=()=>{ const left=TEST_SECONDS-testElapsed(); hr.textContent=fmtTime(left); hr.classList.toggle('low',left<300); if(left<=0){ finishTest(); } };
+  tick(); if(!timerId) timerId=setInterval(tick,1000);
+  const q=byNum.get(t.nums[t.cur]);
+  const grid=h('div',{class:'grid30'});
+  t.nums.forEach((n,i)=>grid.append(h('button',{type:'button',class:(t.ans[i]!=null?'done':'')+(i===t.cur?' cur':''),onclick:()=>{t.cur=i;save();renderTest();}},String(i+1))));
+  main.append(h('div',{class:'stack'},
+    h('div',{class:'card'}, questionBlock(q,{picked:t.ans[t.cur], index:t.cur, total:30, onPick:i=>{ t.ans[t.cur]=i; save(); if(t.cur<29){ t.cur++; } renderTest(); }})),
+    h('div',{class:'card stack'}, h('div',{class:'row between'}, h('span',{class:'eyebrow'},'Odpovězeno '+t.ans.filter(a=>a!=null).length+' / 30'), h('button',{class:'danger',style:'padding:6px 10px;font-size:13px',onclick:()=>{ S.test=null; save(); setView('test'); }},'Zrušit test')), grid)
+  ));
+  const unanswered=t.ans.filter(a=>a==null).length;
+  actions(
+    h('button',{class:'ghost',disabled:t.cur===0,onclick:()=>{t.cur--;save();renderTest();}},'Zpět'),
+    t.cur<29 ? h('button',{class:'ghost',onclick:()=>{t.cur++;save();renderTest();}},'Další')
+             : h('button',{class:'primary',onclick:()=>{ if(unanswered){ confirmFinish(unanswered); } else finishTest(); }},'Vyhodnotit')
+  );
+}
+function confirmFinish(n){ actions(h('button',{class:'ghost',onclick:renderTest},'Ještě ne'), h('button',{class:'primary',onclick:finishTest},`Odevzdat s ${n} nezodpovězenými`)); }
+function finishTest(){
+  const t=S.test; if(!t||t.done) return;
+  if(timerId){clearInterval(timerId);timerId=null;}
+  let score=0; const per={pravo:[0,0],nauka:[0,0],zdravi:[0,0]};
+  t.nums.forEach((n,i)=>{ const q=byNum.get(n); const ok=t.ans[i]===q.c; per[q.k][1]++; if(ok){score++; per[q.k][0]++;} record(n, ok?'sure':'wrong'); });
+  t.done=true; t.result={score, per, used:Math.min(TEST_SECONDS,testElapsed()), at:Date.now()};
+  S.tests.push({at:t.result.at, score, used:t.result.used}); save(); renderTest();
+}
+function renderResult(){
+  const main=$('#main'); main.replaceChildren(); $('#hdr-right').hidden=true; updateBadges();
+  const t=S.test, r=t.result;
+  const passG=r.score>=PASS_GENERAL, passE=r.score>=PASS_EXT;
+  const tbl=h('table',{}, h('tr',{},h('th',{},'Okruh'),h('th',{},'Správně')));
+  for(const k of KEY_ORDER) tbl.append(h('tr',{},h('td',{},KEYS[k]),h('td',{class:'num'},`${r.per[k][0]} / ${r.per[k][1]}`)));
+  const wrong=t.nums.map((n,i)=>({q:byNum.get(n),a:t.ans[i]})).filter(x=>x.a!==x.q.c);
+  const rev=h('div',{class:'card stack'}, h('h2',{},wrong.length?`Chyby (${wrong.length})`:'Bez chyb'));
+  for(const {q,a} of wrong){
+    rev.append(h('div',{class:'review-item'},
+      h('div',{class:'qmeta'},h('span',{},KEYS[q.k]),h('span',{},`č. ${q.n} · str. ${q.p}`)),
+      h('div',{class:'qtext'},q.q),
+      q.i?h('img',{class:'qimg',src:'img/'+q.i,alt:'',loading:'lazy'}):null,
+      h('div',{class:'ans r'},`${answerLetter(q.c)}) ${q.a[q.c]}`),
+      a!=null?h('div',{class:'ans w'},`Vaše odpověď ${answerLetter(a)}) ${q.a[a]}`):h('div',{class:'ans w'},'Bez odpovědi')));
+  }
+  main.append(h('div',{class:'stack'},
+    h('div',{class:'card stack'},
+      h('div',{class:'row',style:'align-items:baseline;gap:14px'}, h('div',{class:'big'},`${r.score} / 30`), h('span',{class:'pill '+(passG?'ok':'bad')},passG?'obecné: prospěl':'obecné: neprospěl'), h('span',{class:'pill '+(passE?'ok':'bad')},passE?'rozšířené: prospěl':'rozšířené: neprospěl')),
+      h('p',{class:'small muted'},`Čas ${fmtTime(r.used)} z 40:00. Chybné otázky se vrátí dnes a zítra, správné se počítají jako opakování.`),
+      tbl),
+    rev));
+  actions(h('button',{class:'ghost',onclick:()=>{ S.test=null; save(); setView('home'); }},'Zavřít'), h('button',{class:'primary',onclick:()=>{ S.test=newTest(); save(); renderTest(); }},'Nový test'));
+}
+
+/* ---------- BROWSE (free practice, still feeds the scheduler) ---------- */
+let B = {q:null, picked:null, revealed:false, guess:false, grade:null, hidden:false};
+function pickBrowse(){
+  const list=pool(S.browse.key); const mode=S.browse.mode;
+  if(mode==='seq'){ const i=S.browse.pos||0; const q=list[i%list.length]; S.browse.pos=(i+1)%list.length; save(); return q; }
+  let cands = mode==='new' ? list.filter(q=>status(q)==='new') : list;
+  if(!cands.length) cands=list;
+  let q=cands[Math.floor(Math.random()*cands.length)];
+  if(B.q && cands.length>1 && q.n===B.q.n) q=cands[(cands.indexOf(q)+1)%cands.length];
+  return q;
+}
+function browseNext(){ B={q:pickBrowse(), picked:null, revealed:false, guess:false, grade:null, hidden:!!S.settings.hide}; }
+function renderBrowse(){
+  const main=$('#main'); main.replaceChildren();
+  if(!B.q) browseNext();
+  const q=B.q;
+  const selKey=h('select',{id:'browse-key',onchange:e=>{S.browse.key=e.target.value;S.browse.pos=0;save();browseNext();renderBrowse();}},
+    ...[['all','Všechny okruhy'],['pravo','Právo (648)'],['nauka','Nauka o zbraních (151)'],['zdravi','Zdravotnické minimum (38)']].map(([v,l])=>h('option',{value:v,selected:S.browse.key===v},l)));
+  const selMode=h('select',{id:'browse-mode',onchange:e=>{S.browse.mode=e.target.value;save();browseNext();renderBrowse();}},
+    ...[['seq','Popořadě podle PDF'],['random','Náhodně'],['new','Jen neviděné']].map(([v,l])=>h('option',{value:v,selected:S.browse.mode===v},l)));
+  const c=sectionCounts(pool(S.browse.key));
+  main.append(h('div',{class:'stack'},
+    h('div',{class:'row'}, h('label',{class:'field'},'Okruh',selKey), h('label',{class:'field'},'Pořadí',selMode)),
+    h('p',{class:'small muted'},`Naučeno ${c.ok} · rozpracováno ${c.seen} · po chybě ${c.bad} · neviděno ${c.new}` + (S.browse.mode==='seq'?` · pozice ${((S.browse.pos||1)-1+pool(S.browse.key).length)%pool(S.browse.key).length+1}`:'')),
+    h('div',{class:'card'}, questionBlock(q,{picked:B.picked, revealed:B.revealed, hidden:B.hidden, onReveal:()=>{B.hidden=false;renderBrowse();}, guess:B.guess, onGuess:g=>{B.guess=g;renderBrowse();}, grade:B.grade,
+      onPick:i=>{ B.picked=i; B.revealed=true; const ok=i===q.c; B.grade= ok?(B.guess?'guess':'sure'):'wrong'; record(q.n,B.grade); updateBadges(); renderBrowse(); }}))
+  ));
+  actions(B.revealed ? h('button',{class:'primary',onclick:()=>{browseNext();renderBrowse();}},'Další otázka') : h('button',{class:'ghost',onclick:()=>{browseNext();renderBrowse();}},'Přeskočit'));
+}
+
+/* ---------- ERRORS (lapsed items, regardless of due time) ---------- */
+let E = {q:null, picked:null, revealed:false, guess:false, grade:null};
+function renderErrors(){
+  const main=$('#main'); main.replaceChildren(); updateBadges();
+  const list=Q.filter(q=>status(q)==='bad');
+  if(!list.length){ main.append(h('div',{class:'card stack'}, h('h2',{},'Žádné otázky po chybě'), h('p',{class:'muted'},'Sem se otázka zařadí po špatné odpovědi a zmizí po první jisté správné odpovědi. Pak pokračuje v běžném opakování.'))); actions(h('button',{class:'primary',onclick:()=>setView('today')},'Dnešní dávka')); E.q=null; return; }
+  if(!E.q || !list.some(q=>q.n===E.q.n)){ E={q:list[Math.floor(Math.random()*list.length)], picked:null, revealed:false, guess:false, grade:null}; }
+  const q=E.q, it=item(q.n);
+  main.append(h('div',{class:'stack'},
+    h('p',{class:'small muted'},`${list.length} otázek po chybě. Tato: ${it.wrong}× špatně, ${it.right}× správně.`),
+    h('div',{class:'card'}, questionBlock(q,{picked:E.picked, revealed:E.revealed, guess:E.guess, onGuess:g=>{E.guess=g;renderErrors();}, grade:E.grade,
+      onPick:i=>{ E.picked=i; E.revealed=true; const ok=i===q.c; E.grade= ok?(E.guess?'guess':'sure'):'wrong'; record(q.n,E.grade); renderErrors(); }}))
+  ));
+  actions(E.revealed ? h('button',{class:'primary',onclick:()=>{ E.q=null; renderErrors(); }},'Další')
+                     : h('button',{class:'ghost',onclick:()=>{ const rest=list.filter(x=>x.n!==q.n); E={q:rest.length?rest[Math.floor(Math.random()*rest.length)]:q, picked:null, revealed:false, guess:false, grade:null}; renderErrors(); }},'Jinou'));
+}
+
+/* ---------- router ---------- */
+function render(){ updateBadges(); ({home:renderHome,today:renderToday,test:renderTest,browse:renderBrowse,errors:renderErrors})[view](); }
+function start(hot){ if(hot&&hot.view){ view=hot.view; document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===view) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); } render(); }
+try{ window.claude?.hot?.snapshot?.(()=>({view})); }catch(e){}
+if(window.claude?.hot?.ready) window.claude.hot.ready(start); else start(window.claude?.hot?.data ?? {});
+})();
+</script>
+
+</body>
+</html>
