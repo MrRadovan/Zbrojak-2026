@@ -197,7 +197,7 @@ function loadJSON(k){ try{ const s=localStorage.getItem(k); return s?JSON.parse(
 function save(){ try{ localStorage.setItem(LS, JSON.stringify(S)); }catch(e){} }
 let S = loadJSON(LS);
 if(!S){
-  S = { items:{}, test:null, tests:[], day:{key:dayKey(Date.now()),reviews:0,fresh:0}, settings:{exam:'2026-10-22', perDay:'auto', hide:false}, browse:{key:'all',mode:'seq',pos:0} };
+  S = { items:{}, test:null, tests:[], day:{key:dayKey(Date.now()),reviews:0,fresh:0}, sync:null, settings:{exam:'2026-10-22', perDay:'auto', hide:false}, browse:{key:'all',mode:'seq',pos:0} };
   const old = loadJSON(LS_OLD);
   if(old && old.stats){
     for(const [n,s] of Object.entries(old.stats)){
@@ -232,7 +232,7 @@ function record(n, grade){
     const n=it.okDays.length; it.due=atMorning(INTERVALS[Math.min(n,4)]);
   }
   if(wasNew) S.day.fresh++; else S.day.reviews++;
-  save();
+  save(); cloudTouch();
 }
 
 /* ---------- sync between devices (clipboard code or backup file) ---------- */
@@ -270,6 +270,51 @@ function downloadBackup(){
   const blob=new Blob([JSON.stringify(exportState())],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='zbrojak-pokrok-'+dayKey(Date.now())+'.json'; document.body.append(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},1000);
 }
+
+/* ---------- cloud sync (Firestore REST, keyed by a random secret) ---------- */
+const FIREBASE = { projectId: 'zbrojak-2026-1', apiKey: 'AIzaSyD_3f3zruf73uv2d6uk33aZfzQ76VCRuk4' };
+const CLOUD_OK = !FIREBASE.projectId.startsWith('__');
+function cloudUrl(key){ return `https://firestore.googleapis.com/v1/projects/${FIREBASE.projectId}/databases/(default)/documents/progress/${encodeURIComponent(key)}?key=${FIREBASE.apiKey}`; }
+function makeKey(){ const a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; const b=new Uint8Array(16); (crypto.getRandomValues?crypto.getRandomValues(b):b.forEach((_,i)=>b[i]=Math.random()*256)); let s=''; for(let i=0;i<16;i++){ s+=a[b[i]%a.length]; if(i===3||i===7||i===11) s+='-'; } return s; }
+function normKey(k){ return (k||'').toUpperCase().replace(/[^A-Z2-9]/g,'').replace(/(.{4})(?=.)/g,'$1-'); }
+const C = { busy:false, last:S.sync?S.sync.last:0, status: CLOUD_OK ? (S.sync&&S.sync.key ? 'Připraveno.' : 'Vypnuto.') : 'Synchronizace není v této verzi stránky dostupná.', timer:null, dirty:false };
+function setSyncStatus(t){ C.status=t; const el=$('#sync-status2'); if(el) el.textContent=t; }
+async function cloudPull(){
+  if(!CLOUD_OK || !S.sync || !S.sync.key) return false;
+  const r=await fetch(cloudUrl(S.sync.key));
+  if(r.status===404) return false;
+  if(!r.ok) throw new Error('server '+r.status);
+  const doc=await r.json(); const f=doc.fields||{};
+  const data=f.data&&f.data.stringValue; if(!data) return false;
+  const remote=decodeState(data);
+  const res=mergeState(remote);
+  if(remote.settings){ for(const k of ['exam','perDay','hide','shuffle']) if(remote.settings[k]!==undefined && (remote.at||0)>(S.sync.localAt||0)) S.settings[k]=remote.settings[k]; save(); }
+  return res;
+}
+async function cloudPush(){
+  if(!CLOUD_OK || !S.sync || !S.sync.key) return;
+  const st=exportState(); st.settings={exam:S.settings.exam,perDay:S.settings.perDay,hide:S.settings.hide,shuffle:S.settings.shuffle};
+  const body={fields:{data:{stringValue:(window.LZString?SYNC_PREFIX+LZString.compressToBase64(JSON.stringify(st)):'ZB0:'+btoa(unescape(encodeURIComponent(JSON.stringify(st)))))},at:{integerValue:String(st.at)}}};
+  const r=await fetch(cloudUrl(S.sync.key),{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok) throw new Error('server '+r.status);
+  S.sync.localAt=st.at;
+}
+async function cloudSync(reason){
+  if(!CLOUD_OK || !S.sync || !S.sync.key || C.busy) return;
+  C.busy=true; setSyncStatus('Synchronizuji…');
+  try{
+    const res=await cloudPull();
+    await cloudPush();
+    C.last=Date.now(); S.sync.last=C.last; C.dirty=false; save();
+    const n=res?(res.added+res.updated):0;
+    setSyncStatus(`Synchronizováno ${new Date(C.last).toLocaleTimeString('cs-CZ',{hour:'2-digit',minute:'2-digit'})}${n?` · převzato ${n} otázek z druhého zařízení`:''}.`);
+    if(n && view==='home') renderHome();
+  }catch(e){ setSyncStatus('Synchronizace selhala: '+(e.message||'bez připojení')+'. Pokrok je uložený v tomto zařízení, zkusím to znovu.'); }
+  finally{ C.busy=false; }
+}
+function cloudTouch(){ if(!CLOUD_OK || !S.sync || !S.sync.key) return; C.dirty=true; clearTimeout(C.timer); C.timer=setTimeout(()=>cloudSync('change'),2500); }
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') cloudSync('visible'); else if(C.dirty){ clearTimeout(C.timer); cloudSync('hide'); } });
+window.addEventListener('pagehide',()=>{ if(C.dirty && CLOUD_OK && S.sync && S.sync.key){ try{ const st=exportState(); st.settings={exam:S.settings.exam,perDay:S.settings.perDay,hide:S.settings.hide,shuffle:S.settings.shuffle}; const body=JSON.stringify({fields:{data:{stringValue:'ZB0:'+btoa(unescape(encodeURIComponent(JSON.stringify(st))))},at:{integerValue:String(st.at)}}}); fetch(cloudUrl(S.sync.key),{method:'PATCH',headers:{'Content-Type':'application/json'},body,keepalive:true}); }catch(e){} } });
 
 /* ---------- plan ---------- */
 function plan(){
@@ -373,18 +418,29 @@ function renderHome(){
   else { const t=h('table',{}, h('tr',{},h('th',{},'Datum'),h('th',{},'Výsledek'),h('th',{},'Čas'),h('th',{},'Obecné'))); for(const r of last) t.append(h('tr',{},h('td',{},new Date(r.at).toLocaleDateString('cs-CZ')),h('td',{class:'num'},`${r.score} / 30`),h('td',{class:'num'},fmtTime(r.used)),h('td',{},h('span',{class:'pill '+(r.score>=PASS_GENERAL?'ok':'bad')},r.score>=PASS_GENERAL?'prospěl':'neprospěl')))); hist.append(t); }
   const settings=h('div',{class:'card stack'}, h('h2',{},'Nastavení'),
     h('div',{class:'row'},
-      h('label',{class:'field'},'Datum zkoušky', h('input',{type:'date',id:'set-exam',value:S.settings.exam,onchange:e=>{ if(e.target.value){S.settings.exam=e.target.value; save(); renderHome();} }})),
-      h('label',{class:'field'},'Nových otázek denně', h('select',{id:'set-perday',onchange:e=>{S.settings.perDay=e.target.value;save();renderHome();}},
+      h('label',{class:'field'},'Datum zkoušky', h('input',{type:'date',id:'set-exam',value:S.settings.exam,onchange:e=>{ if(e.target.value){S.settings.exam=e.target.value; save(); cloudTouch(); renderHome();} }})),
+      h('label',{class:'field'},'Nových otázek denně', h('select',{id:'set-perday',onchange:e=>{S.settings.perDay=e.target.value;save();cloudTouch();renderHome();}},
         ...[['auto','Automaticky'],['30','30'],['50','50'],['70','70'],['100','100'],['150','150']].map(([v,l])=>h('option',{value:v,selected:S.settings.perDay===v},l))))),
     h('label',{class:'field'},'Vzhled', themeSeg()),
-    h('label',{class:'check'}, h('input',{type:'checkbox',id:'set-hide',checked:S.settings.hide,onchange:e=>{S.settings.hide=e.target.checked;save();}}), 'Skrýt možnosti, dokud si odpověď neřeknu sám'),
-    h('label',{class:'check'}, h('input',{type:'checkbox',id:'set-shuffle',checked:S.settings.shuffle!==false,onchange:e=>{S.settings.shuffle=e.target.checked;save();}}), 'Míchat pořadí odpovědí (učit se obsah, ne písmeno)'),
+    h('label',{class:'check'}, h('input',{type:'checkbox',id:'set-hide',checked:S.settings.hide,onchange:e=>{S.settings.hide=e.target.checked;save();cloudTouch();}}), 'Skrýt možnosti, dokud si odpověď neřeknu sám'),
+    h('label',{class:'check'}, h('input',{type:'checkbox',id:'set-shuffle',checked:S.settings.shuffle!==false,onchange:e=>{S.settings.shuffle=e.target.checked;save();cloudTouch();}}), 'Míchat pořadí odpovědí (učit se obsah, ne písmeno)'),
     h('p',{class:'note'},'Jak to funguje: otázka je naučená po jisté správné odpovědi ve třech různých dnech. Po správné odpovědi se vrátí za 1, 2, 4 a 7 dní; po chybě za 10 minut a zítra. Odpověď označená „Hádám“ se nepočítá. Pokrok se ukládá jen v tomto prohlížeči.'));
   const syncStatus=h('p',{class:'note',id:'sync-status'});
   const codeArea=h('textarea',{id:'sync-code',rows:'3',placeholder:'Sem vložte kód z druhého zařízení',style:'width:100%;font:inherit;font-size:13px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);resize:vertical'});
   const fileIn=h('input',{type:'file',id:'sync-file',accept:'.json,application/json',hidden:true,onchange:e=>{ const f=e.target.files[0]; if(!f) return; f.text().then(txt=>{ const r=mergeState(decodeState(txt)); syncStatus.textContent=`Sloučeno ze zálohy: ${r.added} nových, ${r.updated} aktualizovaných otázek, ${r.tests} testů.`; renderHome(); $('#sync-status').textContent=syncStatus.textContent; }).catch(err=>{ syncStatus.textContent='Nepodařilo se načíst: '+err.message; }); e.target.value=''; }});
-  const sync=h('div',{class:'card stack'}, h('h2',{},'Přenos mezi zařízeními'),
-    h('p',{class:'note'},'Pokrok žije jen v tomto prohlížeči. Na druhé zařízení ho přenesete kódem: tady „Zkopírovat“, tam vložit do pole a „Sloučit“. Mac a iPhone se stejným Apple ID sdílejí schránku, takže stačí zkopírovat na jednom a vložit na druhém. Sloučení bere u každé otázky novější stav.'),
+  const keyField=h('input',{type:'text',id:'sync-key',placeholder:'XXXX-XXXX-XXXX-XXXX',autocapitalize:'characters',autocomplete:'off',spellcheck:'false',value:S.sync&&S.sync.key?S.sync.key:'',style:'font:inherit;font-size:16px;letter-spacing:.08em;padding:10px 12px;border-radius:10px;border:0;background:var(--fill);color:var(--fg);width:100%;font-variant-numeric:tabular-nums'});
+  const cloudStatus=h('p',{class:'note',id:'sync-status2'},C.status);
+  const cloud=h('div',{class:'card stack'}, h('h2',{},'Automatická synchronizace'),
+    h('p',{class:'note'}, CLOUD_OK ? 'Pokrok se ukládá pod tajným klíčem do cloudu a každé zařízení ho po otevření stáhne a po odpovědi odešle. Na druhém zařízení zadejte stejný klíč. Kdo klíč nezná, k datům se nedostane.' : 'Automatická synchronizace funguje jen ve verzi na vlastní adrese (GitHub Pages), v této verzi použijte přenos kódem níže.'),
+    h('label',{class:'field'},'Klíč zařízení', keyField),
+    h('div',{class:'row'},
+      h('button',{class:'primary',type:'button',disabled:!CLOUD_OK,onclick:()=>{ const k=normKey(keyField.value); if(k.replace(/-/g,'').length!==16){ setSyncStatus('Klíč má 16 znaků, např. K7F3-9QX2-ABCD-EFGH.'); return; } S.sync=Object.assign(S.sync||{},{key:k}); keyField.value=k; save(); cloudSync('key'); }},'Uložit klíč a synchronizovat'),
+      h('button',{class:'ghost',type:'button',disabled:!CLOUD_OK,onclick:()=>{ keyField.value=makeKey(); }},'Vygenerovat nový'),
+      S.sync&&S.sync.key?h('button',{class:'ghost',type:'button',onclick:()=>{ navigator.clipboard&&navigator.clipboard.writeText(S.sync.key).then(()=>setSyncStatus('Klíč zkopírován. Vložte ho na druhém zařízení.'),()=>{ keyField.select(); }); }},'Zkopírovat klíč'):null,
+      S.sync&&S.sync.key?h('button',{class:'danger',type:'button',onclick:()=>{ S.sync.key=''; save(); keyField.value=''; setSyncStatus('Vypnuto. Pokrok zůstává v tomto zařízení.'); renderHome(); }},'Vypnout'):null),
+    cloudStatus);
+  const sync=h('div',{class:'card stack'}, h('h2',{},'Ruční přenos'),
+    h('p',{class:'note'},'Záloha bez cloudu: tady „Zkopírovat“, na druhém zařízení vložit do pole a „Sloučit“. Sloučení bere u každé otázky novější stav.'),
     h('div',{class:'row'},
       h('button',{class:'primary',type:'button',onclick:()=>{ const code=encodeState(); const done=()=>{ syncStatus.textContent=`Zkopírováno (${Math.round(code.length/1024)} kB). Na druhém zařízení vložte do pole a klepněte Sloučit.`; }; const fallback=()=>{ codeArea.value=code; codeArea.focus(); codeArea.select(); syncStatus.textContent='Schránka není dostupná. Kód je v poli, zkopírujte ho ručně.'; }; try{ navigator.clipboard.writeText(code).then(done,fallback); }catch(e){ fallback(); } }},'Zkopírovat pokrok'),
       h('button',{class:'ghost',type:'button',onclick:()=>{ try{ const r=mergeState(decodeState(codeArea.value)); syncStatus.textContent=`Sloučeno: ${r.added} nových, ${r.updated} aktualizovaných otázek, ${r.tests} testů.`; codeArea.value=''; const msg=syncStatus.textContent; renderHome(); $('#sync-status').textContent=msg; }catch(err){ syncStatus.textContent='Nepodařilo se sloučit: '+err.message; } }},'Vložit a sloučit')),
@@ -396,7 +452,7 @@ function renderHome(){
   main.append(h('div',{class:'stack'}, todayCard, tiles,
     h('div',{class:'card stack'}, h('h2',{},'Pokrytí okruhů'), bars,
       h('div',{class:'legend'},h('span',{class:'l-ok'},'naučeno'),h('span',{class:'l-seen'},'rozpracováno'),h('span',{class:'l-bad'},'po chybě'),h('span',{class:'l-new'},'neviděno'))),
-    hist, sync, settings,
+    hist, cloud, sync, settings,
     h('div',{class:'card stack'}, h('h2',{},'Jak zkouška vypadá'),
       h('p',{class:'note'},'Písemný test: 30 otázek, výběr 1 ze 3, limit 40 minut. Skladba podle nařízení vlády č. 238/2025 Sb.: 17 právní předpisy, 5 nauka o zbraních, 5 bezpečné nakládání, 3 zdravotnické minimum. Hranice podle § 20 zákona č. 90/2024 Sb.: obecné zbrojní oprávnění alespoň 26 správně, rozšířené alespoň 28. Kdo neprospěje v teorii, praktickou část nekoná.'),
       h('p',{class:'note'},'Zdroj otázek: soubor testových otázek MV ČR (verze 15. 12. 2025), 837 otázek. Oficiální soubor nerozlišuje otázky „bezpečné nakládání“ od nauky, proto test bere 10 otázek z nauky dohromady.'))
@@ -574,7 +630,7 @@ function themeSeg(){ return h('div',{class:'seg',id:'theme-seg'}, ...THEMES.map(
 
 /* ---------- router ---------- */
 function render(){ updateBadges(); ({home:renderHome,today:renderToday,test:renderTest,browse:renderBrowse,errors:renderErrors})[view](); }
-function start(hot){ applyTheme(); if(hot&&hot.view){ view=hot.view; document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===view) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); } render(); }
+function start(hot){ applyTheme(); cloudSync('start'); if(hot&&hot.view){ view=hot.view; document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===view) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); } render(); }
 try{ window.claude?.hot?.snapshot?.(()=>({view})); }catch(e){}
 if(window.claude?.hot?.ready) window.claude.hot.ready(start); else start(window.claude?.hot?.data ?? {});
 })();
