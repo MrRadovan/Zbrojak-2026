@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Zbroják">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#F2F4EF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131713" media="(prefers-color-scheme: dark)">
 <style>[hidden]{display:none!important}</style>
 <title>Zbroják 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -274,6 +281,7 @@ function interleave(list){ // round-robin across sections so topics mix
   return out;
 }
 function answerLetter(i){ return 'ABC'[i]; }
+function newOrder(q){ const o=q.a.map((_,i)=>i); return S.settings.shuffle===false ? o : shuffle(o); }
 function updateBadges(){ const p=plan(); const t=p.due.length+p.freshTodo; const a=$('#cnt-today'); a.textContent=t; a.hidden=!t; const e=$('#cnt-err'); const n=Q.filter(q=>status(q)==='bad').length; e.textContent=n; e.hidden=!n; }
 
 let view='home', timerId=null;
@@ -297,21 +305,24 @@ function questionBlock(q, opts){
   if(opts.onGuess && !opts.revealed){
     wrap.append(h('div',{class:'conf'}, h('button',{class:'soft',type:'button','aria-pressed':opts.guess?'true':'false',onclick:()=>opts.onGuess(!opts.guess)}, opts.guess?'Hádám ✓':'Hádám')));
   }
+  const order = opts.order || q.a.map((_,i)=>i);   // display position -> original answer index
   const list = h('div',{class:'answers'});
-  q.a.forEach((text,i)=>{
+  order.forEach((i,pos)=>{
+    const text=q.a[i];
     let cls='answer';
     if(opts.revealed){ if(i===q.c) cls+=' right'; else if(i===opts.picked) cls+=' wrong'; }
     else if(i===opts.picked) cls+=' picked';
-    list.append(h('button',{class:cls, type:'button', disabled:!!opts.revealed, onclick:()=>opts.onPick&&opts.onPick(i)}, h('b',{},answerLetter(i)+')'), h('span',{},text)));
+    list.append(h('button',{class:cls, type:'button', disabled:!!opts.revealed, onclick:()=>opts.onPick&&opts.onPick(i)}, h('b',{},answerLetter(pos)+')'), h('span',{},text)));
   });
   wrap.append(list);
+  const cLetter = answerLetter(order.indexOf(q.c));
   if(opts.revealed){
     const ok = opts.picked===q.c;
     const it = S.items[q.n]||{okDays:[]};
     if(ok && opts.grade==='guess') wrap.append(h('div',{class:'verdict warn'},'Správně, ale hádal jste.', h('span',{class:'small'},'Vrátí se zítra. Do naučených se počítá až jistá odpověď.')));
     else if(ok) wrap.append(h('div',{class:'verdict ok'},`Správně. ${it.okDays.length} / ${MASTER_DAYS} dny.`, h('span',{class:'small'}, it.okDays.length>=MASTER_DAYS?'Naučeno. Ještě jednou za týden pro jistotu.':`Příště ${INTERVALS[Math.min(it.okDays.length,4)]===1?'zítra':'za '+INTERVALS[Math.min(it.okDays.length,4)]+' dny'}.`)));
-    else if(opts.grade==='wrong' && !opts.guess) wrap.append(h('div',{class:'verdict bad'},`Chyba s jistotou. Správně je ${answerLetter(q.c)}).`, h('span',{class:'small'},'Tyhle se učí nejlépe: přečtěte si správnou odpověď celou a za chvíli se vrátí.')));
-    else wrap.append(h('div',{class:'verdict bad'},`Špatně. Správně je ${answerLetter(q.c)}).`, h('span',{class:'small'},'Vrátí se za chvíli a zítra znovu.')));
+    else if(opts.grade==='wrong' && !opts.guess) wrap.append(h('div',{class:'verdict bad'},`Chyba s jistotou. Správně je ${cLetter}).`, h('span',{class:'small'},'Tyhle se učí nejlépe: přečtěte si správnou odpověď celou a za chvíli se vrátí.')));
+    else wrap.append(h('div',{class:'verdict bad'},`Špatně. Správně je ${cLetter}).`, h('span',{class:'small'},'Vrátí se za chvíli a zítra znovu.')));
   }
   return wrap;
 }
@@ -349,6 +360,7 @@ function renderHome(){
       h('label',{class:'field'},'Nových otázek denně', h('select',{id:'set-perday',onchange:e=>{S.settings.perDay=e.target.value;save();renderHome();}},
         ...[['auto','Automaticky'],['30','30'],['50','50'],['70','70'],['100','100'],['150','150']].map(([v,l])=>h('option',{value:v,selected:S.settings.perDay===v},l))))),
     h('label',{class:'check'}, h('input',{type:'checkbox',id:'set-hide',checked:S.settings.hide,onchange:e=>{S.settings.hide=e.target.checked;save();}}), 'Skrýt možnosti, dokud si odpověď neřeknu sám'),
+    h('label',{class:'check'}, h('input',{type:'checkbox',id:'set-shuffle',checked:S.settings.shuffle!==false,onchange:e=>{S.settings.shuffle=e.target.checked;save();}}), 'Míchat pořadí odpovědí (učit se obsah, ne písmeno)'),
     h('p',{class:'note'},'Jak to funguje: otázka je naučená po jisté správné odpovědi ve třech různých dnech. Po správné odpovědi se vrátí za 1, 2, 4 a 7 dní; po chybě za 10 minut a zítra. Odpověď označená „Hádám“ se nepočítá. Pokrok se ukládá jen v tomto prohlížeči.'));
   const syncStatus=h('p',{class:'note',id:'sync-status'});
   const codeArea=h('textarea',{id:'sync-code',rows:'3',placeholder:'Sem vložte kód z druhého zařízení',style:'width:100%;font:inherit;font-size:13px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);resize:vertical'});
@@ -392,7 +404,7 @@ function buildToday(){
 }
 function nextToday(){
   if(!T.queue.length){ T.cur=null; return; }
-  T.cur=T.queue.shift(); T.picked=null; T.revealed=false; T.guess=false; T.grade=null; T.hidden=!!S.settings.hide;
+  T.cur=T.queue.shift(); T.picked=null; T.revealed=false; T.guess=false; T.grade=null; T.hidden=!!S.settings.hide; T.order=newOrder(byNum.get(T.cur));
 }
 function renderToday(){
   const main=$('#main'); main.replaceChildren(); updateBadges();
@@ -415,7 +427,7 @@ function renderToday(){
   const label = st==='new'?h('span',{class:'pill info'},'nová'): it&&it.lapses&&it.okDays.length===0?h('span',{class:'pill bad'},`po chybě ${it.lapses}×`):h('span',{class:'pill warn'},`opakování ${it?it.okDays.length:0} / ${MASTER_DAYS}`);
   main.append(h('div',{class:'stack'},
     h('div',{class:'row between'}, h('span',{class:'small muted'},`Hotovo ${T.done} · zbývá ${T.queue.length+1}`), label),
-    h('div',{class:'card'}, questionBlock(q,{picked:T.picked, revealed:T.revealed, hidden:T.hidden, onReveal:()=>{T.hidden=false;renderToday();}, guess:T.guess, onGuess:g=>{T.guess=g;renderToday();}, grade:T.grade,
+    h('div',{class:'card'}, questionBlock(q,{order:T.order, picked:T.picked, revealed:T.revealed, hidden:T.hidden, onReveal:()=>{T.hidden=false;renderToday();}, guess:T.guess, onGuess:g=>{T.guess=g;renderToday();}, grade:T.grade,
       onPick:i=>{ T.picked=i; T.revealed=true; const ok=i===q.c; T.grade= ok ? (T.guess?'guess':'sure') : 'wrong'; record(q.n,T.grade); T.done++; if(!ok || T.guess){ T.queue.push(q.n); } renderToday(); }}))
   ));
   actions(T.revealed ? h('button',{class:'primary',onclick:()=>{nextToday();renderToday();}}, T.queue.length?'Další':'Dokončit')
@@ -425,7 +437,8 @@ function renderToday(){
 /* ---------- TEST ---------- */
 function newTest(){
   const nums=[]; for(const [key,cnt] of Object.entries(TEST_MIX)) nums.push(...shuffle(pool(key).slice()).slice(0,cnt).map(q=>q.n));
-  return { nums:shuffle(nums), ans:nums.map(()=>null), cur:0, started:Date.now(), done:false, result:null };
+  const shuffled=shuffle(nums);
+  return { nums:shuffled, orders:shuffled.map(n=>newOrder(byNum.get(n))), ans:nums.map(()=>null), cur:0, started:Date.now(), done:false, result:null };
 }
 function startTest(){ if(!S.test) { S.test=newTest(); save(); } setView('test'); }
 function testElapsed(){ return (Date.now()-S.test.started)/1000; }
@@ -441,7 +454,7 @@ function renderTest(){
   const grid=h('div',{class:'grid30'});
   t.nums.forEach((n,i)=>grid.append(h('button',{type:'button',class:(t.ans[i]!=null?'done':'')+(i===t.cur?' cur':''),onclick:()=>{t.cur=i;save();renderTest();}},String(i+1))));
   main.append(h('div',{class:'stack'},
-    h('div',{class:'card'}, questionBlock(q,{picked:t.ans[t.cur], index:t.cur, total:30, onPick:i=>{ t.ans[t.cur]=i; save(); if(t.cur<29){ t.cur++; } renderTest(); }})),
+    h('div',{class:'card'}, questionBlock(q,{order:t.orders?t.orders[t.cur]:null, picked:t.ans[t.cur], index:t.cur, total:30, onPick:i=>{ t.ans[t.cur]=i; save(); if(t.cur<29){ t.cur++; } renderTest(); }})),
     h('div',{class:'card stack'}, h('div',{class:'row between'}, h('span',{class:'eyebrow'},'Odpovězeno '+t.ans.filter(a=>a!=null).length+' / 30'), h('button',{class:'danger',style:'padding:6px 10px;font-size:13px',onclick:()=>{ S.test=null; save(); setView('test'); }},'Zrušit test')), grid)
   ));
   const unanswered=t.ans.filter(a=>a==null).length;
@@ -466,15 +479,15 @@ function renderResult(){
   const passG=r.score>=PASS_GENERAL, passE=r.score>=PASS_EXT;
   const tbl=h('table',{}, h('tr',{},h('th',{},'Okruh'),h('th',{},'Správně')));
   for(const k of KEY_ORDER) tbl.append(h('tr',{},h('td',{},KEYS[k]),h('td',{class:'num'},`${r.per[k][0]} / ${r.per[k][1]}`)));
-  const wrong=t.nums.map((n,i)=>({q:byNum.get(n),a:t.ans[i]})).filter(x=>x.a!==x.q.c);
+  const wrong=t.nums.map((n,i)=>({q:byNum.get(n),a:t.ans[i],o:(t.orders&&t.orders[i])||[0,1,2]})).filter(x=>x.a!==x.q.c);
   const rev=h('div',{class:'card stack'}, h('h2',{},wrong.length?`Chyby (${wrong.length})`:'Bez chyb'));
-  for(const {q,a} of wrong){
+  for(const {q,a,o} of wrong){
     rev.append(h('div',{class:'review-item'},
       h('div',{class:'qmeta'},h('span',{},KEYS[q.k]),h('span',{},`č. ${q.n} · str. ${q.p}`)),
       h('div',{class:'qtext'},q.q),
       q.i?h('img',{class:'qimg',src:'img/'+q.i,alt:'',loading:'lazy'}):null,
-      h('div',{class:'ans r'},`${answerLetter(q.c)}) ${q.a[q.c]}`),
-      a!=null?h('div',{class:'ans w'},`Vaše odpověď ${answerLetter(a)}) ${q.a[a]}`):h('div',{class:'ans w'},'Bez odpovědi')));
+      h('div',{class:'ans r'},`${answerLetter(o.indexOf(q.c))}) ${q.a[q.c]}`),
+      a!=null?h('div',{class:'ans w'},`Vaše odpověď ${answerLetter(o.indexOf(a))}) ${q.a[a]}`):h('div',{class:'ans w'},'Bez odpovědi')));
   }
   main.append(h('div',{class:'stack'},
     h('div',{class:'card stack'},
@@ -496,7 +509,7 @@ function pickBrowse(){
   if(B.q && cands.length>1 && q.n===B.q.n) q=cands[(cands.indexOf(q)+1)%cands.length];
   return q;
 }
-function browseNext(){ B={q:pickBrowse(), picked:null, revealed:false, guess:false, grade:null, hidden:!!S.settings.hide}; }
+function browseNext(){ const q=pickBrowse(); B={q, order:newOrder(q), picked:null, revealed:false, guess:false, grade:null, hidden:!!S.settings.hide}; }
 function renderBrowse(){
   const main=$('#main'); main.replaceChildren();
   if(!B.q) browseNext();
@@ -509,7 +522,7 @@ function renderBrowse(){
   main.append(h('div',{class:'stack'},
     h('div',{class:'row'}, h('label',{class:'field'},'Okruh',selKey), h('label',{class:'field'},'Pořadí',selMode)),
     h('p',{class:'small muted'},`Naučeno ${c.ok} · rozpracováno ${c.seen} · po chybě ${c.bad} · neviděno ${c.new}` + (S.browse.mode==='seq'?` · pozice ${((S.browse.pos||1)-1+pool(S.browse.key).length)%pool(S.browse.key).length+1}`:'')),
-    h('div',{class:'card'}, questionBlock(q,{picked:B.picked, revealed:B.revealed, hidden:B.hidden, onReveal:()=>{B.hidden=false;renderBrowse();}, guess:B.guess, onGuess:g=>{B.guess=g;renderBrowse();}, grade:B.grade,
+    h('div',{class:'card'}, questionBlock(q,{order:B.order, picked:B.picked, revealed:B.revealed, hidden:B.hidden, onReveal:()=>{B.hidden=false;renderBrowse();}, guess:B.guess, onGuess:g=>{B.guess=g;renderBrowse();}, grade:B.grade,
       onPick:i=>{ B.picked=i; B.revealed=true; const ok=i===q.c; B.grade= ok?(B.guess?'guess':'sure'):'wrong'; record(q.n,B.grade); updateBadges(); renderBrowse(); }}))
   ));
   actions(B.revealed ? h('button',{class:'primary',onclick:()=>{browseNext();renderBrowse();}},'Další otázka') : h('button',{class:'ghost',onclick:()=>{browseNext();renderBrowse();}},'Přeskočit'));
@@ -521,15 +534,15 @@ function renderErrors(){
   const main=$('#main'); main.replaceChildren(); updateBadges();
   const list=Q.filter(q=>status(q)==='bad');
   if(!list.length){ main.append(h('div',{class:'card stack'}, h('h2',{},'Žádné otázky po chybě'), h('p',{class:'muted'},'Sem se otázka zařadí po špatné odpovědi a zmizí po první jisté správné odpovědi. Pak pokračuje v běžném opakování.'))); actions(h('button',{class:'primary',onclick:()=>setView('today')},'Dnešní dávka')); E.q=null; return; }
-  if(!E.q || !list.some(q=>q.n===E.q.n)){ E={q:list[Math.floor(Math.random()*list.length)], picked:null, revealed:false, guess:false, grade:null}; }
+  if(!E.q || !list.some(q=>q.n===E.q.n)){ const nq=list[Math.floor(Math.random()*list.length)]; E={q:nq, order:newOrder(nq), picked:null, revealed:false, guess:false, grade:null}; }
   const q=E.q, it=item(q.n);
   main.append(h('div',{class:'stack'},
     h('p',{class:'small muted'},`${list.length} otázek po chybě. Tato: ${it.wrong}× špatně, ${it.right}× správně.`),
-    h('div',{class:'card'}, questionBlock(q,{picked:E.picked, revealed:E.revealed, guess:E.guess, onGuess:g=>{E.guess=g;renderErrors();}, grade:E.grade,
+    h('div',{class:'card'}, questionBlock(q,{order:E.order, picked:E.picked, revealed:E.revealed, guess:E.guess, onGuess:g=>{E.guess=g;renderErrors();}, grade:E.grade,
       onPick:i=>{ E.picked=i; E.revealed=true; const ok=i===q.c; E.grade= ok?(E.guess?'guess':'sure'):'wrong'; record(q.n,E.grade); renderErrors(); }}))
   ));
   actions(E.revealed ? h('button',{class:'primary',onclick:()=>{ E.q=null; renderErrors(); }},'Další')
-                     : h('button',{class:'ghost',onclick:()=>{ const rest=list.filter(x=>x.n!==q.n); E={q:rest.length?rest[Math.floor(Math.random()*rest.length)]:q, picked:null, revealed:false, guess:false, grade:null}; renderErrors(); }},'Jinou'));
+                     : h('button',{class:'ghost',onclick:()=>{ const rest=list.filter(x=>x.n!==q.n); const nq=rest.length?rest[Math.floor(Math.random()*rest.length)]:q; E={q:nq, order:newOrder(nq), picked:null, revealed:false, guess:false, grade:null}; renderErrors(); }},'Jinou'));
 }
 
 /* ---------- theme ---------- */
