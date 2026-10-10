@@ -1,0 +1,84 @@
+{
+ "source": "Příloha č. 2 k nařízení vlády č. 238/2025 Sb. a § 17 až § 24 téhož nařízení",
+ "rules": [
+  {"id":"smer","title":"Bezpečný směr","text":"Zbraň, která ještě neprošla kontrolou, míří vždy do bezpečného směru, který určí komisař (zpravidla k dopadišti). Nikdy se nemíří na osoby, ani s vybitou, zkontrolovanou nebo nekompletní zbraní. Úmyslné namíření na osobu je porušení zásad a může vést k okamžitému ukončení zkoušky."},
+  {"id":"prst","title":"Prst mimo spoušť a lučík","text":"Prst leží mimo lučík, dokud nepadne pokyn ke střelbě. Výjimka je záměrný výstřel, rána jistoty u zkontrolované nenabité zbraně a úkony, které předepisuje výrobce (například stisk spouště před rozebráním Glocku)."},
+  {"id":"jistota","title":"Rána jistoty","text":"Provádí se vždy do bezpečného směru. Mířenou ránu jistoty (s využitím mířidel) provádíte jen tehdy, když to komisař určí, a způsobem, který určí."},
+  {"id":"nabiti","title":"Nabití","text":"Zbraň je nabitá, když ke střelbě stačí přesunout prst do lučíku a stisknout spoušť. Bez pokynu ke střelbě zůstává prst mimo lučík a zbraň míří do bezpečného směru."},
+  {"id":"preruseni","title":"Přerušení střelby","text":"Při vstupu osoby do ohroženého prostoru nebo jiné události střelbu okamžitě přerušte: zbraň do bezpečného směru, prst mimo lučík, podle konstrukce zajistit pojistkou nebo provést kontrolu zbraně."},
+  {"id":"ukonceni","title":"Ukončení střelby","text":"Po poslední ráně provedete kontrolu zbraně (vybití a uvedení do bezpečného stavu) a zbraň předložíte komisaři ke kontrole nábojové komory, případně zásobníkové šachty, se zbraní stále v bezpečném směru."}
+ ],
+ "procedures": [
+  {"id":"pistole","group":"Kontrola zbraně","title":"Samonabíjecí pistole","weapon":"CZ 75 (DA/SA s kohoutem) nebo pistole s úderníkem (Glock, CZ P-10)","steps":[
+    "Zbraň převzít a držet v bezpečném směru, prst mimo lučík.",
+    "Vyjmout zásobník.",
+    "Stáhnout závěr do zadní polohy a přes výhozné okénko vizuálně zkontrolovat nábojovou komoru.",
+    "Zkontrolovat zásobníkovou šachtu, že v ní není zásobník (pohledem přes výhozné okénko nebo pohmatem druhou rukou).",
+    "Závěr ponechat v zadní poloze (záchytem), nebo jej vypustit dopředu.",
+    "Při závěru v přední poloze provést ránu jistoty do bezpečného směru."],
+   "notes":"Pořadí „zásobník ven, pak komora“ je zásadní: kdybyste nejdřív stáhli závěr, nabil by se náboj ze zásobníku."},
+  {"id":"revolver","group":"Kontrola zbraně","title":"Revolver","weapon":"revolver s výklopným válcem, DA/SA","steps":[
+    "Zbraň převzít v bezpečném směru, prst mimo lučík.",
+    "Vyklopit nábojový válec.",
+    "Vizuálně zkontrolovat všechny nábojové komory válce.",
+    "Zkontrolovanou zbraň odložit s vyklopeným válcem."],
+   "notes":"U revolveru se rána jistoty neprovádí; bezpečný stav je vyklopený válec. Kohout nenatahujte."},
+  {"id":"samonab","group":"Kontrola zbraně","title":"Samonabíjecí dlouhá kulová zbraň","weapon":"samonabíjecí puška s odnímatelným zásobníkem (např. CZ BREN, AR-15, Sa vz. 58)","steps":[
+    "Zbraň převzít v bezpečném směru, prst mimo lučík.",
+    "Vyjmout zásobník.",
+    "Stáhnout závěr dozadu a zkontrolovat nábojovou komoru přes výhozné okénko; pokud to konstrukce neumožňuje, závěr opakovaně stáhnout a vypustit.",
+    "Zkontrolovat zásobníkovou šachtu (pohledem nebo pohmatem).",
+    "Závěr ponechat vzadu, pokud to zbraň umožňuje, nebo vypustit dopředu.",
+    "Při závěru v přední poloze provést ránu jistoty do bezpečného směru."],
+   "notes":"Stejná logika jako u pistole. Pozor na pojistku: u mnoha pušek nejde natáhnout závěr se zajištěnou zbraní."},
+  {"id":"opakovacka","group":"Kontrola zbraně","title":"Opakovací dlouhá kulová zbraň (otočný odsuvný závěr)","weapon":"opakovačka s odnímatelným zásobníkem (např. CZ 457, CZ 600)","steps":[
+    "Zbraň převzít v bezpečném směru, prst mimo lučík.",
+    "Vyjmout zásobník.",
+    "Otevřít závěr (kliku nahoru a dozadu).",
+    "Vizuálně zkontrolovat nábojovou komoru a zásobníkovou šachtu.",
+    "Zbraň odložit s otevřeným závěrem.",
+    "Pokud komisař požaduje uzamčení nenabité zkontrolované zbraně, závěr zavřít a vypustit bicí mechanismus ranou jistoty do bezpečného směru."],
+   "notes":"Bezpečný stav opakovačky je otevřený závěr. Ránu jistoty děláte jen při zavření závěru."},
+  {"id":"selhac","group":"Závady","title":"Selhač (náboj nevystřelil)","weapon":"libovolná zbraň","steps":[
+    "Zbraň držet dál v bezpečném směru, prst mimo lučík.",
+    "Vyčkat nejméně 10 sekund (nebo déle, pokud to předepisuje výrobce zbraně nebo střeliva).",
+    "Provést kontrolu zbraně: zásobník ven, závěr dozadu, vyhodit selhaný náboj, zkontrolovat komoru.",
+    "Prohlédnout otisk zápalníku na zápalce selhaného náboje, aby se zjistilo, zda je závada ve zbrani, nebo ve střelivu."],
+   "notes":"Čekání je kvůli zpožděnému zážehu. Nikdy neotáčejte zbraň k sobě, abyste se podíval do komory."},
+  {"id":"slaba","group":"Závady","title":"Slabá rána","weapon":"libovolná zbraň","steps":[
+    "Zbraň v bezpečném směru, prst mimo lučík; nestřílet dál.",
+    "Provést kontrolu zbraně (vybití, kontrola komory).",
+    "Rozebrat zbraň v rozsahu potřebném pro kontrolu hlavně.",
+    "Zkontrolovat průchodnost vývrtu hlavně proti světlu.",
+    "Je-li střela uvízlá v hlavni, jen slovně popsat správný postup odstranění (odborně, nikoli další ranou)."],
+   "notes":"Slabá rána znamená, že střela mohla zůstat v hlavni; další výstřel by hlaveň roztrhl. Rána jistoty po kontrole není porušením zásad, pokud ji vyžaduje rozebrání."},
+  {"id":"zadrzka","group":"Závady","title":"Zádržka (závěr se zasekl)","weapon":"samonabíjecí zbraň","steps":[
+    "Zbraň v bezpečném směru, prst mimo lučík.",
+    "Vyjmout zásobník, pokud to jde.",
+    "Vnější vizuální kontrolou zjistit druh závady (vzpříčený náboj, nevyhozená nábojnice).",
+    "Odstranit příčinu zádržky (stáhnout závěr, vyhodit vzpříčený náboj nebo nábojnici).",
+    "Pokud zásobník nelze vysunout (náboj vzpříčený ve vývodkách), zachytit závěr v zadní poloze a příčinu odstranit přes výhozné okénko.",
+    "Provést kontrolu zbraně a pokračovat podle pokynu komisaře."],
+   "notes":"Taktické postupy (tap, rack) nejsou povinné. Komisař hodnotí klid a bezpečný směr, ne rychlost."},
+  {"id":"cisteni","group":"Čištění","title":"Příprava k rozebrání a slovní popis čištění","weapon":"krátká i dlouhá kulová zbraň","steps":[
+    "Prakticky provést kontrolu zbraně (vybití, kontrola komory).",
+    "Popsat, že se zbraň čistí po každé střelbě.",
+    "Popsat čištění také při znečištění mechanismu nebo vývrtu (déšť, písek, bláto).",
+    "Popsat rozebírání a skládání podle návodu výrobce, jen v rozsahu nutném k vyčištění.",
+    "Popsat pomůcky a látky: vytěrák, kartáček, hadřík, rozpouštědlo a olej určené pro zbraně.",
+    "Upozornit na zvýšenou opatrnost při manipulaci, když jsou ruce od maziva.",
+    "Popsat kontrolu průchodnosti vývrtu hlavně po vyčištění.",
+    "Popsat ověření správného složení zbraně po vyčištění (funkční kontrola, natažení, rána jistoty do bezpečného směru)."],
+   "notes":"Fyzické rozebrání není povinné, ale popis musí pokrýt všech sedm zásad. Komisař může rozebrání zadat; jeho neprovedení není důvod k neprospění, porušení bezpečnosti ano."},
+  {"id":"strelba","group":"Střelba","title":"Průběh střelby na terč","weapon":"pistole na 10 m a puška na 25 m, vestoje","steps":[
+    "Vyslechnout organizaci střelby, povely a způsob hlášení závady.",
+    "Nasadit ochranu sluchu a zraku.",
+    "Na povel nabít: zásobník do zbraně, závěr dozadu a vpřed; zbraň stále v bezpečném směru, prst mimo lučík.",
+    "Využít 3 nástřelné rany z každé zbraně (nepočítají se).",
+    "Na povel vystřelit 5 hodnocených ran z pistole; po přechodu na pušku 5 ran z pušky. Časový limit 5 minut se při výměně zbraně zastavuje.",
+    "Při závadě hlásit komisaři, nehledat příčinu sám bez pokynu.",
+    "Po poslední ráně provést kontrolu zbraně a předložit ji komisaři s otevřeným závěrem v bezpečném směru.",
+    "Hlásit ukončení střelby a čekat na pokyn k odchodu k terči."],
+   "notes":"Obecné oprávnění: celkem alespoň 6 zásahů z 10, rozšířené alespoň 8. Terč je kruh o průměru 500 mm, zásah je i tečné zasažení kruhu. Opora pušky jen ze zdravotních důvodů, opora pistole není dovolena."}
+ ]
+}

@@ -1,0 +1,1150 @@
+[
+ {
+  "term": "závěr",
+  "stems": [
+   "závěr"
+  ],
+  "def": "Pohyblivá část zbraně, která uzavírá zadní konec hlavně s nábojovou komorou. Při nabíjení zasouvá náboj do komory, při výstřelu drží tlak v hlavni a po výstřelu vytahuje a vyhazuje prázdnou nábojnici. Podle zákona je závěr hlavní částí zbraně, přičemž závěrem se rozumí také závorník a nosič závorníku.",
+  "en": "bolt / slide",
+  "cat": "nauka"
+ },
+ {
+  "term": "uzamčený závěr",
+  "stems": [
+   "uzamčen\\w* závěr",
+   "uzamykac"
+  ],
+  "def": "Závěr, který je v okamžiku výstřelu pevně mechanicky spojen (uzamčen) s hlavní. Uzamčení udrží vysoký tlak plynů uvnitř hlavně, než střela hlaveň opustí. Používá se u výkonnějšího střeliva, například u většiny pistolí ráže 9 mm Luger a u pušek.",
+  "en": "locked breech",
+  "cat": "nauka"
+ },
+ {
+  "term": "neuzamčený (dynamický) závěr",
+  "stems": [
+   "neuzamčen\\w* závěr",
+   "dynamick\\w* závěr",
+   "neuzamčen"
+  ],
+  "def": "Závěr, který není při výstřelu pevně spojen s hlavní; drží jej pouze jeho hmotnost a síla vratné pružiny. Tlak plynů na dno nábojnice závěr odtlačí dozadu a tím se zbraň znovu nabije. Typický je pro slabší náboje, například malorážkové pistole nebo pistole ráže 7,65 mm Browning.",
+  "en": "blowback",
+  "cat": "nauka"
+ },
+ {
+  "term": "otočný odsuvný závěr",
+  "stems": [
+   "otočn\\w* odsuvn\\w* závěr",
+   "odsuvn\\w* závěr"
+  ],
+  "def": "Ručně ovládaný závěr opakovacích kulovnic. Střelec klikou závěr otočí (tím jej odemkne), odsune dozadu (vyhodí nábojnici), zasune dopředu (nabije nový náboj) a otočí zpět (uzamkne). V závěru bývá umístěn přímoběžný úderník.",
+  "en": "bolt action",
+  "cat": "nauka"
+ },
+ {
+  "term": "lůžkový závěr",
+  "stems": [
+   "lůžkov\\w* závěr"
+  ],
+  "def": "Závěr zbraní se sklopnými hlavněmi, například brokových kozlic a dvojek. Hlavňový svazek se po odjištění temenní kličkou sklopí dolů, náboje se vloží přímo do nábojových komor a hlavně se zaklopí zpět do lůžka v hlavišti zbraně. Zbraň tak nemá zásobník, nabíjí se jednotlivě.",
+  "en": "break action",
+  "cat": "nauka"
+ },
+ {
+  "term": "lever action (pákový závěr)",
+  "stems": [
+   "lever action",
+   "pákov\\w* závěr",
+   "spodní pák"
+  ],
+  "def": "Opakovací systém, u kterého se závěr ovládá pákou umístěnou pod zbraní kolem lučíku. Pohybem páky dolů a nahoru se vyhodí prázdná nábojnice, napne bicí mechanismus a nabije nový náboj z trubicové nábojové schránky. Známý je zejména z amerických pušek typu Winchester.",
+  "en": "lever action",
+  "cat": "nauka"
+ },
+ {
+  "term": "jednoranová zbraň",
+  "stems": [
+   "jednoranov",
+   "jednuš"
+  ],
+  "def": "Palná zbraň bez zásobníku, do které se před každým výstřelem vkládá jeden náboj přímo do nábojové komory. Příkladem je jednuška, tedy jednohlavňová jednoranová brokovnice. Po výstřelu musí střelec zbraň otevřít, vyjmout nábojnici a ručně vložit další náboj.",
+  "en": "single-shot firearm",
+  "cat": "nauka"
+ },
+ {
+  "term": "opakovací zbraň",
+  "stems": [
+   "opakovac"
+  ],
+  "def": "Palná zbraň se zásobníkem nebo jiným podávacím ústrojím, u které střelec po každém výstřelu nabije další náboj ruční manipulací se závěrem, například klikou, posuvným předpažbím nebo pákou. Mezi opakovací zbraně patří i revolver, protože válec otáčí síla střelcova prstu nebo palce.",
+  "en": "repeating firearm",
+  "cat": "nauka"
+ },
+ {
+  "term": "samonabíjecí zbraň",
+  "stems": [
+   "samonabíjec",
+   "poloautomat"
+  ],
+  "def": "Palná zbraň, u které se po výstřelu sama znovu nabije energií předchozího výstřelu, ale na jedno stisknutí spouště vystřelí vždy jen jednou. Pro další výstřel musí střelec spoušť uvolnit a znovu stisknout. Typickým příkladem je běžná pistole nebo samonabíjecí puška.",
+  "en": "semi-automatic firearm",
+  "cat": "nauka"
+ },
+ {
+  "term": "samočinná zbraň",
+  "stems": [
+   "samočinn",
+   "automatick\\w* paln",
+   "automatick\\w* zbra"
+  ],
+  "def": "Palná zbraň, která se sama znovu nabíjí a při držení spouště střílí opakovaně (dávkou), dokud nedojdou náboje. Patří sem samopaly a kulomety. Podle zákona jde o zbraně kategorie R1, tedy zakázané, pro něž je nutná výjimka.",
+  "en": "fully automatic firearm",
+  "cat": "nauka"
+ },
+ {
+  "term": "hlaveň",
+  "stems": [
+   "hlaveň",
+   "hlavně\\b",
+   "hlavněmi",
+   "hlavňov"
+  ],
+  "def": "Trubka, ve které se energie hořícího prachu nebo stlačeného plynu mění na pohyb střely a jejíž vývrt vede střelu požadovaným směrem. V zadní části hlavně je nábojová komora, přední konec se nazývá ústí. Hlaveň je hlavní částí zbraně, stejně jako vložná hlaveň a vložná nábojová komora.",
+  "en": "barrel",
+  "cat": "nauka"
+ },
+ {
+  "term": "vývrt hlavně",
+  "stems": [
+   "vývrt"
+  ],
+  "def": "Vnitřní dutina hlavně, kterou prochází střela. Vývrt může být hladký (brokovnice) nebo drážkovaný či polygonální (kulové zbraně). Jeho zadní část tvoří nábojová komora, přední část vede střelu.",
+  "en": "bore",
+  "cat": "nauka"
+ },
+ {
+  "term": "drážkovaný vývrt",
+  "stems": [
+   "drážkovan"
+  ],
+  "def": "Vývrt hlavně se šroubovitými drážkami, které střelu roztočí kolem její podélné osy. Rotace střelu stabilizuje v letu a výrazně zvyšuje přesnost na větší vzdálenosti. Drážkovaný vývrt mají pistole, revolvery, kulovnice a pušky.",
+  "en": "rifled bore",
+  "cat": "nauka"
+ },
+ {
+  "term": "polygonální vývrt",
+  "stems": [
+   "polygonáln"
+  ],
+  "def": "Vývrt, jehož průřez netvoří ostré drážky, ale několik oblých oblouků uspořádaných do mnohoúhelníku. Celý profil se po délce hlavně stáčí do šroubovice, takže střelu roztáčí stejně jako klasický drážkovaný vývrt. Používají jej například některé pistole.",
+  "en": "polygonal rifling",
+  "cat": "nauka"
+ },
+ {
+  "term": "hladký vývrt",
+  "stems": [
+   "hladk\\w* vývrt"
+  ],
+  "def": "Vývrt hlavně bez drážek, s hladkou vnitřní stěnou. Je typický pro brokovnice, kde se střílí hromadnou střelou (broky) nebo jednotnou střelou, a pro některé flobertky. Střela se v něm neroztáčí, proto je přesnost na dálku nižší než u drážkované hlavně.",
+  "en": "smoothbore",
+  "cat": "nauka"
+ },
+ {
+  "term": "ráže",
+  "stems": [
+   "ráž"
+  ],
+  "def": "Smluvní označení velikosti náboje a jemu odpovídajícího vývrtu hlavně. U kulových zbraní se vyjadřuje průměrem vodicí části vývrtu a popisem nábojové komory či náboje, například 9 mm Luger nebo 7,62 x 39 mm. Ke střelbě lze bezpečně použít pouze střelivo ráže, pro kterou je zbraň určena a která je na ní vyznačena.",
+  "en": "caliber",
+  "cat": "nauka"
+ },
+ {
+  "term": "broková ráže",
+  "stems": [
+   "brokov\\w* ráž",
+   "ráže 12",
+   "ráže 16",
+   "ráže 20",
+   "ráží 12",
+   "ráži 12"
+  ],
+  "def": "U brokovnic se ráže udává číslem, které historicky znamená počet stejně velkých olověných koulí odlitých z jedné anglické libry olova, jež projdou vývrtem. Čím menší číslo, tím větší průměr hlavně, takže ráže 12 je větší než ráže 20. K ráži patří i délka nábojové komory v milimetrech, například 70 nebo 76.",
+  "en": "gauge",
+  "cat": "nauka"
+ },
+ {
+  "term": "nábojová komora",
+  "stems": [
+   "nábojov\\w* komor"
+  ],
+  "def": "Prostor v zadní části vývrtu hlavně, do kterého se zasouvá náboj; svým tvarem a rozměry přesně odpovídá příslušnému náboji. U revolveru nejsou komory součástí hlavně, ale otáčivého válce. Na brokovém náboji se údaj typu 67,5 nebo 70 vztahuje k minimální délce komory, ve které lze náboj bezpečně použít.",
+  "en": "chamber",
+  "cat": "nauka"
+ },
+ {
+  "term": "zásobník",
+  "stems": [
+   "zásobník"
+  ],
+  "def": "Odnímatelná schránka s pružinou, ve které jsou uloženy náboje a ze které je závěr postupně podává do nábojové komory. Zásobník sám není hlavní částí zbraně. Při kontrole zbraně se vždy nejprve vyjme zásobník a teprve poté se zkontroluje nábojová komora.",
+  "en": "magazine",
+  "cat": "nauka"
+ },
+ {
+  "term": "nadlimitní zásobník",
+  "stems": [
+   "nadlimitn\\w* zásobník",
+   "nadlimitn"
+  ],
+  "def": "Zásobník nebo sestava nábojové schránky pro zbraň na střelivo se středovým zápalem s kapacitou přesahující 20 nábojů u krátké zbraně nebo 10 nábojů u dlouhé zbraně. Je regulovanou součástí zbraně a nakládá se s ním přiměřeně jako se střelivem kategorie S2. Vložením do samonabíjecí zbraně se vyžaduje výjimka kategorie R2 nebo S2.",
+  "en": "high-capacity magazine",
+  "cat": "právo"
+ },
+ {
+  "term": "nábojová schránka",
+  "stems": [
+   "nábojov\\w* schránk",
+   "trubicov"
+  ],
+  "def": "Pevná, neodnímatelná zásoba nábojů vestavěná ve zbrani, například trubice pod hlavní brokovnice nebo schránka pod závěrem kulovnice. Plní se shora nebo vkládacím otvorem a závěr z ní odebírá náboje stejně jako ze zásobníku. Sestava nábojové schránky s nadlimitní kapacitou se posuzuje jako nadlimitní zásobník.",
+  "en": "internal (fixed) magazine",
+  "cat": "nauka"
+ },
+ {
+  "term": "spoušť",
+  "stems": [
+   "spoušť",
+   "spoušt"
+  ],
+  "def": "Součást, kterou střelec stiskne prstem, a tím přímo nebo zprostředkovaně uvolní bicí mechanismus, jenž udeří na zápalku. Spoušťové ústrojí je celý mechanismus ovládající bicí mechanismus. Pokud střelec nechce střílet, musí mít prst mimo spoušť i mimo prostor lučíku.",
+  "en": "trigger",
+  "cat": "nauka"
+ },
+ {
+  "term": "lučík",
+  "stems": [
+   "lučík"
+  ],
+  "def": "Oblouk kolem spouště, který ji chrání před nechtěným stisknutím, například při ukládání do pouzdra nebo při zachycení o oděv. Je součástí těla zbraně. Bezpečnostní zásada zní, že prst se smí přesunout do prostoru lučíku až v okamžiku, kdy střelec skutečně hodlá vystřelit.",
+  "en": "trigger guard",
+  "cat": "nauka"
+ },
+ {
+  "term": "bicí kohout",
+  "stems": [
+   "kohout",
+   "kladívk"
+  ],
+  "def": "Otočná součást bicího mechanismu, která po stisknutí spouště udeří na zápalník (nebo přímo na zápalku) a tím vyvolá výstřel. U revolverů a některých pistolí je vnější a lze jej natáhnout palcem; u jiných zbraní je skrytý uvnitř. Zbraně se skrytými kohouty se u brokovnic nazývají hamerlesky, zbraně s vnějšími kohouty lankasterky.",
+  "en": "hammer",
+  "cat": "nauka"
+ },
+ {
+  "term": "úderník",
+  "stems": [
+   "úderník"
+  ],
+  "def": "Součást bicího mechanismu, která svým úderem iniciuje zápalku náboje. U zbraní s přímoběžným úderníkem (například pistole Glock) nahrazuje kohout: je napnut pružinou a po stisknutí spouště vyrazí přímo vpřed na zápalku. Bicí mechanismus je souhrnně mechanismus způsobující úder na zápalku.",
+  "en": "striker",
+  "cat": "nauka"
+ },
+ {
+  "term": "zápalník",
+  "stems": [
+   "zápalník"
+  ],
+  "def": "Tenký kolík, který přenáší úder kohoutu na zápalku náboje. Jeho hrot zápalku promáčkne, zápalková slož se vznítí a zažehne prachovou náplň. U některých konstrukcí je zápalník a úderník jedna a tatáž součást.",
+  "en": "firing pin",
+  "cat": "nauka"
+ },
+ {
+  "term": "zápalka",
+  "stems": [
+   "zápalk"
+  ],
+  "def": "Malá kovová kalíšková součást náboje obsahující citlivou zápalkovou slož, která se úderem vznítí a zažehne výmetnou (prachovou) náplň. U nábojů se středovým zápalem je uprostřed dna nábojnice; u nábojů s okrajovým zápalem je slož uložena přímo v okraji nábojnice. Zápalky jsou podle zákona aktivním komponentem střeliva.",
+  "en": "primer",
+  "cat": "nauka"
+ },
+ {
+  "term": "okrajový zápal",
+  "stems": [
+   "okrajov\\w* zápal"
+  ],
+  "def": "Způsob iniciace náboje, při kterém je zápalková slož uložena v dutém okraji nábojnice a zápalník udeří na tento okraj. Nábojnice je tenkostěnná a nelze ji znovu přebíjet. Typickými příklady jsou náboje ráže 22 Long Rifle a náboje Flobert.",
+  "en": "rimfire",
+  "cat": "nauka"
+ },
+ {
+  "term": "středový zápal",
+  "stems": [
+   "středov\\w* zápal"
+  ],
+  "def": "Způsob iniciace, při kterém je samostatná zápalka vsazena do středu dna nábojnice. Jde o nejrozšířenější systém u pistolových, puškových i brokových nábojů; nábojnice lze po výstřelu znovu přebít. Samonabíjecí zbraně na střelivo se středovým zápalem podléhají přísnějším pravidlům pro kapacitu zásobníků.",
+  "en": "centerfire",
+  "cat": "nauka"
+ },
+ {
+  "term": "zápal Lefaucheux",
+  "stems": [
+   "lefaucheux"
+  ],
+  "def": "Historický systém zápalu z 19. století, u kterého z boku nábojnice vyčnívá kolíček; úder kohoutu na kolíček iniciuje zápalku uvnitř náboje. Dnes se již prakticky nepoužívá a zbraně na tyto náboje bývají historické. Zákon jej uvádí jako třetí druh mechanického zápalu vedle okrajového a středového.",
+  "en": "pinfire",
+  "cat": "nauka"
+ },
+ {
+  "term": "Flobert",
+  "stems": [
+   "flobert"
+  ],
+  "def": "Slabý náboj s okrajovým zápalem, obvykle v ráži 4 mm, 6 mm nebo 9 mm, se střelou jednotnou nebo hromadnou (drobné broky). Zbraň na tyto náboje se nazývá flobertka a může mít hladký i drážkovaný vývrt. Dostřel a energie jsou výrazně nižší než u běžného střeliva, přesto jde o palnou zbraň s ostrým střelivem.",
+  "en": "Flobert cartridge",
+  "cat": "nauka"
+ },
+ {
+  "term": "perkusní zámek",
+  "stems": [
+   "perkusn"
+  ],
+  "def": "Historický iniciační systém zbraní na černý prach, u kterého kohout udeří na malou perkusní zápalku (kapsli) nasazenou na pistonu. Zbraň se nabíjí děleným střelivem, tedy prach, střela a zápalka se vkládají zvlášť. Perkusní revolver se nabíjí ústím jednotlivých komor válce.",
+  "en": "percussion lock",
+  "cat": "nauka"
+ },
+ {
+  "term": "křesadlový zámek",
+  "stems": [
+   "křesadlov"
+  ],
+  "def": "Historický zámkový systém, u kterého křemen (pazourek) upevněný v čelistech kohoutu křísne o ocílku a jiskry zažehnou prach na pánvičce a následně hlavní náplň v hlavni. Zbraň se nabíjí ústím hlavně černým prachem a kulí. Takové zbraně jsou obvykle zbraněmi historickými nebo kategorie PO.",
+  "en": "flintlock",
+  "cat": "nauka"
+ },
+ {
+  "term": "doutnákový zámek",
+  "stems": [
+   "doutnák"
+  ],
+  "def": "Nejstarší zámkový systém palných zbraní, u kterého hořící šňůra (doutnák) držená v páce kohoutu po stisknutí spouště zapálí prach na pánvičce. Používal se od 15. do 17. století. Dnes se vyskytuje pouze u historických zbraní a replik.",
+  "en": "matchlock",
+  "cat": "nauka"
+ },
+ {
+  "term": "dělené střelivo",
+  "stems": [
+   "dělen\\w* střeliv"
+  ],
+  "def": "Střelivo, u kterého se střela a aktivní komponenty (prach, zápalka) nabíjejí do zbraně samostatně, nikoli jako jeden celek. Používá se u předovek a perkusních zbraní. Jednoranové a dvouranové zbraně na dělené střelivo patří do kategorie PO.",
+  "en": "separate-loading ammunition",
+  "cat": "nauka"
+ },
+ {
+  "term": "jednotný náboj",
+  "stems": [
+   "jednotn\\w* náboj",
+   "jednotn\\w* střeliv"
+  ],
+  "def": "Náboj, u kterého jsou nábojnice, zápalka, prachová náplň a střela spojeny do jednoho celku, který se vkládá do zbraně najednou. Jde o standardní moderní střelivo pro pistole, pušky i brokovnice. Opakem je dělené střelivo.",
+  "en": "cartridge (fixed ammunition)",
+  "cat": "nauka"
+ },
+ {
+  "term": "nábojka",
+  "stems": [
+   "nábojk"
+  ],
+  "def": "Náboj bez střely, který po iniciaci pouze vytvoří zvuk a záblesk nebo vymete dráždivou látku. Používá se v poplašných a signalizačních zbraních, u expanzních přístrojů nebo k simulaci střelby. Nábojky jsou podle zákona střelivem.",
+  "en": "blank cartridge",
+  "cat": "nauka"
+ },
+ {
+  "term": "aktivní komponenty střeliva",
+  "stems": [
+   "aktivní\\w* komponent"
+  ],
+  "def": "Zápalky a střeliviny (prachy), se kterými se nakládá pro výrobu nebo přebíjení střeliva nebo pro použití ve zbrani, a dále střely obsahující aktivní náplň, například výbušné, zápalné nebo svítící. Podle zákona jsou střelivem a platí pro ně množstevní limity a pravidla pro bezpečné uložení odděleně od hořlavin.",
+  "en": "active ammunition components",
+  "cat": "právo"
+ },
+ {
+  "term": "nábojnice",
+  "stems": [
+   "nábojnic"
+  ],
+  "def": "Kovové nebo plastové pouzdro náboje, které drží pohromadě zápalku, prachovou náplň a střelu. Při výstřelu se tlakem roztáhne a utěsní nábojovou komoru, poté ji závěr vytáhne a vyhodí. Podle tvaru dna rozlišujeme nábojnici s okrajem, s drážkou nebo s polookrajem; podle tvaru těla válcovou nebo lahvovitou.",
+  "en": "cartridge case",
+  "cat": "nauka"
+ },
+ {
+  "term": "černý prach",
+  "stems": [
+   "čern\\w* prach"
+  ],
+  "def": "Nejstarší střelivina, směs ledku, dřevěného uhlí a síry. Při hoření vytváří hustý dým a silné znečištění, proto se používá jen u historických zbraní, předovek a jejich replik. Je citlivý na jiskru a ukládá se odděleně od ostatních komponentů.",
+  "en": "black powder",
+  "cat": "nauka"
+ },
+ {
+  "term": "bezdýmný prach",
+  "stems": [
+   "bezdýmn"
+  ],
+  "def": "Moderní střelivina na bázi nitrocelulózy, která hoří téměř bez kouře a dává střele mnohem vyšší energii než černý prach. Používá se ve všech běžných jednotných nábojích. Jako aktivní komponent střeliva podléhá limitům pro skladování a nesmí se ukládat společně s černým prachem.",
+  "en": "smokeless powder",
+  "cat": "nauka"
+ },
+ {
+  "term": "celoplášťová střela",
+  "stems": [
+   "celoplášť",
+   "fmj"
+  ],
+  "def": "Střela s olověným jádrem zcela obaleným tvrdším kovovým pláštěm (označení FMJ). Při zásahu se téměř nedeformuje, má dobrou průbojnost a je nejběžnějším střelivem pro sportovní střelbu z pistolí a pušek. Patří do střeliva kategorie S3.",
+  "en": "full metal jacket (FMJ)",
+  "cat": "nauka"
+ },
+ {
+  "term": "poloplášťová střela",
+  "stems": [
+   "poloplášť"
+  ],
+  "def": "Střela, jejíž plášť nezakrývá špičku, takže je obnažené olověné jádro. Při zásahu se rozšíří (deformuje), čímž předá více energie do cíle a méně proniká. Používá se zejména pro lov a pro obranné střelivo.",
+  "en": "semi-jacketed / soft point",
+  "cat": "nauka"
+ },
+ {
+  "term": "plášťová střela",
+  "stems": [
+   "plášťov\\w* střel"
+  ],
+  "def": "Souhrnné označení střel, jejichž olověné jádro je alespoň zčásti pokryto kovovým pláštěm. Plášť chrání vývrt před zanášením olovem a umožňuje vyšší rychlosti. Dělí se na celoplášťové a poloplášťové.",
+  "en": "jacketed bullet",
+  "cat": "nauka"
+ },
+ {
+  "term": "broky (hromadná střela)",
+  "stems": [
+   "\\bbrok(y|ů|ům|em|ech|u)\\b",
+   "hromadn\\w* střel"
+  ],
+  "def": "Mnoho malých olověných nebo ocelových kuliček uložených v brokovém náboji, které po výstřelu letí jako rozptylující se shluk. Používají se při lovu drobné zvěře a ve sportovní střelbě na asfaltové terče. Maximální dostřel drobných broků v metrech odpovídá zhruba stonásobku jejich průměru v milimetrech; hrubé broky (buck shot) dolétnou přes 1000 m.",
+  "en": "shot (pellets)",
+  "cat": "nauka"
+ },
+ {
+  "term": "jednotná střela",
+  "stems": [
+   "jednotn\\w* střel",
+   "brenneke"
+  ],
+  "def": "Jediná velká střela vystřelená z brokovnice namísto broků, například typu Brenneke. Umožňuje lov větší zvěře z hladké hlavně, dostřel i účinek jsou však mnohem větší než u broků. U brokovnic s úzkým zahrdlením může být její použití omezeno.",
+  "en": "slug",
+  "cat": "nauka"
+ },
+ {
+  "term": "krytí brokovnice",
+  "stems": [
+   "krytí"
+  ],
+  "def": "Ukazatel toho, jak hustě brokový shluk pokryje cíl. Vyjadřuje se jako poměr počtu zásahů broků v kruhovém zkušebním terči na stanovenou vzdálenost k celkovému počtu broků v náboji, v procentech. Krytí ovlivňuje zejména zahrdlení hlavně a velikost broků.",
+  "en": "pattern density",
+  "cat": "nauka"
+ },
+ {
+  "term": "zahrdlení (choke)",
+  "stems": [
+   "zahrdlen",
+   "choke"
+  ],
+  "def": "Zúžení ústí brokové hlavně, které drží brokový shluk déle pohromadě a tím zvyšuje krytí na větší vzdálenost. Bývá pevné nebo výměnné (vložky). U silného zahrdlení není vhodné střílet jednotnou střelou ani ocelovými broky, pokud k tomu zbraň není ověřena.",
+  "en": "choke",
+  "cat": "nauka"
+ },
+ {
+  "term": "vložná hlaveň",
+  "stems": [
+   "vložn\\w* hlav",
+   "vložn\\w* nábojov"
+  ],
+  "def": "Hlaveň menší ráže, která se vkládá do vývrtu hlavně větší ráže, aby bylo možné ze zbraně střílet slabším střelivem, například malorážkovým z brokovnice. Podobně vložná nábojová komora umožňuje použít kratší náboj. Obě jsou podle zákona hlavní částí zbraně.",
+  "en": "barrel insert",
+  "cat": "nauka"
+ },
+ {
+  "term": "tlumič hluku výstřelu",
+  "stems": [
+   "tlumič"
+  ],
+  "def": "Zařízení nasazené na ústí hlavně, které zachycuje a zpomaluje unikající plyny, a tím snižuje hluk výstřelu včetně hluku ve směru střelby. Je regulovanou součástí zbraně a nakládá se s ním jako se zbraní kategorie R4, tedy je potřeba zbrojní oprávnění.",
+  "en": "suppressor / silencer",
+  "cat": "právo"
+ },
+ {
+  "term": "kompenzátor (úsťová brzda)",
+  "stems": [
+   "kompenzátor",
+   "úsťov\\w* brzd"
+  ],
+  "def": "Nástavec nebo otvory na ústí hlavně, které usměrňují unikající plyny tak, aby snižovaly zdvih hlavně a zpětný ráz. Zlepšuje kontrolu zbraně při rychlé střelbě. Na rozdíl od tlumiče není regulovanou součástí zbraně.",
+  "en": "compensator / muzzle brake",
+  "cat": "nauka"
+ },
+ {
+  "term": "mířidla",
+  "stems": [
+   "mířidl",
+   "hledí",
+   "mušk"
+  ],
+  "def": "Prvky na zbrani sloužící k zamíření. Mechanická mířidla tvoří muška na ústí hlavně a hledí blíže oku; střelec je srovná do jedné přímky s cílem. Alternativou jsou optické zaměřovače (puškohledy) nebo kolimátory.",
+  "en": "sights",
+  "cat": "nauka"
+ },
+ {
+  "term": "kolimátor",
+  "stems": [
+   "kolimátor",
+   "red dot"
+  ],
+  "def": "Elektronický zaměřovač, který na malém skle promítá svítící bod; střelec jej jen přiloží na cíl bez srovnávání mušky a hledí. Umožňuje rychlé míření s oběma otevřenýma očima. Noktovizní ani kolimátorové zaměřovače nejsou zákonem o zbraních regulovány.",
+  "en": "red dot sight",
+  "cat": "nauka"
+ },
+ {
+  "term": "rána jistoty",
+  "stems": [
+   "rán\\w* jistoty",
+   "ran\\w* jistoty"
+  ],
+  "def": "Stisknutí spouště u zkontrolované, prázdné zbraně mířící do bezpečného směru. Slouží k uvolnění bicího mechanismu po vybití zbraně, aby nezůstal napnutý. Provádí se vždy až po kontrole zbraně, nikdy jako způsob kontroly.",
+  "en": "safety dry fire",
+  "cat": "nauka"
+ },
+ {
+  "term": "bezpečný směr",
+  "stems": [
+   "bezpečn\\w* směr"
+  ],
+  "def": "Směr, ve kterém případný nechtěný výstřel nikoho nezraní a nezpůsobí škodu. Na střelnici jde zpravidla o směr k dopadišti střel vymezenému provozním řádem. Zbraň má mířit do bezpečného směru při každé manipulaci, včetně nabíjení, vybíjení a řešení závad.",
+  "en": "safe direction",
+  "cat": "nauka"
+ },
+ {
+  "term": "selhač",
+  "stems": [
+   "selhač"
+  ],
+  "def": "Závada, při které po stisknutí spouště nedojde k výstřelu, protože se náboj neiniciuje. Střelec musí se zbraní mířící do bezpečného směru vyčkat alespoň 10 sekund (nebo déle podle návodu), zda nedojde k opožděnému zážehu, a teprve poté náboj vyjmout. Nikdy se nemá hned otevírat závěr.",
+  "en": "misfire",
+  "cat": "nauka"
+ },
+ {
+  "term": "slabá rána",
+  "stems": [
+   "slab\\w* rán"
+  ],
+  "def": "Závada, při které náboj vystřelí s nápadně slabým zvukem a zpětným rázem, obvykle kvůli chybějící nebo malé prachové náplni. Střela může uvíznout v hlavni, a další výstřel by hlaveň roztrhl. Po slabé ráně se musí zbraň vybít a zkontrolovat průchodnost vývrtu.",
+  "en": "squib load",
+  "cat": "nauka"
+ },
+ {
+  "term": "zádržka",
+  "stems": [
+   "zádržk"
+  ],
+  "def": "Závada v podávání nebo vyhazování, kdy se náboj či nábojnice vzpříčí mezi závěrem a hlavní a zbraň nelze dále používat. Řeší se vyjmutím zásobníku, vizuální kontrolou a opakovaným stažením a vypuštěním závěru se zbraní v bezpečném směru. Vzpříčený náboj se poté odstraní.",
+  "en": "stoppage / jam",
+  "cat": "nauka"
+ },
+ {
+  "term": "zpětný ráz",
+  "stems": [
+   "zpětn\\w* ráz"
+  ],
+  "def": "Pohyb zbraně dozadu proti střelci v okamžiku výstřelu, vyvolaný tlakem plynů a zrychlením střely. Je tím silnější, čím výkonnější je náboj a čím lehčí je zbraň. U samonabíjecích zbraní s neuzamčeným závěrem je impulz zpětného rázu zároveň zdrojem energie pro nové nabití.",
+  "en": "recoil",
+  "cat": "nauka"
+ },
+ {
+  "term": "úsťová rychlost a úsťová energie",
+  "stems": [
+   "úsťov\\w* rychlost",
+   "úsťov\\w* energi"
+  ],
+  "def": "Úsťová rychlost je rychlost střely při opuštění ústí hlavně v metrech za sekundu; u pistolových nábojů bývá kolem 300 až 400 m/s, u puškových 700 až 900 m/s. Úsťová energie je pohybová energie střely na ústí v joulech, vypočtená z její hmotnosti a rychlosti. U pistole 9 mm Luger činí zhruba 500 J, u vojenských puškových nábojů kolem 3500 J.",
+  "en": "muzzle velocity / muzzle energy",
+  "cat": "nauka"
+ },
+ {
+  "term": "dostřel (maximální a účinný)",
+  "stems": [
+   "dostřel"
+  ],
+  "def": "Maximální dostřel je největší vzdálenost, do které může střela z dané zbraně a střeliva doletět: u pistole 9 mm Luger i malorážky 22 LR více než 1,5 km, u puškových nábojů až 4 km, u drobných broků zhruba stonásobek jejich průměru v milimetrech. Účinný dostřel je mnohem kratší vzdálenost, na kterou lze mířenou střelbou efektivně zasáhnout cíl. Střela je nebezpečná po velkou část maximálního dostřelu, proto je nutné vždy vědět, kde skončí.",
+  "en": "maximum range / effective range",
+  "cat": "nauka"
+ },
+ {
+  "term": "pojistka",
+  "stems": [
+   "pojistk"
+  ],
+  "def": "Součást zajišťující zbraň proti nechtěnému výstřelu, například blokováním spouště nebo úderníku. Manuální pojistku střelec ovládá sám, automatické pojistky fungují bez jeho zásahu. Některé moderní pistole žádnou vnější manuální pojistku nemají; u brokovnic s automatickou pojistkou je nutno před výstřelem odjistit ručně.",
+  "en": "safety",
+  "cat": "nauka"
+ },
+ {
+  "term": "revolverový válec",
+  "stems": [
+   "revolverov\\w* válc",
+   "válec",
+   "válce",
+   "válci",
+   "válcem"
+  ],
+  "def": "Otáčivá část revolveru s několika nábojovými komorami, které se před každým výstřelem natočí do osy hlavně. Válec je u revolveru hlavní částí zbraně. Obvykle se pro nabití vyklápí na výklopné konzoli do strany.",
+  "en": "cylinder",
+  "cat": "nauka"
+ },
+ {
+  "term": "C.I.P. zkušební značka",
+  "stems": [
+   "c\\.i\\.p",
+   "zkušební\\w* značk",
+   "zkušebních značek",
+   "ověřen\\w* zbran"
+  ],
+  "def": "Značka vyražená na zbrani dokládající, že zbraň prošla úředním ověřením (tlakovou zkouškou) a splňuje technické požadavky. V České republice ji vyráží Český úřad pro zkoušení zbraní a střeliva; značky jsou vzájemně uznávány státy Úmluvy C.I.P. Zvláštní značka (lilie) označuje brokovnice ověřené pro ocelové broky; písmeno X přes značku znamená, že zbraň ověřením neprošla.",
+  "en": "C.I.P. proof mark",
+  "cat": "nauka"
+ },
+ {
+  "term": "kategorie zbraní R1 až R4",
+  "stems": [
+   "kategorie r[1-4]",
+   "kategorii r[1-4]",
+   "kategorií r[1-4]",
+   "podléhaj\\w* registraci"
+  ],
+  "def": "Zbraně podléhající registraci v centrálním registru zbraní. R1 (například samočinné zbraně) a R2 (například samonabíjecí zbraně vzniklé úpravou ze samočinných) jsou zakázané a vyžadují výjimku, R3 vyžaduje povolení a R4 (běžné pistole, kulovnice, brokovnice) smí držitel zbrojního oprávnění nabývat bez dalšího. Platí zásada, že při možném zařazení do více kategorií se použije ta přísnější.",
+  "en": "firearm categories R1 to R4",
+  "cat": "právo"
+ },
+ {
+  "term": "kategorie PO",
+  "stems": [
+   "kategorie po\\b",
+   "kategorii po\\b",
+   "kategorií po\\b"
+  ],
+  "def": "Zbraně, s nimiž smí nakládat držitel zapsané autorizace, zbrojní licence nebo zbrojního oprávnění, aniž by podléhaly registraci. Patří sem například jednoranové a dvouranové zbraně na dělené střelivo nebo některé historické konstrukce. Osoba nakládající se zbraní kategorie PO smí mít k ní i střelivo kategorie S3 pro ni určené.",
+  "en": "category PO (authorisation-based)",
+  "cat": "právo"
+ },
+ {
+  "term": "kategorie NO",
+  "stems": [
+   "kategorie no\\b",
+   "kategorii no\\b",
+   "kategorií no\\b"
+  ],
+  "def": "Nejvolnější kategorie zbraní, s nimiž smí nakládat každá plně svéprávná zletilá osoba s pobytem v ČR. Patří sem například plynové zbraně, expanzní přístroje, flobertky s nízkou energií, znehodnocené zbraně nebo poplašné zbraně. Ani zbraně NO však nelze kupovat na dálku a podnikatel k nim potřebuje zbrojní licenci.",
+  "en": "category NO (unrestricted)",
+  "cat": "právo"
+ },
+ {
+  "term": "kategorie střeliva S1 až S4",
+  "stems": [
+   "kategorie s[1-4]",
+   "kategorii s[1-4]",
+   "kategorií s[1-4]"
+  ],
+  "def": "Střelivo se dělí na kategorie S1 a S2 (zakázané, například výbušné nebo průbojné střely, nutná výjimka), S3 (běžné střelivo pro držitele zbrojního oprávnění, například celoplášťové náboje) a S4 (volně dostupné zletilým, například střelivo pro zbraně kategorie NO). Na nadlimitní zásobník se přiměřeně použijí pravidla pro S2.",
+  "en": "ammunition categories S1 to S4",
+  "cat": "právo"
+ },
+ {
+  "term": "zbrojní oprávnění",
+  "stems": [
+   "zbrojní\\w* oprávněn"
+  ],
+  "def": "Oprávnění fyzické osoby nakládat se zbraněmi podléhajícími registraci a střelivem; nahrazuje dřívější zbrojní průkaz. Podmínkou je pobyt v ČR, věk, svéprávnost, zdravotní způsobilost, bezúhonnost, spolehlivost a odborná způsobilost prokázaná zkouškou. Vydává se jako obecné nebo rozšířené.",
+  "en": "firearms licence (individual)",
+  "cat": "právo"
+ },
+ {
+  "term": "obecné zbrojní oprávnění",
+  "stems": [
+   "obecn\\w* zbrojní\\w* oprávněn"
+  ],
+  "def": "Základní stupeň zbrojního oprávnění pro běžné držení, sportovní střelbu, lov i viditelné nošení zbraně. Lze jej výjimečně vydat i osobě od 15 let, pokud jde o žáka střední školy s výukou myslivosti a se souhlasem zákonného zástupce a školy. V praktické zkoušce musí žadatel dosáhnout alespoň 6 zásahů z 10 ran.",
+  "en": "general firearms licence",
+  "cat": "právo"
+ },
+ {
+  "term": "rozšířené zbrojní oprávnění",
+  "stems": [
+   "rozšířen\\w* zbrojní\\w* oprávněn"
+  ],
+  "def": "Vyšší stupeň zbrojního oprávnění vyžadovaný pro skryté nošení zbraně podléhající registraci, pro činnost zkušebního komisaře, hlavního zbrojíře držitele zbrojní licence ZL1 nebo ZL3 a pro některé další úkoly u držitele licence. Zkouška je náročnější než u obecného oprávnění.",
+  "en": "extended firearms licence",
+  "cat": "právo"
+ },
+ {
+  "term": "zbrojní licence (ZL1 až ZL3)",
+  "stems": [
+   "zbrojní\\w* licenc",
+   "zl[1-3]"
+  ],
+  "def": "Oprávnění právnické osoby nebo podnikající fyzické osoby nakládat se zbraněmi stanovených kategorií. ZL1 je pro podnikání se zbraněmi (výroba, nákup, prodej, opravy), ZL2 pro nepodnikatelské účely (například sportovní kluby, muzea, ostraha) a ZL3 pro výuku a výcvik. Pro podnikání se zbraněmi je licence nutná vždy, i u zbraní kategorie NO.",
+  "en": "firearms licence (legal entities)",
+  "cat": "právo"
+ },
+ {
+  "term": "zapsaná autorizace",
+  "stems": [
+   "autorizac"
+  ],
+  "def": "Jednodušší oprávnění zapsané do centrálního registru zbraní, které umožňuje nakládat se zbraněmi kategorie PO bez zbrojního oprávnění. Neopravňuje k nakládání se zbraněmi podléhajícími registraci, například R2. Držitel autorizace smí k zbrani PO držet i střelivo S3 pro ni určené.",
+  "en": "registered authorisation",
+  "cat": "právo"
+ },
+ {
+  "term": "zbrojní list",
+  "stems": [
+   "zbrojní\\w* list"
+  ],
+  "def": "Ověřený výstup z informačního systému veřejné správy, který uvádí všechna oprávnění osoby podle zákona o zbraních a seznam jejích registrovaných zbraní. Spolu s občanským průkazem jím držitel prokazuje oprávnění nakládat se zbraní. Nenahrazuje evropský zbrojní pas, zbrojní průvodní list ani certifikát znehodnocené zbraně.",
+  "en": "firearms certificate (printout)",
+  "cat": "právo"
+ },
+ {
+  "term": "evropský zbrojní pas",
+  "stems": [
+   "evropsk\\w* zbrojní\\w* pas",
+   "zbrojní pas"
+  ],
+  "def": "Doklad umožňující cestovat se zbraní do jiných států EU, zejména na lov nebo sportovní soutěže. Vydává se na 5 let a lze jej o dalších 5 let prodloužit. Jeho ztrátu nebo odcizení je držitel povinen bez zbytečného odkladu ohlásit krajskému ředitelství policie.",
+  "en": "European Firearms Pass",
+  "cat": "právo"
+ },
+ {
+  "term": "zbrojní průvodní list",
+  "stems": [
+   "průvodní\\w* list"
+  ],
+  "def": "Doklad vydávaný pro trvalý vývoz, dovoz nebo tranzit zbraně či střeliva přes hranice. Na rozdíl od evropského zbrojního pasu se vydává k jednotlivému přemístění. Na hraničním přechodu je každý povinen oznámit policii, že cestuje se zbraní.",
+  "en": "firearms transfer permit",
+  "cat": "právo"
+ },
+ {
+  "term": "výjimka",
+  "stems": [
+   "výjimk\\w* kategorie",
+   "výjimk\\w* [rs][12]",
+   "vydána výjimk",
+   "vydání výjimk",
+   "vydat výjimk",
+   "držitel\\w* výjimk"
+  ],
+  "def": "Individuální rozhodnutí krajského ředitelství policie, které umožňuje nakládat se zakázanými zbraněmi kategorie R1 nebo R2 nebo zakázaným střelivem S1 nebo S2. Výjimku R1 a S1 lze vydat jen držiteli licence ZL2 nebo ZL3; výjimku R2 a S2 i držiteli zbrojního oprávnění, například pro sportovní střelbu nebo nadlimitní zásobníky.",
+  "en": "exemption",
+  "cat": "právo"
+ },
+ {
+  "term": "povolení kategorie R3",
+  "stems": [
+   "povolen\\w* kategorie",
+   "povolení r3"
+  ],
+  "def": "Rozhodnutí policie, které držiteli zbrojního oprávnění nebo licence ZL2 umožňuje nakládat se zbraní kategorie R3. Vydává se z důvodů ochrany života, zdraví nebo majetku, sportovní, lovecké či sběratelské činnosti nebo rekonstrukce historických bitev. Je mírnější než výjimka pro zakázané zbraně.",
+  "en": "permit (category R3)",
+  "cat": "právo"
+ },
+ {
+  "term": "centrální registr zbraní",
+  "stems": [
+   "centráln\\w* registr"
+  ],
+  "def": "Neveřejný informační systém veřejné správy, ve kterém policie eviduje zbraně podléhající registraci, jejich držitele, oprávnění, autorizace a střelnice. Držitelé zbrojních licencí do něj zapisují zbraně i osoby, které s nimi nakládají. Zbraně kategorie NO a polotovary se evidují mimo registr v evidenčním soupisu.",
+  "en": "Central Firearms Register",
+  "cat": "právo"
+ },
+ {
+  "term": "hlavní držitel",
+  "stems": [
+   "hlavní\\w* držitel"
+  ],
+  "def": "Osoba, na kterou je zbraň podléhající registraci zapsána v centrálním registru zbraní a která za ni odpovídá. Pouze hlavní držitel může požádat policii o zapsání jednoho nebo více vedlejších držitelů k téže zbrani.",
+  "en": "principal holder",
+  "cat": "právo"
+ },
+ {
+  "term": "vedlejší držitel",
+  "stems": [
+   "vedlejší\\w* držitel"
+  ],
+  "def": "Osoba zapsaná v centrálním registru zbraní ke zbrani jiného (hlavního) držitele, která je oprávněna s danou zbraní nakládat a se zápisem souhlasí. Umožňuje například manželům nebo členům rodiny legálně sdílet jednu zbraň. Zápis provádí krajské ředitelství policie na žádost hlavního držitele.",
+  "en": "secondary holder",
+  "cat": "právo"
+ },
+ {
+  "term": "hlavní části zbraně",
+  "stems": [
+   "hlavní\\w* část"
+  ],
+  "def": "Části zbraně, které zákon reguluje stejně jako celou zbraň: hlaveň (včetně vložné hlavně a vložné nábojové komory), závěr (včetně závorníku a nosiče závorníku), tělo zbraně včetně pouzdra závěru a válec revolveru. Zásobník, spoušť, pružiny nebo pažba hlavními částmi nejsou. Nakládání s hlavní částí jako samostatným předmětem se řídí pravidly pro zbraň, jejíž je součástí.",
+  "en": "essential components",
+  "cat": "právo"
+ },
+ {
+  "term": "regulovaná součást zbraně",
+  "stems": [
+   "regulovan\\w* součást"
+  ],
+  "def": "Souhrnný zákonný pojem pro hlavní část zbraně, součást umožňující samočinnou střelbu, polotovar hlavní části, tlumič hluku výstřelu a nadlimitní zásobník. Na každou z nich se vztahují zvláštní pravidla nakládání. Střelivo, zaměřovače ani lafety regulovanou součástí nejsou.",
+  "en": "regulated component",
+  "cat": "právo"
+ },
+ {
+  "term": "nevratná úprava zbraně",
+  "stems": [
+   "nevratn\\w* úprav"
+  ],
+  "def": "Úprava, kterou se mění kategorie zbraně, její druh nebo funkce, nebo která znemožní či ztíží budoucí balistickou identifikaci. Patří sem například přestavba samočinné zbraně na samonabíjecí, znehodnocení nebo zhotovení řezu. Zbraň vzniklá nevratnou úpravou ze zbraně podléhající registraci zůstává ve stejné kategorii, s výjimkou řádně znehodnocené zbraně a řezu.",
+  "en": "irreversible modification",
+  "cat": "právo"
+ },
+ {
+  "term": "znehodnocená zbraň",
+  "stems": [
+   "znehodnocen"
+  ],
+  "def": "Neaktivní zbraň, která byla včetně všech hlavních částí trvale a nevratně učiněna nefunkční postupem podle zákona nebo přímo použitelného předpisu EU. O znehodnocení se vydává certifikát. Znehodnocená zbraň je zbraní kategorie NO.",
+  "en": "deactivated firearm",
+  "cat": "právo"
+ },
+ {
+  "term": "řez zbraně",
+  "stems": [
+   "řez\\w* zbran",
+   "zhotovení řezu"
+  ],
+  "def": "Zbraň, do níž byly vyřezány otvory odhalující vnitřní mechanismus, takže je trvale nefunkční a slouží k výuce nebo výstavním účelům. Zhotovení řezu je nevratnou úpravou. Řez zbraně je druhem neaktivní zbraně.",
+  "en": "cutaway (sectioned) firearm",
+  "cat": "právo"
+ },
+ {
+  "term": "neaktivní zbraň",
+  "stems": [
+   "neaktivn"
+  ],
+  "def": "Původně palná zbraň, která se stala trvale a nevratně nefunkční. Zákon za ni považuje znehodnocenou zbraň, řez zbraně a neaktivní torzo zbraně. Zásada nejpřísnější kategorie se na neaktivní a historické zbraně nepoužije.",
+  "en": "inactive firearm",
+  "cat": "právo"
+ },
+ {
+  "term": "expanzní přístroj",
+  "stems": [
+   "expanzn"
+  ],
+  "def": "Pracovní zařízení fungující na principu střelné zbraně, které využívá energii nábojky, například jateční přístroj nebo nastřelovací pistole ve stavebnictví. Nestřílí střelu do prostoru. Patří do kategorie NO a pro podnikání s ním je výjimka z povinnosti mít zbrojní licenci.",
+  "en": "powder-actuated tool",
+  "cat": "právo"
+ },
+ {
+  "term": "poplašná a signalizační zbraň",
+  "stems": [
+   "poplašn",
+   "signalizačn"
+  ],
+  "def": "Palná zbraň určená pro střelbu nábojek, cvičných nábojů, dráždivých látek nebo pyrotechnických signálů, která konstrukčně nemůže být přeměněna na zbraň pro ostrou střelbu. Patří do kategorie NO. Tzv. plynovky na slzný plyn jsou typickým příkladem.",
+  "en": "alarm and signal weapon",
+  "cat": "právo"
+ },
+ {
+  "term": "plynová zbraň",
+  "stems": [
+   "plynov\\w* zbra"
+  ],
+  "def": "Zbraň, jejíž funkce je odvozena od okamžitého uvolnění energie stlačeného vzduchu nebo jiného plynu, například vzduchovka, větrovka nebo CO2 pistole. Zbraně s nižší úsťovou energií jsou kategorie NO, výkonnější mohou podléhat registraci. Nejde o palnou zbraň.",
+  "en": "air gun",
+  "cat": "právo"
+ },
+ {
+  "term": "historická zbraň",
+  "stems": [
+   "historick\\w* zbra"
+  ],
+  "def": "Palná zbraň vyrobená do 31. prosince 1890 a zároveň zkonstruovaná do tohoto data, například jednoranová jehlovka. Historické zbraně nepodléhají registraci. Neaktivní torzo zbraně z první světové války historickou zbraní není, protože vzniklo později.",
+  "en": "antique firearm",
+  "cat": "právo"
+ },
+ {
+  "term": "nošení zbraně",
+  "stems": [
+   "nošen\\w* zbran",
+   "nosit zbra",
+   "nosí zbra",
+   "nošení"
+  ],
+  "def": "Způsob nakládání, při kterém má osoba zbraň při sobě na místě veřejnosti přístupném nabitou nebo viditelně. Nenabitá dlouhá zbraň v uzavřeném neprůhledném pouzdře se nenosí, pouze přepravuje. Skryté nošení zbraně podléhající registraci vyžaduje rozšířené zbrojní oprávnění.",
+  "en": "carrying a firearm",
+  "cat": "právo"
+ },
+ {
+  "term": "držení zbraně",
+  "stems": [
+   "držen\\w* zbran",
+   "držet zbra",
+   "drží zbra"
+  ],
+  "def": "Nakládání se zbraní, které nedosahuje nošení: zbraň je uložena doma, na střelnici nebo se přepravuje nenabitá v uzavřeném pouzdře. Právo nabývat, držet a nosit zbraně je zaručeno jen za podmínek stanovených zákonem o zbraních a střelivu. Nakládáním se rozumí jakékoli fyzické zacházení se zbraní včetně přepravy a uložení.",
+  "en": "possession of a firearm",
+  "cat": "právo"
+ },
+ {
+  "term": "přenechání zbraně",
+  "stems": [
+   "přenech"
+  ],
+  "def": "Dočasné umožnění jiné osobě, aby samostatně, bez dohledu, nakládala se zbraní nebo střelivem. Příjemce musí být sám k nakládání oprávněn a nesmí zbraň dále přenechat nikomu jinému. Přenechání není převodem, proto se neohlašuje.",
+  "en": "lending (temporary transfer)",
+  "cat": "právo"
+ },
+ {
+  "term": "svěření zbraně",
+  "stems": [
+   "svěř"
+  ],
+  "def": "Umožnění jiné fyzické osobě nakládat se zbraní pod přímým dohledem osoby oprávněné se zbraní nakládat, typicky na střelnici. Na rozdíl od přenechání nemusí být osoba, které je zbraň svěřena, sama držitelem zbrojního oprávnění. Dohlížející osoba odpovídá za bezpečnost.",
+  "en": "entrusting under supervision",
+  "cat": "právo"
+ },
+ {
+  "term": "bezúhonnost",
+  "stems": [
+   "bezúhonn"
+  ],
+  "def": "Podmínka zbrojního oprávnění spočívající v tom, že osoba nebyla pravomocně odsouzena za vyjmenované trestné činy, a to ani v cizině za čin odpovídající českému trestnému činu. Posuzuje se podle výpisu z evidence Rejstříku trestů. Zahlazení odsouzení se v některých případech nezohledňuje.",
+  "en": "clean criminal record",
+  "cat": "právo"
+ },
+ {
+  "term": "spolehlivost",
+  "stems": [
+   "spolehliv"
+  ],
+  "def": "Podmínka zbrojního oprávnění, kterou zákon vymezuje jako trestní a přestupkovou zachovalost a vyloučení rizika alkoholismu a zneužívání jiných návykových látek. Nespolehlivou je například osoba opakovaně postižená za přestupky na úseku zbraní nebo proti veřejnému pořádku. Posuzuje ji policie.",
+  "en": "reliability",
+  "cat": "právo"
+ },
+ {
+  "term": "zkušební komisař",
+  "stems": [
+   "zkušební\\w* komisař"
+  ],
+  "def": "Osoba jmenovaná ministerstvem vnitra, která vede zkoušku odborné způsobilosti žadatelů o zbrojní oprávnění. Musí mít rozšířené zbrojní oprávnění a nesmí zkoušet po dobu pozastavení svého oprávnění. Jeho odměnu hradí krajské ředitelství policie.",
+  "en": "examining commissioner",
+  "cat": "právo"
+ },
+ {
+  "term": "zkouška odborné způsobilosti",
+  "stems": [
+   "zkoušk\\w* odborné způsobilosti",
+   "odborn\\w* způsobil"
+  ],
+  "def": "Zkouška před zkušebním komisařem, kterou žadatel o zbrojní oprávnění prokazuje znalost práva, nauky o zbraních, zdravotnického minima a praktickou manipulaci se zbraní a střelbu. Skládá se osobně bez tlumočníka. Proti průběhu nebo výsledku lze podat protest s uvedením konkrétních nedostatků.",
+  "en": "proficiency examination",
+  "cat": "právo"
+ },
+ {
+  "term": "komisionální zkouška",
+  "stems": [
+   "komisionáln"
+  ],
+  "def": "Zvláštní forma zkoušky odborné způsobilosti konaná před komisí, zpravidla na střelnici vyňaté veřejnoprávní instituce (například policie), výjimečně na zapsané zkouškové střelnici. Platí pro ni stejná pravidla bezpečné manipulace a stejné limity zásahů jako pro běžnou zkoušku.",
+  "en": "board examination",
+  "cat": "právo"
+ },
+ {
+  "term": "zapsaná zkoušková střelnice",
+  "stems": [
+   "zkouškov\\w* střelnic"
+  ],
+  "def": "Střelnice zapsaná v centrálním registru zbraní jako místo, kde se konají zkoušky odborné způsobilosti. Náklady na její využití hradí žadatel, odměnu komisaře hradí policie. Komisionální zkouška se na ní koná jen výjimečně.",
+  "en": "registered examination shooting range",
+  "cat": "střelnice"
+ },
+ {
+  "term": "nutná obrana",
+  "stems": [
+   "nutn\\w* obran"
+  ],
+  "def": "Čin jinak trestný, kterým někdo odvrací přímo hrozící nebo trvající útok na zájem chráněný trestním zákonem; takový čin není trestným činem. Obrana smí a má být intenzivnější než útok, nesmí však být zcela zjevně nepřiměřená způsobu útoku. Obránce nemusí útočníka předem vyzývat a může bránit i jinou osobu.",
+  "en": "self-defence (necessary defence)",
+  "cat": "právo"
+ },
+ {
+  "term": "krajní nouze",
+  "stems": [
+   "krajní nouz"
+  ],
+  "def": "Čin jinak trestný, kterým někdo odvrací nebezpečí přímo hrozící zájmu chráněnému trestním zákonem, například při požáru nebo útoku zvířete. Nejde o krajní nouzi, pokud bylo možno nebezpečí odvrátit jinak nebo způsobený následek je zřejmě stejně závažný nebo závažnější než ten, který hrozil. Použití zbraně v krajní nouzi i nutné obraně se neprodleně hlásí policii.",
+  "en": "necessity (extreme emergency)",
+  "cat": "právo"
+ },
+ {
+  "term": "munice",
+  "stems": [
+   "munic"
+  ],
+  "def": "Zkompletovaný nebo neúplný výrobek obsahující aktivní muniční náplň (výbušninu), speciálně konstruovaný pro ozbrojené síly nebo bezpečnostní sbory, například dělostřelecký granát nebo mina. Nakládání s municí upravuje samostatný zákon o munici, nikoli zákon o zbraních. Na střelnici lze střílet municí jen bez aktivní náplně a s energií srovnatelnou s povoleným střelivem.",
+  "en": "munitions / ordnance",
+  "cat": "právo"
+ },
+ {
+  "term": "provozní řád střelnice",
+  "stems": [
+   "provozn\\w* řád"
+  ],
+  "def": "Dokument schválený v rámci povolení provozu střelnice, který stanoví dovolené zbraně a střelivo, bezpečný směr, dopadiště, pravidla chování a určuje správce střelnice. Nevymezuje náležitosti žádosti o povolení. Jeho dodržování je povinností každého přítomného.",
+  "en": "range operating rules",
+  "cat": "střelnice"
+ },
+ {
+  "term": "správce střelnice",
+  "stems": [
+   "správc\\w* střelnic"
+  ],
+  "def": "Zletilý držitel zbrojního oprávnění určený provozovatelem, který dohlíží na dodržování provozního řádu a je oprávněn udělovat osobám na střelnici pokyny k zajištění bezpečnosti. Může určit řídícího střelby. Povolení provozovat střelnici smrtí správce nezaniká.",
+  "en": "range manager",
+  "cat": "střelnice"
+ },
+ {
+  "term": "řídící střelby",
+  "stems": [
+   "řídíc\\w* střelby"
+  ],
+  "def": "Zletilý držitel zbrojního oprávnění, kterého v souladu s provozním řádem určí správce střelnice, aby mu pomáhal s dohledem nad bezpečností na střelišti. O určení musí být písemný záznam podepsaný správcem i řídícím střelby, jinak je určení neplatné.",
+  "en": "range officer",
+  "cat": "střelnice"
+ },
+ {
+  "term": "střelecké stanoviště",
+  "stems": [
+   "střeleck\\w* stanovišt"
+  ],
+  "def": "Přesně určené, případně ohrazené místo, ze kterého se střílí. Střelec na něm manipuluje se zbraní, nabíjí a vybíjí ji a mimo něj má zbraň vybitou a zajištěnou. Na jednom stanovišti bývá vždy jeden střelec.",
+  "en": "firing point",
+  "cat": "střelnice"
+ },
+ {
+  "term": "palebná čára",
+  "stems": [
+   "palebn\\w* čár"
+  ],
+  "def": "Čára, která omezuje střelecká stanoviště směrem k terčové čáře. Před ni střelec při střelbě nevstupuje a za ni smí vstoupit jen po povelu řídícího střelby, když jsou všechny zbraně vybité.",
+  "en": "firing line",
+  "cat": "střelnice"
+ },
+ {
+  "term": "terčová čára",
+  "stems": [
+   "terčov\\w* čár"
+  ],
+  "def": "Čára, na které jsou umístěny terče a terčová zařízení, tedy zařízení pro umístění a případný pohyb terčů. Prostor kolem ní se nazývá cílový prostor. Za ním se nachází dopadiště střel.",
+  "en": "target line",
+  "cat": "střelnice"
+ },
+ {
+  "term": "dopadiště",
+  "stems": [
+   "dopadišt"
+  ],
+  "def": "Prostor za terči, obvykle zemní val nebo lapač střel, kde střely bezpečně končí svůj let. Jeho vhodná konstrukce je základním technickým opatřením bezpečnosti střelnice. Bezpečný směr na střelnici se určuje právě směrem k dopadišti vymezenému provozním řádem.",
+  "en": "bullet trap / backstop",
+  "cat": "střelnice"
+ },
+ {
+  "term": "výstřelný prostor",
+  "stems": [
+   "výstřeln\\w* prostor"
+  ],
+  "def": "Prostor mezi palebnou čárou a dopadištěm, kterým prolétají střely. Během střelby v něm nesmí nikdo být a vstupovat do něj lze jen po přerušení střelby a povelu řídícího střelby. Spolu s ohroženým prostorem tvoří zónu, do které se zamezuje vstup nezúčastněných osob.",
+  "en": "downrange area",
+  "cat": "střelnice"
+ },
+ {
+  "term": "tepenné (masivní) krvácení",
+  "stems": [
+   "tepenn",
+   "masivn\\w* krvácen",
+   "masivně krvác"
+  ],
+  "def": "Život ohrožující krvácení, při kterém jasně červená krev z rány silně vytéká nebo stříká v rytmu tepu. Řeší se jako první, ještě před kontrolou dýchání: přímým tlakem do rány, poté tlakovým obvazem a při selhání zaškrcovadlem. Vždy se volá 155 a zachránce si chrání ruce rukavicemi nebo improvizovaně.",
+  "en": "arterial (massive) bleeding",
+  "cat": "zdraví"
+ },
+ {
+  "term": "tlakový obvaz",
+  "stems": [
+   "tlakov\\w* obvaz"
+  ],
+  "def": "Obvaz složený ze sterilního krytí rány, tlakové vrstvy (například smotaného obinadla) a pevně utaženého obinadla, které vyvíjí tlak přímo na ránu. Je druhým krokem po přímém tlaku prsty. Pokud prosakuje i druhá vrstva, končetina se zaškrtí.",
+  "en": "pressure dressing",
+  "cat": "zdraví"
+ },
+ {
+  "term": "zaškrcovadlo (turniket)",
+  "stems": [
+   "zaškrcovad",
+   "škrtidl",
+   "turniket",
+   "zaškrt"
+  ],
+  "def": "Pomůcka k úplnému zastavení krevního toku v končetině, používaná při masivním krvácení, které nezastaví tlakový obvaz. Přikládá se nad ránu na paži nebo stehno (nikdy na kloub ani přímo na ránu), utahuje se do zastavení krvácení a zaznamená se čas přiložení. Jednou přiložené zaškrcovadlo laik nepovoluje.",
+  "en": "tourniquet",
+  "cat": "zdraví"
+ },
+ {
+  "term": "zotavovací poloha",
+  "stems": [
+   "zotavovac",
+   "stabilizovan\\w* poloh"
+  ],
+  "def": "Poloha na boku pro člověka v bezvědomí, který normálně dýchá. Udržuje záklon hlavy a umožňuje odtok zvratků či krve z úst, čímž brání vdechnutí. Používá se, když musí zachránce od postiženého odejít nebo hrozí zvracení; jinak postižený zůstává na zádech se záklonem hlavy a kontroluje se dýchání.",
+  "en": "recovery position",
+  "cat": "zdraví"
+ },
+ {
+  "term": "resuscitace (KPR)",
+  "stems": [
+   "resuscitac",
+   "kpr",
+   "stlačován\\w* hrudník",
+   "oživován"
+  ],
+  "def": "Oživování člověka, který je v bezvědomí a nedýchá normálně (nedýchá, chrčí nebo lape po dechu). Zahajuje se po zavolání 155 stlačováním středu hrudníku na tvrdé podložce do hloubky 5 až 6 cm frekvencí 100 až 120 za minutu; dýchání z plic do plic v poměru 30:2 se přidává, pokud to zachránce umí. Pokračuje se bez přerušení do příjezdu záchranné služby.",
+  "en": "CPR",
+  "cat": "zdraví"
+ },
+ {
+  "term": "poranění hrudníku (pneumotorax)",
+  "stems": [
+   "pneumotorax",
+   "poraněn\\w* hrudník",
+   "rána hrudník"
+  ],
+  "def": "Pronikající poranění hrudní stěny, například střelné, při kterém vzduch vniká do hrudníku a plíce se hroutí. Postiženého při vědomí usadíme do polosedu, zavoláme 155 a ránu necháme nezakrytou, aby přetlak mohl unikat; neprodyšné krytí se nepoužívá. Masivní krvácení zastavíme přímým tlakem, speciální prodyšné krytí s chlopní jen v nezbytném případě.",
+  "en": "pneumothorax",
+  "cat": "zdraví"
+ },
+ {
+  "term": "šok",
+  "stems": [
+   "\\bšok"
+  ],
+  "def": "Život ohrožující stav, při kterém selhává krevní oběh, typicky po velké ztrátě krve. Projevuje se bledostí, studeným potem, zrychleným tepem, neklidem až poruchou vědomí. První pomocí je zastavení krvácení, volání 155, poloha vleže, tepelný komfort a klidná komunikace; nápoje se nepodávají.",
+  "en": "shock",
+  "cat": "zdraví"
+ }
+]
