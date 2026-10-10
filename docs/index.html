@@ -74,7 +74,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 button:active:not(:disabled){opacity:.7}
 button:focus-visible,.answer:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--info);outline-offset:2px}
 select,input[type=date]{font:inherit;padding:10px 12px;border-radius:10px;border:0;background:var(--fill);color:var(--fg);max-width:100%;min-height:44px}
-label.field{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted);font-weight:500;flex:1 1 200px}
+label.field{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted);font-weight:500}
+.row>label.field{flex:1 1 200px}
 label.check{display:flex;align-items:center;gap:12px;font-size:16px;min-height:44px}
 label.check input{width:22px;height:22px;accent-color:var(--accent);margin:0}
 .seg{display:flex;gap:2px;padding:2px;border-radius:10px;background:var(--fill)}
@@ -434,7 +435,7 @@ function renderHome(){
     h('p',{class:'note'}, CLOUD_OK ? 'Pokrok se ukládá pod tajným klíčem do cloudu a každé zařízení ho po otevření stáhne a po odpovědi odešle. Na druhém zařízení zadejte stejný klíč. Kdo klíč nezná, k datům se nedostane.' : 'Automatická synchronizace funguje jen ve verzi na vlastní adrese (GitHub Pages), v této verzi použijte přenos kódem níže.'),
     h('label',{class:'field'},'Klíč zařízení', keyField),
     h('div',{class:'row'},
-      h('button',{class:'primary',type:'button',disabled:!CLOUD_OK,onclick:()=>{ const k=normKey(keyField.value); if(k.replace(/-/g,'').length!==16){ setSyncStatus('Klíč má 16 znaků, např. K7F3-9QX2-ABCD-EFGH.'); return; } S.sync=Object.assign(S.sync||{},{key:k}); keyField.value=k; save(); cloudSync('key'); }},'Uložit klíč a synchronizovat'),
+      h('button',{class:'primary',type:'button',disabled:!CLOUD_OK,onclick:()=>{ const k=normKey(keyField.value); if(k.replace(/-/g,'').length!==16){ setSyncStatus('Klíč má 16 znaků, např. K7F3-9QX2-ABCD-EFGH.'); return; } S.sync=Object.assign(S.sync||{},{key:k}); keyField.value=k; save(); renderHome(); cloudSync('key'); }},'Uložit klíč a synchronizovat'),
       h('button',{class:'ghost',type:'button',disabled:!CLOUD_OK,onclick:()=>{ keyField.value=makeKey(); }},'Vygenerovat nový'),
       S.sync&&S.sync.key?h('button',{class:'ghost',type:'button',onclick:()=>{ navigator.clipboard&&navigator.clipboard.writeText(S.sync.key).then(()=>setSyncStatus('Klíč zkopírován. Vložte ho na druhém zařízení.'),()=>{ keyField.select(); }); }},'Zkopírovat klíč'):null,
       S.sync&&S.sync.key?h('button',{class:'danger',type:'button',onclick:()=>{ S.sync.key=''; save(); keyField.value=''; setSyncStatus('Vypnuto. Pokrok zůstává v tomto zařízení.'); renderHome(); }},'Vypnout'):null),
@@ -452,7 +453,7 @@ function renderHome(){
   main.append(h('div',{class:'stack'}, todayCard, tiles,
     h('div',{class:'card stack'}, h('h2',{},'Pokrytí okruhů'), bars,
       h('div',{class:'legend'},h('span',{class:'l-ok'},'naučeno'),h('span',{class:'l-seen'},'rozpracováno'),h('span',{class:'l-bad'},'po chybě'),h('span',{class:'l-new'},'neviděno'))),
-    hist, cloud, sync, settings,
+    hist, cloud, CLOUD_OK?null:sync, settings,
     h('div',{class:'card stack'}, h('h2',{},'Jak zkouška vypadá'),
       h('p',{class:'note'},'Písemný test: 30 otázek, výběr 1 ze 3, limit 40 minut. Skladba podle nařízení vlády č. 238/2025 Sb.: 17 právní předpisy, 5 nauka o zbraních, 5 bezpečné nakládání, 3 zdravotnické minimum. Hranice podle § 20 zákona č. 90/2024 Sb.: obecné zbrojní oprávnění alespoň 26 správně, rozšířené alespoň 28. Kdo neprospěje v teorii, praktickou část nekoná.'),
       h('p',{class:'note'},'Zdroj otázek: soubor testových otázek MV ČR (verze 15. 12. 2025), 837 otázek. Oficiální soubor nerozlišuje otázky „bezpečné nakládání“ od nauky, proto test bere 10 otázek z nauky dohromady.'))
