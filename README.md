@@ -61,6 +61,8 @@ otázek data přegenerujte, viz níže.
 
 ## Spuštění
 
+Aplikace běží na <https://zbrojak-2026.github.io/>.
+
 Otevřete `docs/index.html` v prohlížeči, nebo složku `docs/` nahrajte na
 GitHub Pages (Settings → Pages → složka `/docs` na větvi `main`). Na telefonu
 pak Sdílet → Přidat na plochu.
