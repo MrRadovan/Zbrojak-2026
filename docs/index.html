@@ -39,7 +39,7 @@
   --bg:#F2F2F7; --surface:#FFFFFF; --surface2:#F2F2F7; --fg:#000000; --fg2:#3C3C43; --muted:#6D6D72; --sep:rgba(60,60,67,.18); --fill:rgba(120,120,128,.12); --fill2:rgba(120,120,128,.2);
   --accent:#34C759; --accent-ink:#06290F; --accent-soft:rgba(52,199,89,.14);
   --ok:#34C759; --ok-soft:rgba(52,199,89,.14); --bad:#FF3B30; --bad-soft:rgba(255,59,48,.12); --warn:#FF9500; --warn-soft:rgba(255,149,0,.14); --info:#007AFF; --info-soft:rgba(0,122,255,.12);
-  --ok-ink:#197236; --bad-ink:#B5211A; --warn-ink:#8F4D00; --info-ink:#0A5DC2; --badge:#D70015; --badge-ink:#FFFFFF;
+  --ok-ink:#197236; --bad-ink:#B5211A; --warn-ink:#8F4D00; --info-ink:#0A5DC2; --badge:#D70015; --badge-ink:#FFFFFF; --time-bg:#0A5DC2; --time-ink:#FFFFFF;
   --bar:rgba(249,249,249,.82);
   --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Inter,Roboto,Arial,sans-serif;
   --display:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Inter,Arial,sans-serif;
@@ -48,17 +48,18 @@
   --bg:#000000; --surface:#1C1C1E; --surface2:#2C2C2E; --fg:#FFFFFF; --fg2:#EBEBF5; --muted:#9A9AA0; --sep:rgba(84,84,88,.6); --fill:rgba(120,120,128,.24); --fill2:rgba(120,120,128,.32);
   --accent:#30D158; --accent-ink:#000000; --accent-soft:rgba(48,209,88,.18);
   --ok:#30D158; --ok-soft:rgba(48,209,88,.18); --bad:#FF453A; --bad-soft:rgba(255,69,58,.18); --warn:#FF9F0A; --warn-soft:rgba(255,159,10,.18); --info:#0A84FF; --info-soft:rgba(10,132,255,.18);
-  --ok-ink:#30D158; --bad-ink:#FF6961; --warn-ink:#FF9F0A; --info-ink:#5AA9FF; --badge:#FF453A; --badge-ink:#000000;
+  --ok-ink:#30D158; --bad-ink:#FF6961; --warn-ink:#FF9F0A; --info-ink:#5AA9FF; --badge:#FF453A; --badge-ink:#000000; --time-bg:#5AA9FF; --time-ink:#000000;
   --bar:rgba(22,22,24,.82);
   color-scheme:dark }}
 :root[data-theme="dark"]{
   --bg:#000000; --surface:#1C1C1E; --surface2:#2C2C2E; --fg:#FFFFFF; --fg2:#EBEBF5; --muted:#9A9AA0; --sep:rgba(84,84,88,.6); --fill:rgba(120,120,128,.24); --fill2:rgba(120,120,128,.32);
   --accent:#30D158; --accent-ink:#000000; --accent-soft:rgba(48,209,88,.18);
   --ok:#30D158; --ok-soft:rgba(48,209,88,.18); --bad:#FF453A; --bad-soft:rgba(255,69,58,.18); --warn:#FF9F0A; --warn-soft:rgba(255,159,10,.18); --info:#0A84FF; --info-soft:rgba(10,132,255,.18);
-  --ok-ink:#30D158; --bad-ink:#FF6961; --warn-ink:#FF9F0A; --info-ink:#5AA9FF; --badge:#FF453A; --badge-ink:#000000;
+  --ok-ink:#30D158; --bad-ink:#FF6961; --warn-ink:#FF9F0A; --info-ink:#5AA9FF; --badge:#FF453A; --badge-ink:#000000; --time-bg:#5AA9FF; --time-ink:#000000;
   --bar:rgba(22,22,24,.82);
   color-scheme:dark }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+button,.answer,.pick,.term,.tile.link,nav.tabs,.seg{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.35;margin:0;padding-block:0 110px;padding-inline:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
 h1{font-size:34px;font-weight:700;letter-spacing:-.02em}
@@ -72,11 +73,12 @@ header.top small{color:var(--muted);font-size:13px}
 #theme-btn{display:none}
 /* segmented control */
 nav.tabs{display:flex;gap:2px;margin-block:4px 16px;padding:2px;border-radius:10px;background:var(--fill);overflow-x:auto}
-nav.tabs button{flex:1 1 0;min-width:0;border:0;background:transparent;color:var(--fg);border-radius:8px;padding:9px 4px;min-height:36px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;position:relative;letter-spacing:-.01em}
+nav.tabs button{flex:1 1 0;min-width:0;border:0;background:transparent;color:var(--fg);border-radius:8px;padding:10px 2px;min-height:40px;font:inherit;font-size:clamp(11px,3.4vw,13px);display:flex;align-items:center;justify-content:center;gap:3px;font-weight:500;cursor:pointer;white-space:nowrap;position:relative;letter-spacing:-.01em}
 nav.tabs button[aria-current="page"]{background:var(--surface);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04)}
 :root[data-theme="dark"] nav.tabs button[aria-current="page"]{background:#636366;box-shadow:none}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) nav.tabs button[aria-current="page"]{background:#636366;box-shadow:none} }
-nav.tabs button .cnt{display:inline-block;min-width:16px;padding:0 4px;margin-left:3px;border-radius:999px;background:var(--badge);color:var(--badge-ink);font-size:11px;line-height:17px;font-weight:600;text-align:center;vertical-align:1px}
+nav.tabs button .cnt{display:inline-block;min-width:16px;padding:0 4px;border-radius:999px;background:var(--badge);color:var(--badge-ink);font-size:10px;line-height:16px;font-weight:600;text-align:center;flex:none}
+nav.tabs button .cnt.time{background:var(--time-bg);color:var(--time-ink);font-variant-numeric:tabular-nums}
 /* grouped cards */
 .card{background:var(--surface);border-radius:14px;padding:16px}
 .stack{display:flex;flex-direction:column;gap:12px}
@@ -89,8 +91,9 @@ nav.tabs button .cnt{display:inline-block;min-width:16px;padding:0 4px;margin-le
 .small{font-size:14px}
 button.primary,button.ghost,button.danger,button.soft{font:inherit;font-weight:600;border-radius:12px;padding:14px 16px;cursor:pointer;border:0;background:var(--fill);color:var(--fg);min-height:48px}
 button.primary{background:var(--accent);color:var(--accent-ink)}
-button.danger{color:var(--bad-ink);background:transparent;min-height:0;padding:6px 10px;font-size:14px}
-button.soft{padding:6px 12px;font-size:14px;border-radius:999px;min-height:0;background:var(--fill);font-weight:500}
+button.danger{color:var(--bad-ink);background:transparent;min-height:44px;padding:10px 14px;font-size:15px}
+button.danger.filled{background:var(--bad);color:#fff}
+button.soft{padding:8px 14px;font-size:14px;border-radius:999px;min-height:40px;background:var(--fill);font-weight:500}
 button.soft[aria-pressed="true"]{background:var(--warn-soft);color:var(--warn-ink);font-weight:600}
 button:disabled{opacity:.4;cursor:not-allowed}
 button:active:not(:disabled){opacity:.7}
@@ -101,7 +104,7 @@ label.field{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(
 label.check{display:flex;align-items:center;gap:12px;font-size:16px;min-height:44px}
 label.check input{width:22px;height:22px;accent-color:var(--accent);margin:0}
 .seg{display:flex;gap:2px;padding:2px;border-radius:10px;background:var(--fill)}
-.seg button{flex:1;border:0;background:transparent;color:var(--fg);border-radius:8px;padding:7px 8px;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.seg button{flex:1;border:0;background:transparent;color:var(--fg);border-radius:8px;padding:9px 6px;min-height:40px;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
 .seg button[aria-pressed="true"],.seg button[aria-selected="true"]{background:var(--surface);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12)}
 :root[data-theme="dark"] .seg button[aria-pressed="true"],:root[data-theme="dark"] .seg button[aria-selected="true"]{background:#636366;box-shadow:none}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .seg button[aria-pressed="true"],:root:not([data-theme="light"]) .seg button[aria-selected="true"]{background:#636366;box-shadow:none} }
@@ -149,7 +152,11 @@ label.check input{width:22px;height:22px;accent-color:var(--accent);margin:0}
 .actions{position:fixed;left:0;right:0;bottom:0;background:var(--bar);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep);padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:6}
 .actions .wrap{display:flex;flex-direction:column;gap:8px}
 .actions .btns{display:flex;gap:10px}
-.actions .btns button{flex:1;white-space:nowrap;padding-inline:10px}
+.actions .btns button{flex:1;white-space:nowrap;padding-inline:10px;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.bar-tall{padding-bottom:150px}
+.actions .btns button.primary{flex:1.3}
+@media (max-width:360px){.actions .btns button{white-space:normal;font-size:15px;padding:10px 8px;line-height:1.2}.actions .btns{gap:8px}nav.tabs button .cnt.time{display:none}}
+@media (max-height:520px){header.top{padding-block:8px 4px}h1{font-size:22px}header.top small{display:none}nav.tabs{margin-block:2px 10px}body{padding-bottom:96px}body.bar-tall{padding-bottom:130px}}
 .timer{font-family:var(--display);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--muted);text-align:center}
 .timer.low{color:var(--bad-ink)}
 /* test grid */
@@ -186,6 +193,12 @@ textarea{font:inherit!important;font-size:14px!important;border:0!important;back
 .sheet{background:var(--surface);border-radius:16px 16px 0 0;padding:12px 16px calc(20px + env(safe-area-inset-bottom,0px));width:100%;max-width:680px;max-height:82vh;overflow:auto;font-size:15px;line-height:1.45}
 .sheet .grab{width:36px;height:5px;border-radius:3px;background:var(--fill2);margin:0 auto 14px}
 .sheet h2{margin-bottom:4px}
+.sheet.confirm{text-align:center}
+.sheet.confirm p{color:var(--fg2);margin:8px 0 18px}
+.sheet.confirm .btns{display:flex;flex-direction:column;gap:8px}
+.welcome{background:linear-gradient(135deg,var(--accent-soft),var(--info-soft))}
+.welcome ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.4}
+.welcome ol b{font-weight:600}
 .schema{display:block;width:100%;max-width:440px;margin:12px auto;color:var(--fg)}
 .schema text{font:12px var(--body);fill:var(--fg2)}
 .schema .lbl{font-weight:600}
@@ -211,6 +224,11 @@ textarea{font:inherit!important;font-size:14px!important;border:0!important;back
 .proc .row.between{align-items:flex-start}
 .rule h3{margin-bottom:4px}
 input[type=search],input[type=time]{font:inherit;padding:10px 12px;border-radius:10px;border:0;background:var(--fill);color:var(--fg);min-height:44px;width:100%;-webkit-appearance:none;appearance:none}
+.foot{text-align:center;font-size:12px;color:var(--muted);padding:8px 0 4px;line-height:1.6}
+.foot a{color:var(--muted)}
+.foot span{display:block}
+.tile.link{cursor:pointer}
+.tile.link:active{opacity:.7}
 .toast{position:fixed;left:16px;right:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--fg);color:var(--bg);padding:12px 16px;border-radius:12px;font-size:14px;display:flex;gap:12px;align-items:center;max-width:648px;margin:0 auto;box-shadow:0 6px 24px rgba(0,0,0,.25)}
 .toast button{margin-left:auto;font:inherit;font-weight:600;border:0;background:transparent;color:var(--accent);cursor:pointer;padding:4px 0}
 @media (prefers-reduced-motion:no-preference){.answer,.grid30 button,nav.tabs button,.seg button,.steps li{transition:background .15s,box-shadow .15s,opacity .15s}}
@@ -225,7 +243,7 @@ input[type=search],input[type=time]{font:inherit;padding:10px 12px;border-radius
   <nav class="tabs" id="tabs">
     <button data-view="home" aria-current="page">Přehled</button>
     <button data-view="today">Dnes<span class="cnt" id="cnt-today" hidden></span></button>
-    <button data-view="test">Test</button>
+    <button data-view="test">Test<span class="cnt time" id="cnt-test" hidden></span></button>
     <button data-view="learn">Učení<span class="cnt" id="cnt-err" hidden></span></button>
     <button data-view="prac">Praxe</button>
   </nav>
@@ -329,14 +347,26 @@ function decodeState(code){
   if(!d||typeof d.items!=='object') throw new Error('Kód neobsahuje data pokroku.');
   return d;
 }
+// Both devices may have answered the same question since the last sync. The newer record decides the
+// schedule (due, lastGrade); counters take the maximum and learned days are united unless the newer
+// record contains a lapse that reset them. Returns null when the remote adds nothing.
+function mergeItem(loc, r){
+  const rt=r.t||0, lt=loc.t||0;
+  const base = rt>lt ? r : loc, other = rt>lt ? loc : r;
+  const days = base.lapses>other.lapses ? base.okDays.slice() : [...new Set([...(base.okDays||[]), ...(other.okDays||[])])].sort();
+  const m = {seen:Math.max(loc.seen||0, r.seen||0), right:Math.max(loc.right||0, r.right||0), wrong:Math.max(loc.wrong||0, r.wrong||0), lapses:Math.max(loc.lapses||0, r.lapses||0),
+             okDays:days, due:base.due, hcErr:Math.max(loc.hcErr||0, r.hcErr||0), lastGrade:base.lastGrade, t:Math.max(lt, rt), f:Math.min(loc.f||loc.t||Infinity, r.f||r.t||Infinity)};
+  if(!isFinite(m.f)) m.f=m.t;
+  const changed = JSON.stringify(m)!==JSON.stringify(Object.assign({}, loc, {okDays:(loc.okDays||[]).slice().sort()}));
+  return changed ? m : null;
+}
 function mergeState(remote){
   let updated=0, added=0;
   for(const [n,r] of Object.entries(remote.items||{})){
     if(!byNum.has(+n) || !r || typeof r!=='object') continue;
     const loc=S.items[n];
-    const rt=r.t||0, lt=loc?(loc.t||0):0;
-    if(!loc){ S.items[n]=r; added++; }
-    else if(rt>lt){ S.items[n]=r; updated++; }
+    if(!loc || !loc.seen){ S.items[n]=r; added++; continue; }
+    const m=mergeItem(loc, r); if(m){ S.items[n]=m; updated++; }
   }
   const seen=new Set(S.tests.map(t=>t.at));
   let tests=0;
@@ -362,12 +392,12 @@ function setSyncStatus(t){ C.status=t; const el=$('#sync-status2'); if(el) el.te
 async function cloudPull(){
   if(!CLOUD_OK || !S.sync || !S.sync.key) return false;
   const r=await fetch(cloudUrl(S.sync.key));
-  if(r.status===404) return false;
+  if(r.status===404){ S.sync.lastPull=Date.now(); return false; }
   if(!r.ok) throw new Error('server '+r.status);
   const doc=await r.json(); const f=doc.fields||{};
   const data=f.data&&f.data.stringValue; if(!data) return false;
   const remote=decodeState(data);
-  const res=mergeState(remote);
+  const res=mergeState(remote); S.sync.lastPull=Date.now();
   if(remote.settings){ for(const k of SYNC_KEYS) if(remote.settings[k]!==undefined && (remote.at||0)>(S.sync.localAt||0)) S.settings[k]=remote.settings[k]; save(); }
   return res;
 }
@@ -380,7 +410,8 @@ async function cloudPush(){
   S.sync.localAt=st.at;
 }
 async function cloudSync(reason){
-  if(!CLOUD_OK || !S.sync || !S.sync.key || C.busy) return;
+  if(!CLOUD_OK || !S.sync || !S.sync.key) return;
+  if(C.busy){ C.again=true; return; }
   C.busy=true; setSyncStatus('Synchronizuji…');
   try{
     const res=await cloudPull();
@@ -388,13 +419,32 @@ async function cloudSync(reason){
     C.last=Date.now(); S.sync.last=C.last; C.dirty=false; save();
     const n=res?(res.added+res.updated):0;
     setSyncStatus(`Synchronizováno ${new Date(C.last).toLocaleTimeString('cs-CZ',{hour:'2-digit',minute:'2-digit'})}${n?` · převzato ${n} otázek z druhého zařízení`:''}.`);
-    if(n && view==='home') renderHome();
+    if(n) afterMerge(n);
   }catch(e){ setSyncStatus('Synchronizace selhala: '+(e.message||'bez připojení')+'. Pokrok je uložený v tomto zařízení, zkusím to znovu.'); }
-  finally{ C.busy=false; }
+  finally{ C.busy=false; if(C.again){ C.again=false; cloudTouch(); } }
+}
+// the other device answered something since this session was planned: drop those questions from the queue
+function afterMerge(n){
+  if(T && T.queue.length){ const now=Date.now(); const before=T.queue.length; T.queue=T.queue.filter(num=>{ const q=byNum.get(num); return status(q)==='new' || isDue(q, now); }); T.total-=before-T.queue.length; }
+  if(T && T.cur!==null && !T.revealed){ const q=byNum.get(T.cur); if(status(q)!=='new' && !isDue(q)){ nextToday(); } }
+  if(view==='home') renderHome(); else if(view==='today') renderToday(); else updateBadges();
+  showToast(`Převzato ${n} ${n===1?'otázka':n<5?'otázky':'otázek'} z druhého zařízení.`);
+}
+async function cloudDelete(){
+  if(!CLOUD_OK || !S.sync || !S.sync.key) return;
+  const r=await fetch(cloudUrl(S.sync.key),{method:'DELETE'});
+  if(!r.ok && r.status!==404) throw new Error('server '+r.status);
+}
+function wipeLocal(){
+  const theme=S.settings.theme; clearTimeout(C.timer); C.dirty=false;
+  try{ localStorage.removeItem(LS); localStorage.removeItem(LS_OLD); }catch(e){}
+  S={ items:{}, test:null, tests:[], day:{key:dayKey(Date.now()),reviews:0,fresh:0}, sync:null, settings:{exam:'2026-10-22', perDay:'auto', hide:false, theme, license:'obecne', remind:'19:00'}, browse:{key:'all',mode:'seq',pos:0}, prac:{}, learn:{sub:'browse'}, ui:{} };
+  T=null; B={q:null}; E={q:null}; save(); setSyncStatus('Vypnuto.'); setView('home');
 }
 function cloudTouch(){ if(!CLOUD_OK || !S.sync || !S.sync.key) return; C.dirty=true; clearTimeout(C.timer); C.timer=setTimeout(()=>cloudSync('change'),2500); }
 document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') cloudSync('visible'); else if(C.dirty){ clearTimeout(C.timer); cloudSync('hide'); } });
-window.addEventListener('pagehide',()=>{ if(C.dirty && CLOUD_OK && S.sync && S.sync.key){ try{ const st=exportState(); st.settings=syncSettings(); const body=JSON.stringify({fields:{data:{stringValue:'ZB0:'+btoa(unescape(encodeURIComponent(JSON.stringify(st))))},at:{integerValue:String(st.at)}}}); fetch(cloudUrl(S.sync.key),{method:'PATCH',headers:{'Content-Type':'application/json'},body,keepalive:true}); }catch(e){} } });
+// pagehide: push only a state that was merged with the cloud recently; a stale push would overwrite the other device
+window.addEventListener('pagehide',()=>{ if(C.dirty && CLOUD_OK && S.sync && S.sync.key && Date.now()-(S.sync.lastPull||0)<10*60000){ try{ const st=exportState(); st.settings=syncSettings(); const body=JSON.stringify({fields:{data:{stringValue:'ZB0:'+btoa(unescape(encodeURIComponent(JSON.stringify(st))))},at:{integerValue:String(st.at)}}}); fetch(cloudUrl(S.sync.key),{method:'PATCH',headers:{'Content-Type':'application/json'},body,keepalive:true}); }catch(e){} } });
 
 /* ---------- plan ---------- */
 function plan(){
@@ -406,7 +456,7 @@ function plan(){
   let target;
   const doneToday=freshToday();
   if(S.settings.perDay!=='auto') target=+S.settings.perDay;
-  else { const pool0=fresh.length+doneToday; target = left>2 ? Math.ceil(pool0/Math.max(1,left-2)) : (left>0?Math.ceil(pool0/left):pool0); }
+  else { const pool0=fresh.length+doneToday; target = left>2 ? Math.ceil(pool0/(left-2)) : doneToday; }   // last two days: reviews and tests only; more new questions only on request
   target=Math.min(target, fresh.length+doneToday);
   return {due, fresh, left, target, doneToday, freshTodo:Math.max(0,target-doneToday)};
 }
@@ -444,12 +494,13 @@ function interleave(list){ // round-robin across sections so topics mix
 }
 function answerLetter(i){ return 'ABC'[i]; }
 function newOrder(q){ const o=q.a.map((_,i)=>i); return S.settings.shuffle===false ? o : shuffle(o); }
-function updateBadges(){ const p=plan(); const t=p.due.length+p.freshTodo; const a=$('#cnt-today'); a.textContent=t; a.hidden=!t; const e=$('#cnt-err'); const n=Q.filter(q=>status(q)==='bad').length; e.textContent=n; e.hidden=!n; }
+function updateBadges(){ const p=plan(); const t=p.due.length+p.freshTodo; const a=$('#cnt-today'); a.textContent=t; a.hidden=!t; const e=$('#cnt-err'); const n=Q.filter(q=>status(q)==='bad').length; e.textContent=n; e.hidden=!n; updateTestBadge(); }
+function updateTestBadge(){ const b=$('#cnt-test'); const running=S.test&&!S.test.done; b.hidden=!running; if(running){ const left=TEST_SECONDS-testElapsed(); b.textContent=fmtTime(left); if(left<=0 && view!=='test') finishTest(); } }
 
 let view='home', timerId=null;
 function setView(v, sub){ if(v==='browse'||v==='errors'||v==='glossary'){ sub=v; v='learn'; } if(sub){ S.learn.sub=sub; save(); } view=v; if(timerId){clearInterval(timerId); timerId=null;} closeSheet(); document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===v) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); $('#hdr-right').hidden=true; render(); window.scrollTo(0,0); }
 document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
-function actions(...btns){ const a=$('#actions'), inner=$('#actions-inner'); const bs=btns.filter(Boolean); inner.replaceChildren(...bs); a.hidden=bs.length===0 && $('#hdr-right').hidden; }
+function actions(...btns){ const a=$('#actions'), inner=$('#actions-inner'); const bs=btns.filter(Boolean); inner.replaceChildren(...bs); a.hidden=bs.length===0 && $('#hdr-right').hidden; document.body.classList.toggle('bar-tall', !$('#hdr-right').hidden); }
 
 /* ---------- glossary: terms detected in text, tap opens a sheet ---------- */
 const GL_CATS = {nauka:'nauka', 'právo':'právo', 'střelnice':'střelnice', 'zdraví':'zdraví'};
@@ -538,6 +589,20 @@ function openTerm(g){
   bg.append(sh); document.body.append(bg); document.body.style.overflow='hidden'; document.addEventListener('keydown',escClose);
   const b=sh.querySelector('button'); if(b) b.focus({preventScroll:true});
 }
+// confirmation for destructive actions; resolves true when confirmed
+function confirmSheet({title, text, ok, danger}){
+  return new Promise(resolve=>{
+    closeSheet();
+    const done=v=>{ closeSheet(); resolve(v); };
+    const bg=h('div',{class:'sheet-bg',onclick:e=>{ if(e.target===bg) done(false); }});
+    const sh=h('div',{class:'sheet confirm',role:'alertdialog','aria-modal':'true','aria-label':title},
+      h('div',{class:'grab'}), h('h2',{},title), h('p',{},text),
+      h('div',{class:'btns'}, h('button',{class:danger?'danger filled':'primary',type:'button',onclick:()=>done(true)},ok), h('button',{class:'ghost',type:'button',onclick:()=>done(false)},'Zpět')));
+    bg.append(sh); document.body.append(bg); document.body.style.overflow='hidden';
+    const esc=e=>{ if(e.key==='Escape'){ document.removeEventListener('keydown',esc); done(false); } }; document.addEventListener('keydown',esc);
+    sh.querySelector('.ghost').focus({preventScroll:true});
+  });
+}
 function closeSheet(){ const s=document.querySelector('.sheet-bg'); if(s) s.remove(); document.body.style.overflow=''; document.removeEventListener('keydown',escClose); }
 function escClose(e){ if(e.key==='Escape') closeSheet(); }
 /* explanation shown after the answer is revealed.
@@ -562,6 +627,7 @@ function explCard(q, used, order){
 
 /* ---------- question block ----------
    opts: {picked, revealed, onPick(i,guess), index, total, hidden (options hidden until reveal), onReveal, guess, onGuess, grade} */
+function revealScroll(){ requestAnimationFrame(()=>{ const v=document.querySelector('.verdict'); if(!v || typeof v.scrollIntoView!=='function') return; const r=v.getBoundingClientRect(); const barTop=window.innerHeight-(document.body.classList.contains('bar-tall')?150:110); if(r.bottom>barTop || r.top<0) v.scrollIntoView({block:'center',behavior:'smooth'}); }); }
 function questionBlock(q, opts){
   const wrap = h('div');
   const meta = h('div',{class:'qmeta'},
@@ -591,7 +657,7 @@ function questionBlock(q, opts){
   wrap.append(list);
   const cLetter = answerLetter(order.indexOf(q.c));
   if(opts.revealed){
-    const ok = opts.picked===q.c;
+    const ok = opts.picked===q.c; wrap.setAttribute('aria-live','polite');
     const it = S.items[q.n]||{okDays:[]};
     if(ok && opts.grade==='guess') wrap.append(h('div',{class:'verdict warn'},'Správně, ale hádal jste.', h('span',{class:'small'},'Vrátí se zítra. Do naučených se počítá až jistá odpověď.')));
     else if(ok) wrap.append(h('div',{class:'verdict ok'},`Správně. ${it.okDays.length} / ${MASTER_DAYS} dny.`, h('span',{class:'small'}, it.okDays.length>=MASTER_DAYS?'Naučeno. Ještě jednou za týden pro jistotu.':`Příště ${INTERVALS[Math.min(it.okDays.length,4)]===1?'zítra':'za '+INTERVALS[Math.min(it.okDays.length,4)]+' dny'}.`)));
@@ -603,14 +669,14 @@ function questionBlock(q, opts){
 }
 
 /* ---------- HOME ---------- */
-function tile(n,label,sub){ return h('div',{class:'tile'}, h('div',{class:'big'},String(n)), h('div',{class:'eyebrow'},label), h('div',{class:'small muted'},sub)); }
+function tile(n,label,sub,mode){ return h('div',{class:'tile'+(mode?' link':''),role:mode?'button':null,tabindex:mode?'0':null,title:mode?'Procházet tyto otázky':null,onclick:mode?()=>{ S.browse.key='all'; S.browse.mode=mode; save(); browseNext(); setView('learn','browse'); }:null,onkeydown:mode?e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.target.click(); } }:null}, h('div',{class:'big'},String(n)), h('div',{class:'eyebrow'},label), h('div',{class:'small muted'},sub)); }
 function renderHome(){
   const main=$('#main'); main.replaceChildren();
   const all=sectionCounts(Q), p=plan();
   const tiles=h('div',{class:'tiles'},
-    tile(all.ok,'naučeno','správně ve 3 dnech'),
-    tile(all.seen+all.bad,'rozpracováno', all.bad+' po chybě'),
-    tile(all.new,'neviděno','z '+Q.length));
+    tile(all.ok,'naučeno','správně ve 3 dnech','ok'),
+    tile(all.seen+all.bad,'rozpracováno', all.bad+' po chybě','seen'),
+    tile(all.new,'neviděno','z '+Q.length,'new'));
   const todayCard=h('div',{class:'card stack'},
     h('div',{class:'row between'}, h('h2',{},'Dnes'), h('span',{class:'pill '+(p.left<=3?'bad':p.left<=7?'warn':'info')}, p.left>0?`do zkoušky ${p.left} ${p.left===1?'den':p.left<5?'dny':'dní'}`:p.left===0?'zkouška dnes':'po termínu')),
     h('div',{class:'today'},
@@ -634,6 +700,11 @@ function renderHome(){
   const pracCard=h('div',{class:'card stack'}, h('div',{class:'row between'}, h('h2',{},'Praktická část'), h('span',{class:'pill '+(pracOk===pracN&&pracN?'ok':'info')}, `${pracOk} / ${pracN} postupů`)),
     h('p',{class:'note'}, pracOk===pracN&&pracN ? 'Všechny postupy umíte seřadit bez chyby ve dvou různých dnech. Před zkouškou si je ještě jednou projděte.' : `Kontrola zbraně, závady, čištění a střelba podle přílohy č. 2 k NV č. 238/2025 Sb. Postup je naučený, když ho seřadíte bez chyby ve dvou různých dnech. Pro ${LIC[lic()]} oprávnění potřebujete ${hitsMark()} zásahů z 10.`),
     h('div',{class:'row'}, h('button',{class:'ghost',type:'button',style:'padding:8px 14px;min-height:0;font-size:14px',onclick:()=>setView('prac')},'Otevřít Praxi')));
+  const privacy=h('div',{class:'card stack'}, h('h2',{},'Data a soukromí'),
+    h('p',{class:'note'},'Aplikace ukládá jen váš pokrok v učení (stav otázek, výsledky testů, postupy praxe) a nastavení. Žádné osobní údaje, žádné sledování, žádná analytika. Pokrok je v tomto prohlížeči; pokud zapnete synchronizaci, ukládá se také pod vaším náhodným klíčem na serverech Google (Firebase Firestore) a dostane se k němu jen ten, kdo klíč zná. Otázky a obrázky pocházejí z veřejného souboru MV ČR.'),
+    h('div',{class:'row'},
+      h('button',{class:'danger',type:'button',onclick:async()=>{ if(await confirmSheet({title:'Smazat pokrok v tomto zařízení?', text:'Všechny odpovědi, testy a nastavení v tomto prohlížeči se nevratně smažou. Cloud zůstane; při zadání klíče se pokrok stáhne zpět.', ok:'Smazat v zařízení', danger:true})) wipeLocal(); }},'Smazat pokrok v tomto zařízení'),
+      CLOUD_OK&&S.sync&&S.sync.key ? h('button',{class:'danger',type:'button',onclick:async()=>{ if(await confirmSheet({title:'Smazat pokrok i z cloudu?', text:'Záznam pod vaším klíčem se smaže ze serveru a pokrok v tomto zařízení také. Druhá zařízení si svou kopii ponechají, dokud ji nesmažete stejně.', ok:'Smazat všude', danger:true})){ try{ await cloudDelete(); }catch(e){ showToast('Smazání z cloudu selhalo: '+(e.message||'bez připojení')+'. Zkuste to s připojením znovu.'); return; } wipeLocal(); showToast('Pokrok smazán z cloudu i z tohoto zařízení.'); } }},'Smazat i z cloudu') : null));
   const settings=h('div',{class:'card stack'}, h('h2',{},'Nastavení'),
     h('label',{class:'field'},'Zbrojní oprávnění, na které se připravujete', licSeg()),
     h('div',{class:'row'},
@@ -660,7 +731,7 @@ function renderHome(){
       h('button',{class:'primary',type:'button',disabled:!CLOUD_OK,onclick:()=>{ const k=normKey(keyField.value); if(k.replace(/-/g,'').length!==16){ setSyncStatus('Klíč má 16 znaků, např. K7F3-9QX2-ABCD-EFGH.'); return; } S.sync=Object.assign(S.sync||{},{key:k}); keyField.value=k; save(); renderHome(); cloudSync('key'); }},'Uložit klíč a synchronizovat'),
       h('button',{class:'ghost',type:'button',disabled:!CLOUD_OK,onclick:()=>{ keyField.value=makeKey(); }},'Vygenerovat nový'),
       S.sync&&S.sync.key?h('button',{class:'ghost',type:'button',onclick:()=>{ navigator.clipboard&&navigator.clipboard.writeText(S.sync.key).then(()=>setSyncStatus('Klíč zkopírován. Vložte ho na druhém zařízení.'),()=>{ keyField.select(); }); }},'Zkopírovat klíč'):null,
-      S.sync&&S.sync.key?h('button',{class:'danger',type:'button',onclick:()=>{ S.sync.key=''; save(); keyField.value=''; setSyncStatus('Vypnuto. Pokrok zůstává v tomto zařízení.'); renderHome(); }},'Vypnout'):null),
+      S.sync&&S.sync.key?h('button',{class:'danger',type:'button',onclick:async()=>{ if(await confirmSheet({title:'Vypnout synchronizaci?', text:'Pokrok zůstane v tomto zařízení i v cloudu, jen se přestane slučovat. Klíč lze kdykoli zadat znovu.', ok:'Vypnout', danger:true})){ S.sync.key=''; save(); keyField.value=''; setSyncStatus('Vypnuto. Pokrok zůstává v tomto zařízení.'); renderHome(); } }},'Vypnout'):null),
     cloudStatus);
   const sync=h('div',{class:'card stack'}, h('h2',{},'Ruční přenos'),
     h('p',{class:'note'},'Záloha bez cloudu: tady „Zkopírovat“, na druhém zařízení vložit do pole a „Sloučit“. Sloučení bere u každé otázky novější stav.'),
@@ -672,21 +743,40 @@ function renderHome(){
       window.claude ? null : h('button',{class:'ghost',type:'button',style:'padding:8px 12px;font-size:13px',onclick:downloadBackup},'Stáhnout zálohu (.json)'),
       h('button',{class:'ghost',type:'button',style:'padding:8px 12px;font-size:13px',onclick:()=>fileIn.click()},'Načíst zálohu'), fileIn),
     syncStatus);
-  main.append(h('div',{class:'stack'}, todayCard, tiles,
+  // warn when progress is being made without a sync key, or inside another app's browser (Messenger, Instagram…), where storage is separate and often discarded
+  const inApp = /FBAN|FBAV|FB_IAB|Instagram|Messenger|Line\/|Twitter|TikTok/i.test(navigator.userAgent);
+  const noKey = CLOUD_OK && !(S.sync && S.sync.key);
+  if(!S.ui) S.ui={};
+  const firstRun = !S.ui.welcomeDone && (all.ok+all.seen+all.bad)===0;
+  const welcome = firstRun ? h('div',{class:'card stack welcome'}, h('h2',{},'Vítejte v Zbrojáku'),
+    h('p',{class:'note',style:'color:var(--fg)'},'Než začnete, tři věci:'),
+    h('ol',{},
+      h('li',{}, h('b',{},'Nastavte datum zkoušky.'), ' Aplikace podle něj rozloží všech 837 otázek tak, abyste je stihli a ještě vám zbyly dva dny na opakování.'),
+      h('li',{}, h('b',{},'Zapněte synchronizaci,'), ' pokud se budete učit i na jiném zařízení. Stačí vygenerovat klíč a zadat ho tam také.'),
+      h('li',{}, h('b',{},'Začněte dnešní dávkou.'), ' Ke každé odpovědi dostanete vysvětlení. Otázku umíte, když ji dáte správně ve třech různých dnech.')),
+    h('div',{class:'row'}, h('button',{class:'primary',type:'button',onclick:()=>{ S.ui.welcomeDone=true; save(); setView('today'); }},'Začít dnešní dávku'), h('button',{class:'ghost',type:'button',onclick:()=>{ S.ui.welcomeDone=true; save(); renderHome(); }},'Rozumím'))) : null;
+  const warn = (inApp || (noKey && (all.ok+all.seen+all.bad)>0)) ? h('div',{class:'card stack',style:'background:var(--warn-soft)'},
+    h('h2',{}, inApp ? 'Otevřeno uvnitř jiné aplikace' : 'Pokrok se nikam neukládá'),
+    h('p',{class:'note',style:'color:var(--fg)'}, inApp
+      ? 'Tento prohlížeč (Messenger, Instagram apod.) má vlastní úložiště, které se po zavření často zahodí, a nemá váš synchronizační klíč. Otevřete adresu v Safari nebo Chromu (tři tečky → Otevřít v prohlížeči) a tam přidejte na plochu.'
+      : 'V tomto prohlížeči není zadaný synchronizační klíč. Pokrok zůstane jen zde; na druhém zařízení ho neuvidíte. Zadejte klíč v kartě Automatická synchronizace níže.')) : null;
+  main.append(h('div',{class:'stack'}, warn, welcome, todayCard, tiles,
     h('div',{class:'card stack'}, h('h2',{},'Pokrytí okruhů'), bars,
       h('div',{class:'legend'},h('span',{class:'l-ok'},'naučeno'),h('span',{class:'l-seen'},'rozpracováno'),h('span',{class:'l-bad'},'po chybě'),h('span',{class:'l-new'},'neviděno'))),
-    pracCard, hist, cloud, CLOUD_OK?null:sync, settings,
+    pracCard, hist, cloud, CLOUD_OK?null:sync, settings, privacy,
     h('div',{class:'card stack'}, h('h2',{},'Jak zkouška vypadá'),
       h('p',{class:'note'},'Písemný test: 30 otázek, výběr 1 ze 3, limit 40 minut. Skladba podle nařízení vlády č. 238/2025 Sb.: 17 právní předpisy, 5 nauka o zbraních, 5 bezpečné nakládání, 3 zdravotnické minimum. Hranice podle § 20 zákona č. 90/2024 Sb.: obecné zbrojní oprávnění alespoň 26 správně, rozšířené alespoň 28. Kdo neprospěje v teorii, praktickou část nekoná. V praktické části potřebuje obecné oprávnění 6 zásahů z 10, rozšířené 8.'),
       h('p',{class:'note'},'Zdroj otázek: soubor testových otázek MV ČR (verze 15. 12. 2025), 837 otázek. Oficiální soubor nerozlišuje otázky „bezpečné nakládání“ od nauky, proto test bere 10 otázek z nauky dohromady.'),
-      h('p',{class:'note'},'Vysvětlení pod otázkami a slovníček nejsou součástí souboru MV; vznikly jako doplněk k učení. Správná odpověď je vždy ta z oficiálního souboru. Kde si vysvětlení není jisté číslem nebo paragrafem, upozorní na to.'))
+      h('p',{class:'note'},'Vysvětlení pod otázkami a slovníček nejsou součástí souboru MV; vznikly jako doplněk k učení. Správná odpověď je vždy ta z oficiálního souboru. Kde si vysvětlení není jisté číslem nebo paragrafem, upozorní na to.')),
+    h('footer',{class:'foot',id:'build-id'}, h('span',{},'Zbroják 2026 · verze 08227c3965cb · 14. 10. 2026'), h('span',{},'otázky MV ČR, verze 15. 12. 2025'), h('span',{}, h('a',{href:'https://github.com/zbrojak-2026/zbrojak-2026.github.io',target:'_blank',rel:'noopener'},'zdrojový kód a hlášení chyb')))
   ));
-  actions(h('button',{class:'primary',onclick:()=>setView('today')}, (p.due.length+p.freshTodo)?`Dnešní dávka · ${p.due.length+p.freshTodo}`:'Dnešní dávka hotová'), h('button',{class:'ghost',onclick:()=>{ startTest(); }}, S.test&&!S.test.done?'Pokračovat v testu':'Test nanečisto'));
+  const running=S.test&&!S.test.done;
+  actions(h('button',{class:'primary',onclick:()=>setView('today')}, (p.due.length+p.freshTodo)?`Dnešní dávka · ${p.due.length+p.freshTodo}`:'Dávka hotová'), h('button',{class:'ghost',onclick:()=>{ startTest(); }}, running?`Test · ${fmtTime(TEST_SECONDS-testElapsed())}`:'Test nanečisto'));
 }
 function adviceText(p){
   if(p.left<0) return 'Termín zkoušky je v minulosti. Upravte datum v nastavení.';
   if(p.fresh.length===0 && p.due.length===0) return 'Všechno je prošlé a nic není k opakování. Udělejte test nanečisto.';
-  if(p.left<=2) return 'Poslední dny: už žádné nové otázky, jen opakování a jeden test nanečisto denně. Večer před zkouškou skončit brzy a vyspat se.';
+  if(p.left<=2) return `Poslední dny: jen opakování a jeden test nanečisto denně, žádné nové otázky${p.fresh.length?` (${p.fresh.length} neviděných lze přidat ručně přes „+25 nových“)`:''}. Večer před zkouškou skončit brzy a vyspat se.`;
   if(p.left<=5) return `Každý den dnešní dávku a k tomu jeden test nanečisto. Cíl: opakovaně ${Math.min(30,passMark()+2)}+ z 30, hranice pro ${LIC[lic()]} oprávnění je ${passMark()}.`;
   return `Nové otázky jsou rozložené do ${p.left-2} dnů, poslední dva dny zůstávají na opakování a testy. Krátké seance několikrát denně fungují lépe než jedna dlouhá.`;
 }
@@ -704,20 +794,29 @@ function nextToday(){
   if(!T.queue.length){ T.cur=null; return; }
   T.cur=T.queue.shift(); T.picked=null; T.revealed=false; T.guess=false; T.grade=null; T.hidden=!!S.settings.hide; T.order=newOrder(byNum.get(T.cur));
 }
+const EXTRA_NEW = 25;
+// add a block of unseen questions beyond today's target (the daily plan then counts them as done today)
+function extendToday(n){
+  const p=plan(); const more=interleave(p.fresh.slice()).slice(0,n).map(q=>q.n); if(!more.length) return;
+  if(!T || (T.cur===null && !T.queue.length)){ T={queue:more, cur:null, picked:null, revealed:false, guess:false, grade:null, hidden:false, done:T?T.done:0, total:(T?T.total:0)+more.length, started:T?T.started:Date.now()}; }
+  else { T.queue.push(...more); T.total+=more.length; }
+  if(T.cur===null) nextToday(); renderToday();
+}
+function moreBtn(p, cls){ return p.fresh.length ? h('button',{class:cls,onclick:()=>extendToday(EXTRA_NEW)}, `+${Math.min(EXTRA_NEW,p.fresh.length)} nových`) : null; }
 function renderToday(){
   const main=$('#main'); main.replaceChildren(); updateBadges();
   if(!T || (T.cur===null && !T.queue.length)){
     const p=plan();
     if(T && T.cur===null && T.total>0){
-      main.append(h('div',{class:'card done-card stack'}, h('h2',{},'Dnešní dávka hotová'), h('p',{class:'muted'},`${T.done} odpovědí za ${fmtTime((Date.now()-T.started)/1000)}.`), h('p',{class:'note'}, p.due.length?`${p.due.length} otázek se mezitím vrátilo k opakování (chyby z této seance).`:'Nic dalšího dnes nečeká. Zítra ráno se objeví další.')));
-      actions(h('button',{class:'ghost',onclick:()=>setView('home')},'Přehled'), p.due.length?h('button',{class:'primary',onclick:()=>{buildToday();nextToday();renderToday();}},`Dojet chyby (${p.due.length})`):h('button',{class:'primary',onclick:()=>{startTest();}},'Test nanečisto'));
+      main.append(h('div',{class:'card done-card stack'}, h('h2',{},'Dnešní dávka hotová'), h('p',{class:'muted'},`${T.done} odpovědí za ${fmtTime((Date.now()-T.started)/1000)}.`), h('p',{class:'note'}, p.due.length?`${p.due.length} otázek se mezitím vrátilo k opakování (chyby z této seance).`:(p.fresh.length?`Nic dalšího dnes nečeká. Chcete-li pokračovat, přidejte dalších ${Math.min(EXTRA_NEW,p.fresh.length)} neviděných otázek; zítřejší cíl se o ně sníží.`:'Nic dalšího dnes nečeká. Zítra ráno se objeví další.'))));
+      actions(h('button',{class:'ghost',onclick:()=>setView('home')},'Přehled'), p.due.length?h('button',{class:'primary',onclick:()=>{buildToday();nextToday();renderToday();}},`Dojet chyby (${p.due.length})`):(moreBtn(p,'primary')||h('button',{class:'primary',onclick:()=>{startTest();}},'Test nanečisto')));
       return;
     }
     const n=p.due.length+p.freshTodo;
     main.append(h('div',{class:'card stack'}, h('h2',{},'Dnešní dávka'),
       h('div',{class:'today'}, h('div',{}, h('div',{class:'num'},String(p.due.length)), h('div',{class:'eyebrow'},'k opakování')), h('div',{}, h('div',{class:'num'},String(p.freshTodo)), h('div',{class:'eyebrow'},'nových'))),
-      h('p',{class:'note'}, n?'Nejdřív opakování (po chybě se otázka vrací, dokud ji nedáte jistě správně), pak nové otázky prokládané napříč okruhy.':'Dnes už nic nečeká. Chcete-li přidat, zvyšte počet nových otázek denně v nastavení nebo udělejte test nanečisto.')));
-    actions(n?h('button',{class:'primary',onclick:()=>{buildToday();nextToday();renderToday();}},'Začít'):h('button',{class:'primary',onclick:()=>startTest()},'Test nanečisto'));
+      h('p',{class:'note'}, n?'Nejdřív opakování (po chybě se otázka vrací, dokud ji nedáte jistě správně), pak nové otázky prokládané napříč okruhy.':(p.fresh.length?'Dnes už nic nečeká. Můžete přidat další neviděné otázky nad denní cíl, nebo udělat test nanečisto.':'Dnes už nic nečeká a všechny otázky jste viděl. Udělejte test nanečisto.'))));
+    actions(n?h('button',{class:'primary',onclick:()=>{buildToday();nextToday();renderToday();}},'Začít'):(moreBtn(p,'ghost')), h('button',{class:n?'ghost':'primary',onclick:()=>startTest()},'Test nanečisto'));
     return;
   }
   const q=byNum.get(T.cur);
@@ -726,7 +825,7 @@ function renderToday(){
   main.append(h('div',{class:'stack'},
     h('div',{class:'row between'}, h('span',{class:'small muted'},`Hotovo ${T.done} · zbývá ${T.queue.length+1}`), label),
     h('div',{class:'card'}, questionBlock(q,{order:T.order, picked:T.picked, revealed:T.revealed, hidden:T.hidden, onReveal:()=>{T.hidden=false;renderToday();}, guess:T.guess, onGuess:g=>{T.guess=g;renderToday();}, grade:T.grade,
-      onPick:i=>{ T.picked=i; T.revealed=true; const ok=i===q.c; T.grade= ok ? (T.guess?'guess':'sure') : 'wrong'; record(q.n,T.grade); T.done++; if(!ok || T.guess){ T.queue.push(q.n); } renderToday(); }}))
+      onPick:i=>{ T.picked=i; T.revealed=true; const ok=i===q.c; T.grade= ok ? (T.guess?'guess':'sure') : 'wrong'; record(q.n,T.grade); T.done++; if(!ok || T.guess){ T.queue.push(q.n); } renderToday(); revealScroll(); }}))
   ));
   actions(T.revealed ? h('button',{class:'primary',onclick:()=>{nextToday();renderToday();}}, T.queue.length?'Další':'Dokončit')
                      : h('button',{class:'ghost',onclick:()=>{ T.queue.push(T.cur); nextToday(); renderToday(); }},'Odložit na konec'));
@@ -743,7 +842,7 @@ function testElapsed(){ return (Date.now()-S.test.started)/1000; }
 function renderTest(){
   const main=$('#main'); main.replaceChildren();
   const t=S.test;
-  if(!t){ main.append(h('div',{class:'card stack'}, h('h2',{},'Test nanečisto'), h('p',{},`30 otázek ve skladbě ostré zkoušky, limit 40 minut, výsledek až na konci. Mezi otázkami se můžete vracet. Výsledek se promítne do plánu opakování. Hranice pro ${LIC[lic()]} oprávnění: ${passMark()} správně.`))); actions(h('button',{class:'primary',onclick:startTest},'Spustit test')); return; }
+  if(!t){ main.append(h('div',{class:'card stack'}, h('h2',{},'Test nanečisto'), h('p',{},`30 otázek ve skladbě ostré zkoušky, limit 40 minut, výsledek až na konci. Mezi otázkami se můžete vracet. Výsledek se promítne do plánu opakování. Hranice pro ${LIC[lic()]} oprávnění: ${passMark()} správně.`), h('p',{class:'note'},'Čas běží jako u ostré zkoušky, i když aplikaci opustíte nebo zavřete. Zbývající čas vidíte na záložce Test.'))); actions(h('button',{class:'primary',onclick:startTest},'Spustit test')); return; }
   if(t.done){ renderResult(); return; }
   const hr=$('#hdr-right'); hr.hidden=false;
   const tick=()=>{ const left=TEST_SECONDS-testElapsed(); hr.textContent='Zbývá '+fmtTime(left); hr.classList.toggle('low',left<300); if(left<=0){ finishTest(); } };
@@ -753,7 +852,7 @@ function renderTest(){
   t.nums.forEach((n,i)=>grid.append(h('button',{type:'button',class:(t.ans[i]!=null?'done':'')+(i===t.cur?' cur':''),onclick:()=>{t.cur=i;save();renderTest();}},String(i+1))));
   main.append(h('div',{class:'stack'},
     h('div',{class:'card'}, questionBlock(q,{order:t.orders?t.orders[t.cur]:null, picked:t.ans[t.cur], index:t.cur, total:30, terms:false, onPick:i=>{ t.ans[t.cur]=i; save(); if(t.cur<29){ t.cur++; } renderTest(); }})),
-    h('div',{class:'card stack'}, h('div',{class:'row between'}, h('span',{class:'eyebrow'},'Odpovězeno '+t.ans.filter(a=>a!=null).length+' / 30'), h('button',{class:'danger',style:'padding:6px 10px;font-size:13px',onclick:()=>{ S.test=null; save(); setView('test'); }},'Zrušit test')), grid)
+    h('div',{class:'card stack'}, h('div',{class:'row between'}, h('span',{class:'eyebrow'},'Odpovězeno '+t.ans.filter(a=>a!=null).length+' / 30'), h('button',{class:'danger',style:'min-height:36px;padding:6px 10px;font-size:14px',onclick:async()=>{ const n=t.ans.filter(a=>a!=null).length; if(await confirmSheet({title:'Zrušit test?', text:n?`${n} ${n===1?'odpověď':n<5?'odpovědi':'odpovědí'} se zahodí a do plánu se nic nezapíše.`:'Test se zahodí a do plánu se nic nezapíše.', ok:'Zrušit test', danger:true})){ S.test=null; save(); setView('test'); } }},'Zrušit test')), grid)
   ));
   const unanswered=t.ans.filter(a=>a==null).length;
   actions(
@@ -802,7 +901,8 @@ let B = {q:null, picked:null, revealed:false, guess:false, grade:null, hidden:fa
 function pickBrowse(){
   const list=pool(S.browse.key); const mode=S.browse.mode;
   if(mode==='seq'){ const i=S.browse.pos||0; const q=list[i%list.length]; S.browse.pos=(i+1)%list.length; save(); return q; }
-  let cands = mode==='new' ? list.filter(q=>status(q)==='new') : list;
+  const want = {new:['new'], seen:['seen','bad'], ok:['ok']}[mode];
+  let cands = want ? list.filter(q=>want.includes(status(q))) : list;
   if(!cands.length) cands=list;
   let q=cands[Math.floor(Math.random()*cands.length)];
   if(B.q && cands.length>1 && q.n===B.q.n) q=cands[(cands.indexOf(q)+1)%cands.length];
@@ -816,13 +916,22 @@ function renderBrowse(){
   const selKey=h('select',{id:'browse-key',onchange:e=>{S.browse.key=e.target.value;S.browse.pos=0;save();browseNext();renderBrowse();}},
     ...[['all','Všechny okruhy'],['pravo','Právo (648)'],['nauka','Nauka o zbraních (151)'],['zdravi','Zdravotnické minimum (38)']].map(([v,l])=>h('option',{value:v,selected:S.browse.key===v},l)));
   const selMode=h('select',{id:'browse-mode',onchange:e=>{S.browse.mode=e.target.value;save();browseNext();renderBrowse();}},
-    ...[['seq','Popořadě podle PDF'],['random','Náhodně'],['new','Jen neviděné']].map(([v,l])=>h('option',{value:v,selected:S.browse.mode===v},l)));
+    ...[['seq','Popořadě podle PDF'],['random','Náhodně'],['new','Jen neviděné'],['seen','Jen rozpracované'],['ok','Jen naučené']].map(([v,l])=>h('option',{value:v,selected:S.browse.mode===v},l)));
   const c=sectionCounts(pool(S.browse.key));
+  const inFilter = {new:c.new, seen:c.seen+c.bad, ok:c.ok}[S.browse.mode];
+  if(inFilter===0){
+    main.append(h('div',{class:'stack'},
+      h('div',{class:'row'}, h('label',{class:'field'},'Okruh',selKey), h('label',{class:'field'},'Výběr',selMode)),
+      h('div',{class:'card stack'}, h('h2',{}, {new:'Žádné neviděné otázky',seen:'Žádné rozpracované otázky',ok:'Zatím žádná naučená otázka'}[S.browse.mode]),
+        h('p',{class:'muted'}, {new:'V tomto okruhu jste už viděl všechno.',seen:'Rozpracovaná je otázka po první odpovědi, dokud není naučená (jistě správně ve 3 různých dnech).',ok:'Naučená je otázka po jisté správné odpovědi ve třech různých dnech. První se objeví třetí den učení.'}[S.browse.mode]))));
+    actions(h('button',{class:'ghost',onclick:()=>{ S.browse.mode='random'; save(); browseNext(); renderBrowse(); }},'Náhodně ze všech'));
+    return;
+  }
   main.append(h('div',{class:'stack'},
-    h('div',{class:'row'}, h('label',{class:'field'},'Okruh',selKey), h('label',{class:'field'},'Pořadí',selMode)),
+    h('div',{class:'row'}, h('label',{class:'field'},'Okruh',selKey), h('label',{class:'field'},'Výběr',selMode)),
     h('p',{class:'small muted'},`Naučeno ${c.ok} · rozpracováno ${c.seen} · po chybě ${c.bad} · neviděno ${c.new}` + (S.browse.mode==='seq'?` · pozice ${((S.browse.pos||1)-1+pool(S.browse.key).length)%pool(S.browse.key).length+1}`:'')),
     h('div',{class:'card'}, questionBlock(q,{order:B.order, picked:B.picked, revealed:B.revealed, hidden:B.hidden, onReveal:()=>{B.hidden=false;renderBrowse();}, guess:B.guess, onGuess:g=>{B.guess=g;renderBrowse();}, grade:B.grade,
-      onPick:i=>{ B.picked=i; B.revealed=true; const ok=i===q.c; B.grade= ok?(B.guess?'guess':'sure'):'wrong'; record(q.n,B.grade); updateBadges(); renderBrowse(); }}))
+      onPick:i=>{ B.picked=i; B.revealed=true; const ok=i===q.c; B.grade= ok?(B.guess?'guess':'sure'):'wrong'; record(q.n,B.grade); updateBadges(); renderBrowse(); revealScroll(); }}))
   ));
   actions(B.revealed ? h('button',{class:'primary',onclick:()=>{browseNext();renderBrowse();}},'Další otázka') : h('button',{class:'ghost',onclick:()=>{browseNext();renderBrowse();}},'Přeskočit'));
 }
@@ -832,13 +941,15 @@ let E = {q:null, picked:null, revealed:false, guess:false, grade:null};
 function renderErrors(){
   const main=learnShell('errors'); updateBadges();
   const list=Q.filter(q=>status(q)==='bad');
-  if(!list.length){ main.append(h('div',{class:'card stack'}, h('h2',{},'Žádné otázky po chybě'), h('p',{class:'muted'},'Sem se otázka zařadí po špatné odpovědi a zmizí po první jisté správné odpovědi. Pak pokračuje v běžném opakování.'))); actions(h('button',{class:'primary',onclick:()=>setView('today')},'Dnešní dávka')); E.q=null; return; }
-  if(!E.q || !list.some(q=>q.n===E.q.n)){ const nq=list[Math.floor(Math.random()*list.length)]; E={q:nq, order:newOrder(nq), picked:null, revealed:false, guess:false, grade:null}; }
+  // a question answered correctly leaves the error list at once; keep showing it with its verdict until "Další"
+  const keep = E.q && E.revealed;
+  if(!list.length && !keep){ main.append(h('div',{class:'card stack'}, h('h2',{},'Žádné otázky po chybě'), h('p',{class:'muted'},'Sem se otázka zařadí po špatné odpovědi a zmizí po první jisté správné odpovědi. Pak pokračuje v běžném opakování.'))); actions(h('button',{class:'primary',onclick:()=>setView('today')},'Dnešní dávka')); E.q=null; return; }
+  if(!keep && (!E.q || !list.some(q=>q.n===E.q.n))){ const nq=list[Math.floor(Math.random()*list.length)]; E={q:nq, order:newOrder(nq), picked:null, revealed:false, guess:false, grade:null}; }
   const q=E.q, it=item(q.n);
   main.append(h('div',{class:'stack'},
-    h('p',{class:'small muted'},`${list.length} otázek po chybě. Tato: ${it.wrong}× špatně, ${it.right}× správně.`),
+    h('p',{class:'small muted'},`${list.length} ${list.length===1?'otázka':list.length>1&&list.length<5?'otázky':'otázek'} po chybě. Tato: ${it.wrong}× špatně, ${it.right}× správně.`),
     h('div',{class:'card'}, questionBlock(q,{order:E.order, picked:E.picked, revealed:E.revealed, guess:E.guess, onGuess:g=>{E.guess=g;renderErrors();}, grade:E.grade,
-      onPick:i=>{ E.picked=i; E.revealed=true; const ok=i===q.c; E.grade= ok?(E.guess?'guess':'sure'):'wrong'; record(q.n,E.grade); renderErrors(); }}))
+      onPick:i=>{ E.picked=i; E.revealed=true; const ok=i===q.c; E.grade= ok?(E.guess?'guess':'sure'):'wrong'; record(q.n,E.grade); renderErrors(); revealScroll(); }}))
   ));
   actions(E.revealed ? h('button',{class:'primary',onclick:()=>{ E.q=null; renderErrors(); }},'Další')
                      : h('button',{class:'ghost',onclick:()=>{ const rest=list.filter(x=>x.n!==q.n); const nq=rest.length?rest[Math.floor(Math.random()*rest.length)]:q; E={q:nq, order:newOrder(nq), picked:null, revealed:false, guess:false, grade:null}; renderErrors(); }},'Jinou'));
@@ -960,7 +1071,8 @@ function licSeg(){ return h('div',{class:'seg',id:'lic-seg'}, ...[['obecne','Obe
 function showToast(text, btnLabel, onBtn){ const old=document.querySelector('.toast'); if(old) old.remove(); const t=h('div',{class:'toast',role:'status'}, h('span',{},text), btnLabel?h('button',{type:'button',onclick:()=>{ t.remove(); onBtn&&onBtn(); }},btnLabel):null); document.body.append(t); if(!btnLabel) setTimeout(()=>t.remove(),4000); }
 function registerSW(){
   if(!('serviceWorker' in navigator) || location.protocol!=='https:' || window.claude) return;
-  navigator.serviceWorker.register('sw.js').then(reg=>{
+  navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(reg=>{
+    document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') reg.update().catch(()=>{}); });   // look for a new version whenever the app comes to the foreground
     reg.addEventListener('updatefound',()=>{ const nw=reg.installing; if(!nw) return; nw.addEventListener('statechange',()=>{ if(nw.state==='installed' && navigator.serviceWorker.controller) showToast('Je k dispozici nová verze aplikace.','Obnovit',()=>location.reload()); }); });
   }).catch(()=>{});
 }
@@ -980,7 +1092,7 @@ function themeSeg(){ return h('div',{class:'seg',id:'theme-seg'}, ...THEMES.map(
 
 /* ---------- router ---------- */
 function render(){ updateBadges(); ({home:renderHome,today:renderToday,test:renderTest,learn:renderLearn,prac:renderPrac})[view](); }
-function start(hot){ applyTheme(); cloudSync('start'); registerSW(); if(hot&&hot.view){ view=hot.view; if(view==='browse'||view==='errors'){ S.learn.sub=view; view='learn'; } document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===view) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); } render(); }
+function start(hot){ applyTheme(); cloudSync('start'); registerSW(); setInterval(()=>{ if(S.test&&!S.test.done) updateTestBadge(); },1000); if(hot&&hot.view){ view=hot.view; if(view==='browse'||view==='errors'){ S.learn.sub=view; view='learn'; } document.querySelectorAll('#tabs button').forEach(b=>{ if(b.dataset.view===view) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); }); } render(); }
 try{ window.claude?.hot?.snapshot?.(()=>({view})); }catch(e){}
 if(window.claude?.hot?.ready) window.claude.hot.ready(start); else start(window.claude?.hot?.data ?? {});
 })();
